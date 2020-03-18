@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,14 @@
 
 output "project_id" {
   value = module.project.project_id
+}
+
+output "project_id_gke" {
+  value = module.project-gke.project_id
+}
+
+output "project_id_mig_container" {
+  value = module.project-mig-container-vm.project_id
 }
 
 output "sa_key" {

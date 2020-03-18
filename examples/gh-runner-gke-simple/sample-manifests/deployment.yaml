@@ -1,0 +1,68 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-deployment
+spec:
+  selector:
+    matchLabels:
+      app: runner
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: runner
+    spec:
+      containers:
+        - name: runner
+          image: gcr.io/PROJECT_ID/runner:latest
+          env:
+            - name: ACTIONS_RUNNER_INPUT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: runner-k8s-config
+                  key: repo_url
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: runner-k8s-config
+                  key: gh_token
+            - name: REPO_OWNER
+              valueFrom:
+                secretKeyRef:
+                  name: runner-k8s-config
+                  key: repo_owner
+            - name: REPO_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: runner-k8s-config
+                  key: repo_name
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  [
+                    "/bin/bash",
+                    "-c",
+                    './config.sh remove --token $(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/remove-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header "content-type: application/json" | jq -r .token)',
+                  ]
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+            limits:
+              memory: "512Mi"
+              cpu: "1"

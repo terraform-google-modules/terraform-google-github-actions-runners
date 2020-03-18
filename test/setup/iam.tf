@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,22 @@ resource "google_project_iam_member" "int_test" {
   count = length(local.int_required_roles)
 
   project = module.project.project_id
+  role    = local.int_required_roles[count.index]
+  member  = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_project_iam_member" "int_test_gke" {
+  count = length(local.int_required_roles)
+
+  project = module.project-gke.project_id
+  role    = local.int_required_roles[count.index]
+  member  = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_project_iam_member" "int_test_mig_container" {
+  count = length(local.int_required_roles)
+
+  project = module.project-mig-container-vm.project_id
   role    = local.int_required_roles[count.index]
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }
