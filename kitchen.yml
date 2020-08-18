@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,29 +15,38 @@
 ---
 driver:
   name: terraform
+  command_timeout: 2700
 
 provisioner:
   name: terraform
 
 verifier:
   name: terraform
+  fail_fast: false
 
 platforms:
-  - name: default
+  - name: local
 
 suites:
-  - name: simple_example
+  - name: gh-runner-gke
     driver:
-      root_module_directory: test/fixtures/simple_example/
+      root_module_directory: test/fixtures/gh-runner-gke
     verifier:
       color: false
       systems:
-        - name: simple_example local
+        - name: gh-runner-gke
           backend: local
           controls:
             - gcloud
-            - gsutil
-        - name: simple_example gcp
-          backend: gcp
+            - kubectl
+  - name: gh-runner-mig-container-vm
+    driver:
+      root_module_directory: test/fixtures/gh-runner-mig-container-vm
+    verifier:
+      color: false
+      systems:
+        - name: gh-runner-mig-container-vm
+          backend: local
           controls:
-            - gcp
+            - mig
+            - it

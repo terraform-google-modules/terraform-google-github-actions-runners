@@ -1,43 +1,80 @@
-# terraform-google-terraform-google-github-actions-runners
+# terraform-google-github-actions-runners
 
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+Using these Terraform modules you can quickly deploy Self Hosted Github Runners for jobs in your GitHub Actions workflows
 
-The resources/services/activations/deletions that this module will create/trigger are:
+## [Self Hosted Runners on GKE](modules/gh-runner-gke/README.md)
 
-- Create a GCS bucket with the provided name
+The `gh-runner-gke` module provisions the resources required to deploy Self Hosted Runners on GCP infrastructure using GKE.
 
-## Usage
+This includes
 
-Basic usage of this module is as follows:
+- Enabling necessary APIs
+- VPC
+- GKE Cluster
+- Kubernetes Secret
 
-```hcl
-module "terraform_google_github_actions_runners" {
-  source  = "terraform-google-modules/terraform-google-github-actions-runners/google"
-  version = "~> 0.1"
+Below are some examples:
 
-  project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
-}
-```
+### [Self Hosted runners on GKE that support Docker Workflows](examples/gh-runner-gke-dind/README.md)
 
-Functional examples are included in the
-[examples](./examples/) directory.
+This example shows how to deploy Self Hosted Runners on GKE that supports Docker Workflows.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
+### [Simple Self Hosted Runners on GKE](examples/gh-runner-gke-simple/README.md)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | The name of the bucket to create | string | n/a | yes |
-| project\_id | The project ID to deploy to | string | n/a | yes |
+This example shows how to deploy a simple GKE Self Hosted Runner.
 
-## Outputs
+More examples of [Self Hosted Runners on GKE/Anthos](https://github.com/github-developer/self-hosted-runners-anthos).
 
-| Name | Description |
-|------|-------------|
-| bucket\_name |  |
+## [Self Hosted Runners on Managed Instance Groups using VMs](modules/gh-runner-mig-vm/README.md)
 
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+The `gh-runner-mig-vm` module provisions the resources required to deploy Self Hosted Runners on GCP infrastructure using Managed Instance Groups.
+
+This includes
+
+- Enabling necessary APIs
+- VPC
+- NAT & Cloud Router
+- Service Account for MIG
+- MIG Instance Template
+- MIG Instance Manager
+- FW Rules
+- Secret Manager Secret
+
+Deployment of Managed Instance Groups requires a [Google VM image](https://cloud.google.com/compute/docs/images) with a startup script that downloads and configures the Runner or a pre-baked image with the runner installed.
+
+Below are some examples:
+
+### [Simple Self Hosted Runner on MIG VMs](examples/gh-runner-mig-native-simple/README.md)
+
+This example shows how to deploy a MIG Self Hosted Runner with startup scripts.
+
+### [Self Hosted Runner on MIG VMs from Packer Image](examples/gh-runner-mig-native-packer/README.md)
+
+This example shows how to deploy a MIG Self Hosted Runner with an image pre-baked using Packer.
+
+## [Self Hosted Runners on Managed Instance Groups using Container VMs](modules/gh-runner-mig-container-vm/README.md)
+
+The `gh-runner-mig-container-vm` module provisions the resources required to deploy Self Hosted Runners on GCP infrastructure using Managed Instance Groups.
+
+This includes
+
+- Enabling necessary APIs
+- VPC
+- NAT & Cloud Router
+- MIG Container Instance Template
+- MIG Instance Manager
+- FW Rules
+
+Below are some examples:
+
+### [Self Hosted runners on MIG Container VMs that support Docker Workflows](examples/gh-runner-mig-container-vm-dind/README.md)
+
+This example shows how to deploy a Self Hosted Runner that supports Docker Workflows on MIG Container VMs.
+
+### [Simple Self Hosted Runner on MIG Container VMs](examples/gh-runner-mig-container-vm-simple/README.md)
+
+This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
+
 
 ## Requirements
 
@@ -48,35 +85,12 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.12
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
-
-### Service Account
-
-A service account with the following roles must be used to provision
-the resources of this module:
-
-- Storage Admin: `roles/storage.admin`
-
-The [Project Factory module][project-factory-module] and the
-[IAM module][iam-module] may be used in combination to provision a
-service account with the necessary roles applied.
-
-### APIs
-
-A project with the following APIs enabled must be used to host the
-resources of this module:
-
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
-
-The [Project Factory module][project-factory-module] can be used to
-provision a project with the necessary APIs enabled.
+- [Terraform Provider for GCP][terraform-provider-gcp]
 
 ## Contributing
 
 Refer to the [contribution guidelines](./CONTRIBUTING.md) for
 information on contributing to this module.
 
-[iam-module]: https://registry.terraform.io/modules/terraform-google-modules/iam/google
-[project-factory-module]: https://registry.terraform.io/modules/terraform-google-modules/project-factory/google
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html

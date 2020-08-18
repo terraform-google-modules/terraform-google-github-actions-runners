@@ -1,0 +1,65 @@
+{
+  "variables": {
+    "source_image_family": "ubuntu-1804-lts",
+    "source_image_project_id": "ubuntu-os-cloud",
+    "machine_type": "n1-standard-4",
+    "disk_size": "50",
+    "disk_type": "pd-ssd",
+    "image_name": "gh-actions-image-{{timestamp}}",
+    "image_family": "gh-actions-image",
+    "ssh_username": "ubuntu",
+    "region": "us-central1",
+    "zone": "us-central1-a",
+    "project_id": "{{env `PACKER_PROJECT_ID`}}",
+    "gh_runner_version": "2.168.0"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `project_id`}}",
+      "source_image_family": "{{user `source_image_family`}}",
+      "source_image_project_id": "{{user `source_image_project_id`}}",
+      "zone": "{{user `zone`}}",
+      "machine_type": "{{user `machine_type`}}",
+      "disk_size": "{{user `disk_size`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "image_name": "{{user `image_name`}}",
+      "image_family": "{{user `source_image_family`}}",
+      "disable_default_service_account": false,
+      "metadata": {
+        "enable-oslogin": "true",
+        "new_nodes_topic": "new-instances-0001"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
+      "inline": [
+        "apt-get update",
+        "apt-get dist-upgrade -y",
+        "apt-get install -y apt-transport-https ca-certificates curl tar jq build-essential gnupg2 software-properties-common",
+        "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+        "add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"",
+        "apt-get update",
+        "apt-get install -y docker-ce",
+        "usermod -aG docker ubuntu"
+      ],
+      "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
+    },
+    {
+      "type": "shell",
+      "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
+      "inline": [
+        "curl -o actions.tar.gz --location \"https://github.com/actions/runner/releases/download/v{{user `gh_runner_version`}}/actions-runner-linux-x64-{{user `gh_runner_version`}}.tar.gz\"",
+        "mkdir /runner",
+        "mkdir /runner-tmp",
+        "tar -zxf actions.tar.gz --directory /runner",
+        "rm -f actions.tar.gz",
+        "/runner/bin/installdependencies.sh"
+      ],
+      "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 3.0"
 
-  name              = "ci-terraform_google_github_actions_runners"
+  name              = "ci-terraform-gh-runners"
   random_project_id = "true"
   org_id            = var.org_id
   folder_id         = var.folder_id
@@ -27,6 +27,30 @@ module "project" {
   activate_apis = [
     "cloudresourcemanager.googleapis.com",
     "storage-api.googleapis.com",
+    "iam.googleapis.com",
+    "container.googleapis.com",
     "serviceusage.googleapis.com"
   ]
+}
+
+module "project-gke" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
+
+  name              = "ci-runners-gke"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+}
+
+module "project-mig-container-vm" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
+
+  name              = "ci-runners-c-mig"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
 }

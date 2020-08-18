@@ -28,6 +28,9 @@ Session.vim
 *.tfstate
 *.tfstate.*
 
+# test.out files
+test.out
+
 # Crash log files
 crash.log
 
