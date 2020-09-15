@@ -170,8 +170,7 @@ module "gce-container" {
 
 
 module "mig_template" {
-  source     = "terraform-google-modules/vm/google//modules/instance_template"
-  version    = "~> 2.0"
+  source     = "github.com/terraform-google-modules/terraform-google-vm/modules/instance_template"
   project_id = module.enables-google-apis.project_id
   network    = local.network_name
   subnetwork = local.subnet_name
@@ -201,8 +200,7 @@ module "mig_template" {
   Runner MIG
  *****************************************/
 module "mig" {
-  source             = "terraform-google-modules/vm/google//modules/mig"
-  version            = "~> 2.0"
+  source             = "github.com/terraform-google-modules/terraform-google-vm/modules/mig"
   project_id         = module.enables-google-apis.project_id
   subnetwork_project = module.enables-google-apis.project_id
   hostname           = local.instance_name
