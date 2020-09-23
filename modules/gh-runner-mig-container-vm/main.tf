@@ -170,10 +170,11 @@ module "gce-container" {
 
 
 module "mig_template" {
-  source     = "github.com/terraform-google-modules/terraform-google-vm/modules/instance_template"
-  project_id = module.enables-google-apis.project_id
-  network    = local.network_name
-  subnetwork = local.subnet_name
+  source       = "github.com/terraform-google-modules/terraform-google-vm/modules/instance_template"
+  project_id   = module.enables-google-apis.project_id
+  machine_type = var.machine_type
+  network      = local.network_name
+  subnetwork   = local.subnet_name
   service_account = {
     email = local.service_account
     scopes = [
