@@ -118,3 +118,9 @@ variable "dind" {
   description = "Flag to determine whether to expose dockersock "
   default     = false
 }
+
+variable "autoscaling_enabled" {
+  type        = bool
+  description = "Flag to determine whether autoscaling is enabled"
+  default     = false
+}
