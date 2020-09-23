@@ -210,7 +210,7 @@ module "mig" {
   target_size        = var.target_size
 
   /* autoscaler */
-  autoscaling_enabled = true
+  autoscaling_enabled = var.autoscaling_enabled
 }
 /*****************************************
   FW
