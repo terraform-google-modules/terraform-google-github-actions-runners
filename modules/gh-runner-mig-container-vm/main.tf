@@ -109,7 +109,7 @@ resource "google_project_iam_binding" "gce" {
   project = module.enables-google-apis.project_id
   role    = "roles/storage.objectViewer"
   members = [
-    "serviceAccount:${local.service_account}",
+    "serviceAccount:${google_service_account.runner_service_account[0].email}",
   ]
 }
 
