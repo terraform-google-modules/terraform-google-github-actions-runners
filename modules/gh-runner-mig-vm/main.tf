@@ -24,26 +24,6 @@ locals {
 }
 
 /*****************************************
-  Activate Services in Runner Project
- *****************************************/
-module "enables-google-apis" {
-  source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "6.0.0"
-
-  project_id = var.project_id
-
-  activate_apis = [
-    "iam.googleapis.com",
-    "compute.googleapis.com",
-    "storage-component.googleapis.com",
-    "logging.googleapis.com",
-    "monitoring.googleapis.com",
-    "secretmanager.googleapis.com",
-  ]
-}
-
-
-/*****************************************
   Optional Runner Networking
  *****************************************/
 resource "google_compute_network" "gh-network" {
