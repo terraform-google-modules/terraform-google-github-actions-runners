@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 9.0"
 
   name              = "ci-terraform-gh-runners"
   random_project_id = "true"
@@ -35,22 +35,42 @@ module "project" {
 
 module "project-gke" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 9.0"
 
-  name              = "ci-runners-gke"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+  name                 = "ci-runners-gke"
+  random_project_id    = "true"
+  org_id               = var.org_id
+  folder_id            = var.folder_id
+  billing_account      = var.billing_account
+  skip_gcloud_download = true
+  activate_apis = [
+    "iam.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "containerregistry.googleapis.com",
+    "container.googleapis.com",
+    "storage-component.googleapis.com",
+    "logging.googleapis.com",
+    "monitoring.googleapis.com",
+  ]
 }
 
 module "project-mig-container-vm" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 9.0"
 
-  name              = "ci-runners-c-mig"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+  name                 = "ci-runners-c-mig"
+  random_project_id    = "true"
+  org_id               = var.org_id
+  folder_id            = var.folder_id
+  billing_account      = var.billing_account
+  skip_gcloud_download = true
+  activate_apis = [
+    "iam.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "containerregistry.googleapis.com",
+    "container.googleapis.com",
+    "storage-component.googleapis.com",
+    "logging.googleapis.com",
+    "monitoring.googleapis.com",
+  ]
 }

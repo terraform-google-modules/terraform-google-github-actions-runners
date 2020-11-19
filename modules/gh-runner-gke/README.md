@@ -23,27 +23,27 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| create\_network | When set to true, VPC will be auto created | bool | `"true"` | no |
-| gh\_token | Github token that is used for generating Self Hosted Runner Token | string | n/a | yes |
-| ip\_range\_pods\_cidr | The secondary ip range cidr to use for pods | string | `"192.168.0.0/18"` | no |
-| ip\_range\_pods\_name | The secondary ip range to use for pods | string | `"ip-range-pods"` | no |
-| ip\_range\_services\_cider | The secondary ip range cidr to use for services | string | `"192.168.64.0/18"` | no |
-| ip\_range\_services\_name | The secondary ip range to use for services | string | `"ip-range-scv"` | no |
-| machine\_type | Machine type for runner node pool | string | `"n1-standard-4"` | no |
-| max\_node\_count | Maximum number of nodes in the runner node pool | number | `"4"` | no |
-| min\_node\_count | Minimum number of nodes in the runner node pool | number | `"2"` | no |
-| network\_name | Name for the VPC network | string | `"runner-network"` | no |
-| project\_id | The project id to deploy Github Runner cluster | string | n/a | yes |
-| region | The GCP region to deploy instances into | string | `"us-east4"` | no |
-| repo\_name | Name of the repo for the Github Action | string | n/a | yes |
-| repo\_owner | Owner of the repo for the Github Action | string | n/a | yes |
-| repo\_url | Repo URL for the Github Action | string | n/a | yes |
-| runner\_k8s\_config | Name for the k8s secret required to configure gh runners on GKE | string | `"runner-k8s-config"` | no |
-| service\_account | Optional Service Account for the nodes | string | `""` | no |
-| subnet\_ip | IP range for the subnet | string | `"10.0.0.0/17"` | no |
-| subnet\_name | Name for the subnet | string | `"runner-subnet"` | no |
-| zones | The GCP zone to deploy gke into | list(string) | `<list>` | no |
+|------|-------------|------|---------|:--------:|
+| create\_network | When set to true, VPC will be auto created | `bool` | `true` | no |
+| gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
+| ip\_range\_pods\_cidr | The secondary ip range cidr to use for pods | `string` | `"192.168.0.0/18"` | no |
+| ip\_range\_pods\_name | The secondary ip range to use for pods | `string` | `"ip-range-pods"` | no |
+| ip\_range\_services\_cider | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
+| ip\_range\_services\_name | The secondary ip range to use for services | `string` | `"ip-range-scv"` | no |
+| machine\_type | Machine type for runner node pool | `string` | `"n1-standard-4"` | no |
+| max\_node\_count | Maximum number of nodes in the runner node pool | `number` | `4` | no |
+| min\_node\_count | Minimum number of nodes in the runner node pool | `number` | `2` | no |
+| network\_name | Name for the VPC network | `string` | `"runner-network"` | no |
+| project\_id | The project id to deploy Github Runner cluster | `string` | n/a | yes |
+| region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
+| repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
+| repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
+| repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
+| runner\_k8s\_config | Name for the k8s secret required to configure gh runners on GKE | `string` | `"runner-k8s-config"` | no |
+| service\_account | Optional Service Account for the nodes | `string` | `""` | no |
+| subnet\_ip | IP range for the subnet | `string` | `"10.0.0.0/17"` | no |
+| subnet\_name | Name for the subnet | `string` | `"runner-subnet"` | no |
+| zones | The GCP zone to deploy gke into | `list(string)` | <pre>[<br>  "us-east4-a"<br>]</pre> | no |
 
 ## Outputs
 
@@ -59,3 +59,19 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 | subnet\_name | Name of VPC |
 
  <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Requirements
+
+Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
+
+1. Required APIs are activated
+
+    ```
+    "iam.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "containerregistry.googleapis.com",
+    "container.googleapis.com",
+    "storage-component.googleapis.com",
+    "logging.googleapis.com",
+    "monitoring.googleapis.com"
+    ```

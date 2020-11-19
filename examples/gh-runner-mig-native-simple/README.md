@@ -37,18 +37,18 @@ $ terraform apply
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| gh\_token | Github token that is used for generating Self Hosted Runner Token | string | n/a | yes |
-| project\_id | The project id to deploy Github Runner MIG | string | n/a | yes |
-| repo\_name | Name of the repo for the Github Action | string | n/a | yes |
-| repo\_owner | Owner of the repo for the Github Action | string | n/a | yes |
-| repo\_url | Repo URL for the Github Action | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
+| project\_id | The project id to deploy Github Runner MIG | `string` | n/a | yes |
+| repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
+| repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
+| repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| gh\_secret\_id | Secret Manager ID of the github secrets (token, repo_name,repo_owner) |
+| gh\_secret\_id | Secret Manager ID of the github secrets (token, repo\_name,repo\_owner) |
 | mig-instance-group | The instance group url of the created MIG |
 | mig-instance-template | The name of the MIG Instance Template |
 | mig-name | The name of the MIG |

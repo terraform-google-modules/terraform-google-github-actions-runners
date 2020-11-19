@@ -57,12 +57,12 @@ $ kustomize build . | kubectl apply -f -
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| gh\_token | Github token that is used for generating Self Hosted Runner Token | string | n/a | yes |
-| project\_id | The project id to deploy Github Runner MIG | string | n/a | yes |
-| repo\_name | Name of the repo for the Github Action | string | n/a | yes |
-| repo\_owner | Owner of the repo for the Github Action | string | n/a | yes |
-| repo\_url | Repo URL for the Github Action | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
+| project\_id | The project id to deploy Github Runner MIG | `string` | n/a | yes |
+| repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
+| repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
+| repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
 
 ## Outputs
 

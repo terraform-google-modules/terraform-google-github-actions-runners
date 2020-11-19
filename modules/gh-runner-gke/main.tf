@@ -20,36 +20,17 @@ locals {
 }
 
 /*****************************************
-  Activate Services in Runner Project
- *****************************************/
-module "enables-google-apis" {
-  source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "6.0.0"
-
-  project_id = var.project_id
-
-  activate_apis = [
-    "iam.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "containerregistry.googleapis.com",
-    "container.googleapis.com",
-    "storage-component.googleapis.com",
-    "logging.googleapis.com",
-    "monitoring.googleapis.com",
-  ]
-}
-/*****************************************
   Optional Network
  *****************************************/
 resource "google_compute_network" "gh-network" {
   count                   = var.create_network ? 1 : 0
   name                    = var.network_name
-  project                 = module.enables-google-apis.project_id
+  project                 = var.project_id
   auto_create_subnetworks = false
 }
 resource "google_compute_subnetwork" "gh-subnetwork" {
   count         = var.create_network ? 1 : 0
-  project       = module.enables-google-apis.project_id
+  project       = var.project_id
   name          = var.subnet_name
   ip_cidr_range = var.subnet_ip
   region        = var.region
@@ -69,8 +50,8 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 7.0"
-  project_id               = module.enables-google-apis.project_id
+  version                  = "~> 12.0"
+  project_id               = var.project_id
   name                     = "gh-runner-${var.repo_name}"
   regional                 = false
   region                   = var.region
@@ -100,7 +81,7 @@ module "runner-cluster" {
 # allow GKE to pull images from GCR
 resource "google_project_iam_binding" "gke" {
   count   = var.service_account == "" ? 1 : 0
-  project = module.enables-google-apis.project_id
+  project = var.project_id
   role    = "roles/storage.objectViewer"
 
   members = [
