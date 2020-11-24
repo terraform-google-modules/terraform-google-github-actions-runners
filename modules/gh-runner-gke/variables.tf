@@ -60,20 +60,29 @@ variable "network_name" {
   description = "Name for the VPC network"
   default     = "runner-network"
 }
+
 variable "subnet_ip" {
   type        = string
   description = "IP range for the subnet"
   default     = "10.0.0.0/17"
 }
+
 variable "subnet_name" {
   type        = string
   description = "Name for the subnet"
   default     = "runner-subnet"
 }
+
 variable "create_network" {
   type        = bool
   description = "When set to true, VPC will be auto created"
   default     = true
+}
+
+variable "subnetwork_project" {
+  type        = string
+  description = "The ID of the project in which the subnetwork belongs. If it is not provided, the project_id is used."
+  default     = ""
 }
 
 variable "machine_type" {

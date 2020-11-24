@@ -42,6 +42,12 @@ variable "create_network" {
   default     = true
 }
 
+variable "subnetwork_project" {
+  type        = string
+  description = "The ID of the project in which the subnetwork belongs. If it is not provided, the project_id is used."
+  default     = ""
+}
+
 variable "subnet_ip" {
   type        = string
   description = "IP range for the subnet"
@@ -117,4 +123,9 @@ variable "dind" {
   type        = bool
   description = "Flag to determine whether to expose dockersock "
   default     = false
+}
+
+variable "cooldown_period" {
+  description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
+  default     = 60
 }

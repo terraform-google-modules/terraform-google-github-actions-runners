@@ -18,9 +18,8 @@ locals {
   network_name    = var.create_network ? google_compute_network.gh-network[0].self_link : var.network_name
   subnet_name     = var.create_network ? google_compute_subnetwork.gh-subnetwork[0].self_link : var.subnet_name
   service_account = var.service_account == "" ? google_service_account.runner_service_account[0].email : var.service_account
-  shutdown_script = {
-    "shutdown-script" = var.shutdown_script
-  }
+  startup_script  = var.startup_script == "" ? file("${path.module}/scripts/startup.sh") : var.startup_script
+  shutdown_script = var.shutdown_script == "" ? file("${path.module}/scripts/shutdown.sh") : var.shutdown_script
 }
 
 /*****************************************
@@ -123,11 +122,13 @@ locals {
 
 
 module "mig_template" {
-  source     = "terraform-google-modules/vm/google//modules/instance_template"
-  version    = "~> 5.0"
-  project_id = var.project_id
-  network    = local.network_name
-  subnetwork = local.subnet_name
+  source             = "terraform-google-modules/vm/google//modules/instance_template"
+  version            = "~> 5.0"
+  project_id         = var.project_id
+  network            = local.network_name
+  subnetwork         = local.subnet_name
+  region             = var.region
+  subnetwork_project = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   service_account = {
     email = local.service_account
     scopes = [
@@ -140,11 +141,13 @@ module "mig_template" {
   name_prefix          = "gh-runner"
   source_image_family  = var.source_image_family
   source_image_project = var.source_image_project
-  startup_script       = var.startup_script
+  startup_script       = local.startup_script
   source_image         = var.source_image
   metadata = merge({
     "secret-id" = google_secret_manager_secret_version.gh-secret-version.name
-  }, local.shutdown_script, var.custom_metadata)
+    }, {
+    "shutdown-script" = local.shutdown_script
+  }, var.custom_metadata)
   tags = [
     "gh-runner-vm"
   ]
@@ -164,34 +167,5 @@ module "mig" {
 
   /* autoscaler */
   autoscaling_enabled = true
-}
-/*****************************************
-  FW
- *****************************************/
-resource "google_compute_firewall" "http-access" {
-  name    = "${local.instance_name}-http"
-  project = var.project_id
-  network = local.network_name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["8080"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["gh-runner-vm"]
-}
-
-resource "google_compute_firewall" "ssh-access" {
-  name    = "${local.instance_name}-ssh"
-  project = var.project_id
-  network = local.network_name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["gh-runner-vm"]
+  cooldown_period     = var.cooldown_period
 }
