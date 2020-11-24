@@ -32,4 +32,3 @@ cd /runner || exit
 ./svc.sh uninstall
 #remove the runner configuration
 RUNNER_ALLOW_RUNASROOT=1  /runner/config.sh remove --unattended --token "$(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/remove-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header "content-type: application/json" | jq -r .token)"
-

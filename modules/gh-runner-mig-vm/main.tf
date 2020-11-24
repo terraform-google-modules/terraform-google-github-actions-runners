@@ -18,9 +18,8 @@ locals {
   network_name    = var.create_network ? google_compute_network.gh-network[0].self_link : var.network_name
   subnet_name     = var.create_network ? google_compute_subnetwork.gh-subnetwork[0].self_link : var.subnet_name
   service_account = var.service_account == "" ? google_service_account.runner_service_account[0].email : var.service_account
-  shutdown_script = {
-    "shutdown-script" = var.shutdown_script
-  }
+  startup_script  = var.startup_script == "" ? "${path.module}/scripts/startup.sh" : var.startup_script
+  shutdown_script = var.shutdown_script == "" ? "${path.module}/scripts/shutdown.sh" : var.shutdown_script
 }
 
 /*****************************************
@@ -141,11 +140,13 @@ module "mig_template" {
   name_prefix          = "gh-runner"
   source_image_family  = var.source_image_family
   source_image_project = var.source_image_project
-  startup_script       = var.startup_script
+  startup_script       = local.startup_script
   source_image         = var.source_image
   metadata = merge({
     "secret-id" = google_secret_manager_secret_version.gh-secret-version.name
-  }, local.shutdown_script, var.custom_metadata)
+    }, {
+    "shutdown-script" = local.shutdown_script
+  }, var.custom_metadata)
   tags = [
     "gh-runner-vm"
   ]

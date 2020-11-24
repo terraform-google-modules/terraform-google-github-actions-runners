@@ -31,7 +31,7 @@ secrets=$(gcloud secrets versions access "$SECRET_VERSION" --secret="$SECRET_NAM
 # we want to use wordsplitting
 export $(echo "$secrets" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 #github runner version
-GH_RUNNER_VERSION="2.169.0"
+GH_RUNNER_VERSION="2.274.2"
 #get actions binary
 curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz"
 mkdir /runner

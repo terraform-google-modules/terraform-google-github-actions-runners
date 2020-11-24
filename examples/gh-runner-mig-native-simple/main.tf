@@ -22,6 +22,4 @@ module "runner-mig" {
   repo_owner      = var.repo_owner
   repo_url        = var.repo_url
   gh_token        = var.gh_token
-  startup_script  = file("${path.cwd}/startup.sh")
-  shutdown_script = file("${path.cwd}/shutdown.sh")
 }
