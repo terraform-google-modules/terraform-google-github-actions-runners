@@ -152,6 +152,7 @@ module "mig_template" {
   source             = "terraform-google-modules/vm/google//modules/instance_template"
   version            = "~> 5.0"
   project_id         = var.project_id
+  region             = var.region
   network            = local.network_name
   subnetwork         = local.subnet_name
   subnetwork_project = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
