@@ -57,6 +57,7 @@ module "runner-cluster" {
   region                   = var.region
   zones                    = var.zones
   network                  = local.network_name
+  network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   subnetwork               = local.subnet_name
   ip_range_pods            = var.ip_range_pods_name
   ip_range_services        = var.ip_range_pods_name

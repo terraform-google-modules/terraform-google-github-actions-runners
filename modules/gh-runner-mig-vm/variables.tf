@@ -42,6 +42,12 @@ variable "create_network" {
   default     = true
 }
 
+variable "subnetwork_project" {
+  type        = string
+  description = "The ID of the project in which the subnetwork belongs. If it is not provided, the project_id is used."
+  default     = ""
+}
+
 variable "subnet_ip" {
   type        = string
   description = "IP range for the subnet"
@@ -142,4 +148,9 @@ variable "custom_metadata" {
   type        = map
   description = "User provided custom metadata"
   default     = {}
+}
+
+variable "cooldown_period" {
+  description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
+  default     = 60
 }

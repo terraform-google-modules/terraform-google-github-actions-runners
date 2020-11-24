@@ -149,11 +149,12 @@ module "gce-container" {
 
 
 module "mig_template" {
-  source     = "terraform-google-modules/vm/google//modules/instance_template"
-  version    = "~> 5.0"
-  project_id = var.project_id
-  network    = local.network_name
-  subnetwork = local.subnet_name
+  source             = "terraform-google-modules/vm/google//modules/instance_template"
+  version            = "~> 5.0"
+  project_id         = var.project_id
+  network            = local.network_name
+  subnetwork         = local.subnet_name
+  subnetwork_project = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   service_account = {
     email = local.service_account
     scopes = [
@@ -191,34 +192,5 @@ module "mig" {
 
   /* autoscaler */
   autoscaling_enabled = true
-}
-/*****************************************
-  FW
- *****************************************/
-resource "google_compute_firewall" "http-access" {
-  name    = "${local.instance_name}-http"
-  project = var.project_id
-  network = local.network_name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["8080"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["gh-runner-vm"]
-}
-
-resource "google_compute_firewall" "ssh-access" {
-  name    = "${local.instance_name}-ssh"
-  project = var.project_id
-  network = local.network_name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["gh-runner-vm"]
+  cooldown_period     = var.cooldown_period
 }

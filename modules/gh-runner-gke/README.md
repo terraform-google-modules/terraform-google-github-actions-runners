@@ -43,6 +43,7 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 | service\_account | Optional Service Account for the nodes | `string` | `""` | no |
 | subnet\_ip | IP range for the subnet | `string` | `"10.0.0.0/17"` | no |
 | subnet\_name | Name for the subnet | `string` | `"runner-subnet"` | no |
+| subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
 | zones | The GCP zone to deploy gke into | `list(string)` | <pre>[<br>  "us-east4-a"<br>]</pre> | no |
 
 ## Outputs
