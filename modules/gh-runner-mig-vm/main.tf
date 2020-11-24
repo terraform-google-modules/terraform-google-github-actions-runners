@@ -18,8 +18,8 @@ locals {
   network_name    = var.create_network ? google_compute_network.gh-network[0].self_link : var.network_name
   subnet_name     = var.create_network ? google_compute_subnetwork.gh-subnetwork[0].self_link : var.subnet_name
   service_account = var.service_account == "" ? google_service_account.runner_service_account[0].email : var.service_account
-  startup_script  = var.startup_script == "" ? "${path.module}/scripts/startup.sh" : var.startup_script
-  shutdown_script = var.shutdown_script == "" ? "${path.module}/scripts/shutdown.sh" : var.shutdown_script
+  startup_script  = var.startup_script == "" ? file("${path.module}/scripts/startup.sh") : var.startup_script
+  shutdown_script = var.shutdown_script == "" ? file("${path.module}/scripts/shutdown.sh") : var.shutdown_script
 }
 
 /*****************************************
