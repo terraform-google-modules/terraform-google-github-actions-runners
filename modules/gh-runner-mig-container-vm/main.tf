@@ -35,38 +35,17 @@ locals {
 }
 
 /*****************************************
-  Activate Services in Runner Project
- *****************************************/
-module "enables-google-apis" {
-  source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "6.0.0"
-
-  project_id = var.project_id
-
-  activate_apis = [
-    "iam.googleapis.com",
-    "compute.googleapis.com",
-    "containerregistry.googleapis.com",
-    "container.googleapis.com",
-    "storage-component.googleapis.com",
-    "logging.googleapis.com",
-    "monitoring.googleapis.com",
-  ]
-}
-
-
-/*****************************************
   Optional Runner Networking
  *****************************************/
 resource "google_compute_network" "gh-network" {
   count                   = var.create_network ? 1 : 0
   name                    = var.network_name
-  project                 = module.enables-google-apis.project_id
+  project                 = var.project_id
   auto_create_subnetworks = false
 }
 resource "google_compute_subnetwork" "gh-subnetwork" {
   count         = var.create_network ? 1 : 0
-  project       = module.enables-google-apis.project_id
+  project       = var.project_id
   name          = var.subnet_name
   ip_cidr_range = var.subnet_ip
   region        = var.region
@@ -78,12 +57,12 @@ resource "google_compute_router" "default" {
   name    = "${var.network_name}-router"
   network = google_compute_network.gh-network[0].self_link
   region  = var.region
-  project = module.enables-google-apis.project_id
+  project = var.project_id
 }
 
 resource "google_compute_router_nat" "nat" {
   count                              = var.create_network ? 1 : 0
-  project                            = module.enables-google-apis.project_id
+  project                            = var.project_id
   name                               = "${var.network_name}-nat"
   router                             = google_compute_router.default[0].name
   region                             = google_compute_router.default[0].region
@@ -98,7 +77,7 @@ resource "google_compute_router_nat" "nat" {
 
 resource "google_service_account" "runner_service_account" {
   count        = var.service_account == "" ? 1 : 0
-  project      = module.enables-google-apis.project_id
+  project      = var.project_id
   account_id   = "runner-service-account"
   display_name = "Github Runner GCE Service Account"
 }
@@ -106,7 +85,7 @@ resource "google_service_account" "runner_service_account" {
 # allow GCE to pull images from GCR
 resource "google_project_iam_binding" "gce" {
   count   = var.service_account == "" ? 1 : 0
-  project = module.enables-google-apis.project_id
+  project = var.project_id
   role    = "roles/storage.objectViewer"
   members = [
     "serviceAccount:${local.service_account}",
@@ -171,8 +150,8 @@ module "gce-container" {
 
 module "mig_template" {
   source     = "terraform-google-modules/vm/google//modules/instance_template"
-  version    = "~> 2.0"
-  project_id = module.enables-google-apis.project_id
+  version    = "~> 5.0"
+  project_id = var.project_id
   network    = local.network_name
   subnetwork = local.subnet_name
   service_account = {
@@ -202,9 +181,9 @@ module "mig_template" {
  *****************************************/
 module "mig" {
   source             = "terraform-google-modules/vm/google//modules/mig"
-  version            = "~> 2.0"
-  project_id         = module.enables-google-apis.project_id
-  subnetwork_project = module.enables-google-apis.project_id
+  version            = "~> 5.0"
+  project_id         = var.project_id
+  subnetwork_project = var.project_id
   hostname           = local.instance_name
   region             = var.region
   instance_template  = module.mig_template.self_link
@@ -218,7 +197,7 @@ module "mig" {
  *****************************************/
 resource "google_compute_firewall" "http-access" {
   name    = "${local.instance_name}-http"
-  project = module.enables-google-apis.project_id
+  project = var.project_id
   network = local.network_name
 
   allow {
@@ -232,7 +211,7 @@ resource "google_compute_firewall" "http-access" {
 
 resource "google_compute_firewall" "ssh-access" {
   name    = "${local.instance_name}-ssh"
-  project = module.enables-google-apis.project_id
+  project = var.project_id
   network = local.network_name
 
   allow {
