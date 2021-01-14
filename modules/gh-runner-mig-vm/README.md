@@ -15,11 +15,11 @@ This includes:
 
 Below are some examples:
 
-### [Simple Self Hosted Runner](examples/gh-runner-mig-native-simple/README.md)
+### [Simple Self Hosted Runner](../../examples/gh-runner-mig-native-simple/README.md)
 
 This example shows how to deploy a MIG Self Hosted Runner bootstrapped using startup scripts.
 
-### [Simple Self Hosted Runner](examples/gh-runner-mig-native-packer/README.md)
+### [Simple Self Hosted Runner](../../examples/gh-runner-mig-native-packer/README.md)
 
 This example shows how to deploy a MIG Self Hosted Runner with an image pre-baked using Packer.
 
