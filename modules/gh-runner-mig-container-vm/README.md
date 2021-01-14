@@ -13,11 +13,11 @@ This includes:
 
 Below are some examples:
 
-### [Self Hosted runners that support Docker Workflows](examples/gh-runner-mig-container-vm-dind/README.md)
+### [Self Hosted runners that support Docker Workflows](../../examples/gh-runner-mig-container-vm-dind/README.md)
 
 This example shows how to deploy a Self Hosted Runner that supports Docker Workflows on MIG Container VMs.
 
-### [Simple Self Hosted Runner](examples/gh-runner-mig-container-vm-simple/README.md)
+### [Simple Self Hosted Runner](../../examples/gh-runner-mig-container-vm-simple/README.md)
 
 This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 
