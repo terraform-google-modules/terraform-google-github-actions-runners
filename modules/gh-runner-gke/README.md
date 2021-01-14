@@ -11,11 +11,11 @@ This includes:
 
 Below are some examples:
 
-### [Self Hosted runners on GKE that support Docker workflows](examples/gh-runner-gke-dind/README.md)
+### [Self Hosted runners on GKE that support Docker workflows](../../examples/gh-runner-gke-dind/README.md)
 
 This example shows how to deploy Self Hosted Runners on GKE that supports Docker Workflows.
 
-### [Simple Self Hosted Runners on GKE](examples/gh-runner-gke-simple/README.md)
+### [Simple Self Hosted Runners on GKE](../../examples/gh-runner-gke-simple/README.md)
 
 This example shows how to deploy a simple GKE Self Hosted Runner.
 
