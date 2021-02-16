@@ -1,5 +1,7 @@
 # terraform-google-github-actions-runners
 
+[![awesome-runners](https://img.shields.io/badge/listed%20on-awesome--runners-blue.svg)](https://github.com/jonico/awesome-runners)
+
 Using these Terraform modules you can quickly deploy Self Hosted Github Runners for jobs in your GitHub Actions workflows
 
 ## [Self Hosted Runners on GKE](modules/gh-runner-gke/README.md)
