@@ -50,7 +50,7 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 12.0"
+  version                  = "~> 14.1"
   project_id               = var.project_id
   name                     = "gh-runner-${var.repo_name}"
   regional                 = false
@@ -60,7 +60,7 @@ module "runner-cluster" {
   network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   subnetwork               = local.subnet_name
   ip_range_pods            = var.ip_range_pods_name
-  ip_range_services        = var.ip_range_pods_name
+  ip_range_services        = var.ip_range_services_name
   logging_service          = "logging.googleapis.com/kubernetes"
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
   remove_default_node_pool = true
