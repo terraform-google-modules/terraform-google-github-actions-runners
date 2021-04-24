@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.0.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v0.1.0...v1.0.0) (2021-04-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* add Terraform 0.13 constraint and module attribution (#22)
+
+### Features
+
+* add Terraform 0.13 constraint and module attribution ([#22](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/22)) ([11d7179](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/11d7179773abf41e1f4a101dd729edaf1773929a))
+
 ## 0.1.0 (2020-11-24)
 
 
