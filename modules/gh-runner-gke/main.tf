@@ -84,7 +84,7 @@ resource "google_project_iam_member" "gke" {
   count   = var.service_account == "" ? 1 : 0
   project = var.project_id
   role    = "roles/storage.objectViewer"
-  member = "serviceAccount:${module.runner-cluster.service_account}"
+  member  = "serviceAccount:${module.runner-cluster.service_account}"
 }
 
 data "google_client_config" "default" {
