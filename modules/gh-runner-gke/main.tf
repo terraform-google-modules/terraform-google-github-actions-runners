@@ -80,14 +80,11 @@ module "runner-cluster" {
   IAM Bindings GKE SVC
  *****************************************/
 # allow GKE to pull images from GCR
-resource "google_project_iam_binding" "gke" {
+resource "google_project_iam_member" "gke" {
   count   = var.service_account == "" ? 1 : 0
   project = var.project_id
   role    = "roles/storage.objectViewer"
-
-  members = [
-    "serviceAccount:${module.runner-cluster.service_account}",
-  ]
+  member  = "serviceAccount:${module.runner-cluster.service_account}"
 }
 
 data "google_client_config" "default" {
