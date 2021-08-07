@@ -111,7 +111,7 @@ variable "additional_metadata" {
 variable "machine_type" {
   type        = string
   description = "The GCP machine type to deploy"
-  default     = "n1-standard-4"
+  default     = "n1-standard-1"
 }
 
 variable "source_image_family" {
