@@ -8,6 +8,14 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+### [1.0.1](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.0.0...v1.0.1) (2021-08-17)
+
+
+### Bug Fixes
+
+* Switched to use google_project_iam_member, which is non-authoritative ([#27](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/27)) ([281a737](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/281a737a59046735577178052f584c3c9749239b))
+* use machine_type in mig-runner ([#30](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/30)) ([4f940f6](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/4f940f69a4bad949213250ba3b42ae905da5d2ca))
+
 ## [1.0.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v0.1.0...v1.0.0) (2021-04-24)
 
 
