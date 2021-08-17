@@ -34,7 +34,7 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | custom\_metadata | User provided custom metadata | `map` | `{}` | no |
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
-| machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-4"` | no |
+| machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-1"` | no |
 | network\_name | Name for the VPC network | `string` | `"gh-runner-network"` | no |
 | project\_id | The project id to deploy Github Runner | `string` | n/a | yes |
 | region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
