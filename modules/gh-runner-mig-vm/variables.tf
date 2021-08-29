@@ -104,7 +104,7 @@ variable "service_account" {
   default     = ""
 }
 variable "additional_metadata" {
-  type        = map
+  type        = map(any)
   description = "Additional metadata to attach to the instance"
   default     = {}
 }
@@ -145,7 +145,7 @@ variable "shutdown_script" {
 }
 
 variable "custom_metadata" {
-  type        = map
+  type        = map(any)
   description = "User provided custom metadata"
   default     = {}
 }

@@ -109,7 +109,7 @@ variable "service_account" {
   default     = ""
 }
 variable "additional_metadata" {
-  type        = map
+  type        = map(any)
   description = "Additional metadata to attach to the instance"
   default     = {}
 }

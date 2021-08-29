@@ -26,7 +26,7 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_metadata | Additional metadata to attach to the instance | `map` | `{}` | no |
+| additional\_metadata | Additional metadata to attach to the instance | `map(any)` | `{}` | no |
 | cooldown\_period | The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. | `number` | `60` | no |
 | create\_network | When set to true, VPC,router and NAT will be auto created | `bool` | `true` | no |
 | dind | Flag to determine whether to expose dockersock | `bool` | `false` | no |
