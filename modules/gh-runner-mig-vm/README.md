@@ -28,10 +28,10 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_metadata | Additional metadata to attach to the instance | `map` | `{}` | no |
+| additional\_metadata | Additional metadata to attach to the instance | `map(any)` | `{}` | no |
 | cooldown\_period | The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. | `number` | `60` | no |
 | create\_network | When set to true, VPC,router and NAT will be auto created | `bool` | `true` | no |
-| custom\_metadata | User provided custom metadata | `map` | `{}` | no |
+| custom\_metadata | User provided custom metadata | `map(any)` | `{}` | no |
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
 | machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-1"` | no |
