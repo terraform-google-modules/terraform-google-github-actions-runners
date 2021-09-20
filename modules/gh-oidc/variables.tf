@@ -76,12 +76,6 @@ variable "allowed_audiences" {
   default     = ["sigstore"]
 }
 
-variable "issuer_uri" {
-  type        = string
-  description = "Workload Identity Pool Provider issuer uri."
-  default     = "https://vstoken.actions.githubusercontent.com"
-}
-
 variable "sa_mapping" {
   type = map(object({
     sa_name   = string

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-resource "google_iam_workload_identity_pool" "pool" {
+resource "google_iam_workload_identity_pool" "main" {
   provider                  = google-beta
   project                   = var.project_id
   workload_identity_pool_id = var.pool_id
@@ -23,10 +23,10 @@ resource "google_iam_workload_identity_pool" "pool" {
   disabled                  = false
 }
 
-resource "google_iam_workload_identity_pool_provider" "provider" {
+resource "google_iam_workload_identity_pool_provider" "main" {
   provider                           = google-beta
   project                            = var.project_id
-  workload_identity_pool_id          = google_iam_workload_identity_pool.pool.workload_identity_pool_id
+  workload_identity_pool_id          = google_iam_workload_identity_pool.main.workload_identity_pool_id
   workload_identity_pool_provider_id = var.provider_id
   display_name                       = var.provider_display_name
   description                        = var.provider_description
@@ -34,7 +34,7 @@ resource "google_iam_workload_identity_pool_provider" "provider" {
   attribute_mapping                  = var.attribute_mapping
   oidc {
     allowed_audiences = var.allowed_audiences
-    issuer_uri        = var.issuer_uri
+    issuer_uri        = "https://vstoken.actions.githubusercontent.com"
   }
 }
 
@@ -42,5 +42,5 @@ resource "google_service_account_iam_member" "wif-sa" {
   for_each           = var.sa_mapping
   service_account_id = each.value.sa_name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/${each.value.attribute}"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.main.name}/${each.value.attribute}"
 }
