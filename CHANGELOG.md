@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.1.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.0.1...v1.1.0) (2021-09-20)
+
+
+### Features
+
+* add gh oidc module ([#32](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/32)) ([1f10847](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/1f10847dc69246166bd68a3149d2fefb5a43bf3b))
+
 ### [1.0.1](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.0.0...v1.0.1) (2021-08-17)
 
 
