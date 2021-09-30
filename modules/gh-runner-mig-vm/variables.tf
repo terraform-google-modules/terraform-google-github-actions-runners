@@ -53,6 +53,13 @@ variable "subnet_ip" {
   description = "IP range for the subnet"
   default     = "10.10.10.0/24"
 }
+
+variable "create_subnetwork" {
+  type        = bool
+  description = "Whether to create subnetwork or use the one provided via subnet_name"
+  default     = true
+}
+
 variable "subnet_name" {
   type        = string
   description = "Name for the subnet"
@@ -68,17 +75,35 @@ variable "restart_policy" {
 variable "repo_url" {
   type        = string
   description = "Repo URL for the Github Action"
+  default     = ""
 }
 
 variable "repo_name" {
   type        = string
   description = "Name of the repo for the Github Action"
+  default     = ""
 }
-
 
 variable "repo_owner" {
   type        = string
   description = "Owner of the repo for the Github Action"
+}
+
+variable "labels" {
+  type        = set(string)
+  description = "Labels to attach to the runners"
+}
+
+variable "min_replicas" {
+  type        = number
+  description = "Minimum number of runner instances"
+  default     = 2
+}
+
+variable "max_replicas" {
+  type        = number
+  default     = 10
+  description = "Maximum number of runner instances"
 }
 
 variable "gh_token" {
@@ -90,12 +115,6 @@ variable "instance_name" {
   type        = string
   description = "The gce instance name"
   default     = "gh-runner"
-}
-
-variable "target_size" {
-  type        = number
-  description = "The number of runner instances"
-  default     = 2
 }
 
 variable "service_account" {
@@ -123,7 +142,7 @@ variable "source_image_family" {
 variable "source_image_project" {
   type        = string
   description = "Project where the source image comes from"
-  default     = "gce-uefi-images"
+  default     = "ubuntu-os-cloud"
 }
 
 variable "source_image" {

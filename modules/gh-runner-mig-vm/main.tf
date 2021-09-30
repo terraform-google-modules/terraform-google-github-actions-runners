@@ -15,11 +15,11 @@
  */
 
 locals {
-  network_name    = var.create_network ? google_compute_network.gh-network[0].self_link : var.network_name
-  subnet_name     = var.create_network ? google_compute_subnetwork.gh-subnetwork[0].self_link : var.subnet_name
-  service_account = var.service_account == "" ? google_service_account.runner_service_account[0].email : var.service_account
-  startup_script  = var.startup_script == "" ? file("${path.module}/scripts/startup.sh") : var.startup_script
-  shutdown_script = var.shutdown_script == "" ? file("${path.module}/scripts/shutdown.sh") : var.shutdown_script
+  network_name       = var.create_network ? google_compute_network.gh-network[0].self_link : var.network_name
+  subnet_name        = var.create_subnetwork ? google_compute_subnetwork.gh-subnetwork[0].self_link : var.subnet_name
+  service_account    = var.service_account == "" ? google_service_account.runner_service_account[0].email : var.service_account
+  startup_script     = var.startup_script == "" ? file("${path.module}/scripts/startup.sh") : var.startup_script
+  shutdown_script    = var.shutdown_script == "" ? file("${path.module}/scripts/shutdown.sh") : var.shutdown_script
 }
 
 /*****************************************
@@ -32,12 +32,12 @@ resource "google_compute_network" "gh-network" {
   auto_create_subnetworks = false
 }
 resource "google_compute_subnetwork" "gh-subnetwork" {
-  count         = var.create_network ? 1 : 0
+  count         = var.create_subnetwork ? 1 : 0
   project       = var.project_id
   name          = var.subnet_name
   ip_cidr_range = var.subnet_ip
   region        = var.region
-  network       = google_compute_network.gh-network[0].name
+  network       = local.network_name
 }
 
 resource "google_compute_router" "default" {
@@ -57,7 +57,6 @@ resource "google_compute_router_nat" "nat" {
   nat_ip_allocate_option             = "AUTO_ONLY"
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
-
 
 /*****************************************
   IAM Bindings GCE SVC
@@ -85,10 +84,7 @@ resource "google_secret_manager_secret" "gh-secret" {
   replication {
     user_managed {
       replicas {
-        location = "us-central1"
-      }
-      replicas {
-        location = "us-east1"
+        location = var.region
       }
     }
   }
@@ -101,6 +97,7 @@ resource "google_secret_manager_secret_version" "gh-secret-version" {
     "REPO_OWNER"   = var.repo_owner
     "REPO_URL"     = var.repo_url
     "GITHUB_TOKEN" = var.gh_token
+    "LABELS"       = join(",", var.labels)
   })
 }
 
@@ -164,9 +161,10 @@ module "mig" {
   hostname           = local.instance_name
   region             = var.region
   instance_template  = module.mig_template.self_link
-  target_size        = var.target_size
 
   /* autoscaler */
   autoscaling_enabled = true
+  min_replicas        = var.min_replicas
+  max_replicas        = var.max_replicas
   cooldown_period     = var.cooldown_period
 }
