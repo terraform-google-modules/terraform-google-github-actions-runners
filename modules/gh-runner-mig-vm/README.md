@@ -35,7 +35,7 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | custom\_metadata | User provided custom metadata | `map(any)` | `{}` | no |
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
-| labels | Labels to attach to the runners | `set(string)` | n/a | yes |
+| labels | Labels to attach to the runners | `set(string)` | `[]` | no |
 | machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-1"` | no |
 | max\_replicas | Maximum number of runner instances | `number` | `10` | no |
 | min\_replicas | Minimum number of runner instances | `number` | `2` | no |

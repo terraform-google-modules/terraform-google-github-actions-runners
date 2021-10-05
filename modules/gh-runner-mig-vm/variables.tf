@@ -92,6 +92,7 @@ variable "repo_owner" {
 variable "labels" {
   type        = set(string)
   description = "Labels to attach to the runners"
+  default     = []
 }
 
 variable "min_replicas" {
