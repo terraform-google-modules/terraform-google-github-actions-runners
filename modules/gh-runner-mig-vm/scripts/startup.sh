@@ -31,7 +31,7 @@ secrets=$(gcloud secrets versions access "$SECRET_VERSION" --secret="$SECRET_NAM
 # we want to use wordsplitting
 export $(echo "$secrets" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 #github runner version
-GH_RUNNER_VERSION="2.274.2"
+GH_RUNNER_VERSION="2.283.2"
 #get actions binary
 curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz"
 mkdir /runner
@@ -43,9 +43,17 @@ rm -f actions.tar.gz
 # shellcheck disable=SC2034
 # ACTIONS_RUNNER_INPUT_NAME is used by config.sh
 ACTIONS_RUNNER_INPUT_NAME=$HOSTNAME
-ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
-#configure runner
-RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "$REPO_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN"
+if [[ -z $REPO_NAME ]]; then
+    # Register organisation runner
+    ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/orgs/${REPO_OWNER}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
+    #configure runner
+    RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --url https://github.com/${REPO_OWNER} --replace --work "/runner-tmp" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels $LABELS
+else
+    # Register repository runner
+    ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
+    #configure runner
+    RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --url https://github.com/${REPO_OWNER}/${REPO_NAME} --replace --work "/runner-tmp" --url "$REPO_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels $LABELS
+fi
 #install and start runner service
 cd /runner || exit
 ./svc.sh install
