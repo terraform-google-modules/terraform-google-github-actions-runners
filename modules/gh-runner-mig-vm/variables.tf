@@ -72,12 +72,6 @@ variable "restart_policy" {
   default     = "Always"
 }
 
-variable "repo_url" {
-  type        = string
-  description = "Repo URL for the Github Action"
-  default     = ""
-}
-
 variable "repo_name" {
   type        = string
   description = "Name of the repo for the Github Action"
@@ -89,9 +83,9 @@ variable "repo_owner" {
   description = "Owner of the repo for the Github Action"
 }
 
-variable "labels" {
+variable "gh_runner_labels" {
   type        = set(string)
-  description = "Labels to attach to the runners"
+  description = "GitHub runner labels to attach to the runners. Docs: https://docs.github.com/en/actions/hosting-your-own-runners/using-labels-with-self-hosted-runners"
   default     = []
 }
 

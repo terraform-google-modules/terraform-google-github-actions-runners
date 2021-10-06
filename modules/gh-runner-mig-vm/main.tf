@@ -97,7 +97,7 @@ resource "google_secret_manager_secret_version" "gh-secret-version" {
     "REPO_OWNER"   = var.repo_owner
     "REPO_URL"     = var.repo_url
     "GITHUB_TOKEN" = var.gh_token
-    "LABELS"       = join(",", var.labels)
+    "LABELS"       = join(",", var.gh_runner_labels)
   })
 }
 

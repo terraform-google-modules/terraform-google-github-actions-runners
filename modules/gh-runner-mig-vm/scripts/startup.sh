@@ -20,7 +20,7 @@ apt-get -y install jq
 secretUri=$(curl -sS "http://metadata.google.internal/computeMetadata/v1/instance/attributes/secret-id" -H "Metadata-Flavor: Google")
 #secrets URI is of the form projects/$PROJECT_NUMBER/secrets/$SECRET_NAME/versions/$SECRET_VERSION
 #split into array based on `/` delimeter
-IFS="/" read -r -a secretsConfig <<< "$secretUri"
+IFS="/" read -r -a secretsConfig <<<"$secretUri"
 #get SECRET_NAME and SECRET_VERSION
 SECRET_NAME=${secretsConfig[3]}
 SECRET_VERSION=${secretsConfig[5]}
@@ -44,16 +44,18 @@ rm -f actions.tar.gz
 # ACTIONS_RUNNER_INPUT_NAME is used by config.sh
 ACTIONS_RUNNER_INPUT_NAME=$HOSTNAME
 if [[ -z $REPO_NAME ]]; then
-    # Register organisation runner
-    ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/orgs/${REPO_OWNER}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
-    #configure runner
-    RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "https://github.com/${REPO_OWNER}" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels "$LABELS"
+    POST_URL="https://api.github.com/orgs/${REPO_OWNER}/actions/runners/registration-token"
+    GH_URL="https://github.com/${REPO_OWNER}"
 else
-    # Register repository runner
-    ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
-    #configure runner
-    RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "$REPO_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels "$LABELS"
+    POST_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token"
+    GH_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 fi
+
+# Register organisation runner
+ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "$POST_URL" --header "authorization: Bearer ${GITHUB_TOKEN}" --header 'content-type: application/json' | jq -r .token)"
+#configure runner
+RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "$GH_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels "$LABELS"
+
 #install and start runner service
 cd /runner || exit
 ./svc.sh install
