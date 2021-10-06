@@ -95,7 +95,6 @@ resource "google_secret_manager_secret_version" "gh-secret-version" {
   secret_data = jsonencode({
     "REPO_NAME"    = var.repo_name
     "REPO_OWNER"   = var.repo_owner
-    "REPO_URL"     = var.repo_url
     "GITHUB_TOKEN" = var.gh_token
     "LABELS"       = join(",", var.gh_runner_labels)
   })
