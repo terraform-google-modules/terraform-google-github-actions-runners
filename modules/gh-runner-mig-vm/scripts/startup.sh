@@ -20,7 +20,7 @@ apt-get -y install jq
 secretUri=$(curl -sS "http://metadata.google.internal/computeMetadata/v1/instance/attributes/secret-id" -H "Metadata-Flavor: Google")
 #secrets URI is of the form projects/$PROJECT_NUMBER/secrets/$SECRET_NAME/versions/$SECRET_VERSION
 #split into array based on `/` delimeter
-IFS="/" read -r -a secretsConfig <<< "$secretUri"
+IFS="/" read -r -a secretsConfig <<<"$secretUri"
 #get SECRET_NAME and SECRET_VERSION
 SECRET_NAME=${secretsConfig[3]}
 SECRET_VERSION=${secretsConfig[5]}
@@ -31,7 +31,7 @@ secrets=$(gcloud secrets versions access "$SECRET_VERSION" --secret="$SECRET_NAM
 # we want to use wordsplitting
 export $(echo "$secrets" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 #github runner version
-GH_RUNNER_VERSION="2.274.2"
+GH_RUNNER_VERSION="2.283.2"
 #get actions binary
 curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz"
 mkdir /runner
@@ -43,9 +43,19 @@ rm -f actions.tar.gz
 # shellcheck disable=SC2034
 # ACTIONS_RUNNER_INPUT_NAME is used by config.sh
 ACTIONS_RUNNER_INPUT_NAME=$HOSTNAME
-ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token" --header "authorization: Bearer ${GITHUB_TOKEN}"  --header 'content-type: application/json' | jq -r .token)"
+if [[ -z $REPO_NAME ]]; then
+    POST_URL="https://api.github.com/orgs/${REPO_OWNER}/actions/runners/registration-token"
+    GH_URL="https://github.com/${REPO_OWNER}"
+else
+    POST_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token"
+    GH_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
+fi
+
+# Register runner
+ACTIONS_RUNNER_INPUT_TOKEN="$(curl -sS --request POST --url "$POST_URL" --header "authorization: Bearer ${GITHUB_TOKEN}" --header 'content-type: application/json' | jq -r .token)"
 #configure runner
-RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "$REPO_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN"
+RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh --unattended --replace --work "/runner-tmp" --url "$GH_URL" --token "$ACTIONS_RUNNER_INPUT_TOKEN" --labels "$LABELS"
+
 #install and start runner service
 cd /runner || exit
 ./svc.sh install
