@@ -19,14 +19,9 @@ variable "project_id" {
   description = "The project id to deploy Github Runner MIG"
 }
 
-variable "repo_name" {
-  type        = string
-  description = "Name of the repo for the Github Action"
-}
-
 variable "repo_owner" {
   type        = string
-  description = "Owner of the repo for the Github Action"
+  description = "Owner of the organisation for the Github Action"
 }
 
 variable "gh_token" {

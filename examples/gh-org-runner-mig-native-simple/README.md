@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example showcases how to use startup scripts to deploy runners using the `gh-runner-mig` module.
+This example showcases how to use startup scripts to deploy organisation runners using the `gh-runner-mig` module.
 
 We use startup/shutdown scripts to install the runner binary, register the runner when it comes online and de-register when shut down.
 
@@ -17,7 +17,6 @@ More info can be found [here](https://developer.github.com/v3/actions/self_hoste
 ```sh
 project_id   = "your-project-id"
 gh_token     = "your-github-token"
-repo_name    = "your-repo-name"
 repo_owner   = "owner"
 ```
 
@@ -39,8 +38,7 @@ $ terraform apply
 |------|-------------|------|---------|:--------:|
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | project\_id | The project id to deploy Github Runner MIG | `string` | n/a | yes |
-| repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
-| repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
+| repo\_owner | Owner of the organisation for the Github Action | `string` | n/a | yes |
 
 ## Outputs
 

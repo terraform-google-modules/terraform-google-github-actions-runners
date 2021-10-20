@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,11 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  type        = string
-  description = "The project id to deploy Github Runner MIG"
+
+provider "google" {
+  version = "~> 3.16"
 }
 
-variable "repo_name" {
-  type        = string
-  description = "Name of the repo for the Github Action"
-}
-
-variable "repo_owner" {
-  type        = string
-  description = "Owner of the repo for the Github Action"
-}
-
-variable "gh_token" {
-  type        = string
-  description = "Github token that is used for generating Self Hosted Runner Token"
+provider "google-beta" {
+  version = "~> 3.16"
 }
