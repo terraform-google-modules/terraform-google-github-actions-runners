@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-module "runner-mig" {
+module "runner_mig" {
   source         = "../../modules/gh-runner-mig-vm"
   create_network = true
   project_id     = var.project_id

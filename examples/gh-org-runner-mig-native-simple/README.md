@@ -45,9 +45,9 @@ $ terraform apply
 | Name | Description |
 |------|-------------|
 | gh\_secret\_id | Secret Manager ID of the github secrets (token, repo\_name,repo\_owner) |
-| mig-instance-group | The instance group url of the created MIG |
-| mig-instance-template | The name of the MIG Instance Template |
-| mig-name | The name of the MIG |
+| mig_instance_group | The instance group url of the created MIG |
+| mig_instance_template | The name of the MIG Instance Template |
+| mig_name | The name of the MIG |
 | service\_account | Service account email for GCE |
 
  <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
