@@ -18,14 +18,14 @@ output "project_id" {
   value = var.project_id_mig_container
 }
 
-output "mig-instance-group" {
+output "mig_instance_group" {
   description = "The instance group url of the created MIG"
-  value       = module.example_mig_runner.mig-instance-group
+  value       = module.example_mig_runner.mig_instance_group
 }
 
-output "mig-name" {
+output "mig_name" {
   description = "The name of the MIG"
-  value       = module.example_mig_runner.mig-name
+  value       = module.example_mig_runner.mig_name
 }
 
 output "service_account" {
@@ -33,7 +33,7 @@ output "service_account" {
   value       = module.example_mig_runner.service_account
 }
 
-output "mig-instance-template" {
+output "mig_instance_template" {
   description = "The name of the MIG Instance Template"
-  value       = module.example_mig_runner.mig-instance-template
+  value       = module.example_mig_runner.mig_instance_template
 }
