@@ -10,9 +10,10 @@ We use startup/shutdown scripts to install the runner binary, register the runne
 
 - Step 1: Create terraform.tfvars file with the necessary values.
 
-Access tokens require repo scope for private repos and public_repo scope for public repos. GitHub Apps must have the administration permission to use this API. Authenticated users must have admin access to the repository to use this API.
+GitHub Apps must have the `organization_self_hosted_runners` permission for organizations. Authenticated users must have admin access to the organization to use this API.
+You must authenticate using an access token with the admin:org scope to use this endpoint.
 
-More info can be found [here](https://developer.github.com/v3/actions/self_hosted_runners/).
+More info can be found [here](https://developer.github.com/v3/actions/self_hosted_runners/) and [here](https://docs.github.com/en/rest/reference/actions#create-a-registration-token-for-an-organization).
 
 ```sh
 project_id   = "your-project-id"
