@@ -1,4 +1,4 @@
-# Example Runners that support Docker Workflows
+# Example Org Runners that support Docker Workflows
 
 ## Overview
 
