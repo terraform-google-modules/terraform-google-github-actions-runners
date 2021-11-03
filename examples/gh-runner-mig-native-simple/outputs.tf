@@ -33,8 +33,3 @@ output "mig_instance_template" {
   description = "The name of the MIG Instance Template"
   value       = module.runner-mig.mig_instance_template
 }
-
-output "gh_secret_id" {
-  description = "Secret Manager ID of the github secrets (token, repo_name,repo_owner)"
-  value       = module.runner-mig.gh_secret_id
-}

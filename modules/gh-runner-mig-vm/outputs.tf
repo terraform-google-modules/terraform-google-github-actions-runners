@@ -44,9 +44,4 @@ output "service_account" {
   value       = local.service_account
 }
 
-output "gh_secret_id" {
-  description = "Secret Manager ID and version of the github secrets (token, repo_name,repo_owner)"
-  value       = google_secret_manager_secret_version.gh-secret-version.name
-}
-
 
