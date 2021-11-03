@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-output "mig_instance_group" {
-  description = "The instance group url of the created MIG"
-  value       = module.runner-mig-dind.mig_instance_group
+
+provider "google" {
+  version = "~> 3.16"
 }
 
-output "mig_name" {
-  description = "The name of the MIG"
-  value       = module.runner-mig-dind.mig_name
+provider "google-beta" {
+  version = "~> 3.16"
 }

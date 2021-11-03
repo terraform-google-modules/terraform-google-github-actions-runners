@@ -14,9 +14,9 @@
 
 
 project_id = attribute('project_id')
-mig_name = attribute('mig-name')
+mig_name = attribute('mig_name')
 service_account_email = attribute('service_account')
-mig_instance_template_name= attribute('mig-instance-template')
+mig_instance_template_name= attribute('mig_instance_template')
 expected_instances = 2
 
 control "mig" do

@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-output "mig_instance_group" {
-  description = "The instance group url of the created MIG"
-  value       = module.runner-mig-dind.mig_instance_group
-}
-
-output "mig_name" {
-  description = "The name of the MIG"
-  value       = module.runner-mig-dind.mig_name
+module "runner_mig" {
+  source         = "../../modules/gh-runner-mig-vm"
+  create_network = true
+  project_id     = var.project_id
+  repo_owner     = var.repo_owner
+  gh_token       = var.gh_token
 }

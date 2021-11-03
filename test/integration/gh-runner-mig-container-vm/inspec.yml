@@ -21,12 +21,12 @@ attributes:
   - name: project_id
     required: true
     type: string
-  - name: mig-name
+  - name: mig_name
     required: true
     type: string
   - name: service_account
     required: true
     type: string
-  - name: mig-instance-template
+  - name: mig_instance_template
     required: true
     type: string

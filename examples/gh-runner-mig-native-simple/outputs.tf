@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-output "mig-instance-group" {
+output "mig_instance_group" {
   description = "The instance group url of the created MIG"
-  value       = module.runner-mig.mig-instance-group
+  value       = module.runner-mig.mig_instance_group
 }
 
-output "mig-name" {
+output "mig_name" {
   description = "The name of the MIG"
-  value       = module.runner-mig.mig-name
+  value       = module.runner-mig.mig_name
 }
 
 output "service_account" {
@@ -29,12 +29,7 @@ output "service_account" {
   value       = module.runner-mig.service_account
 }
 
-output "mig-instance-template" {
+output "mig_instance_template" {
   description = "The name of the MIG Instance Template"
-  value       = module.runner-mig.mig-instance-template
-}
-
-output "gh_secret_id" {
-  description = "Secret Manager ID of the github secrets (token, repo_name,repo_owner)"
-  value       = module.runner-mig.gh_secret_id
+  value       = module.runner-mig.mig_instance_template
 }

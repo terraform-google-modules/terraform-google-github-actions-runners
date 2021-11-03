@@ -44,9 +44,11 @@ rm -f actions.tar.gz
 # ACTIONS_RUNNER_INPUT_NAME is used by config.sh
 ACTIONS_RUNNER_INPUT_NAME=$HOSTNAME
 if [[ -z $REPO_NAME ]]; then
+    # Add action runner for an organisation
     POST_URL="https://api.github.com/orgs/${REPO_OWNER}/actions/runners/registration-token"
     GH_URL="https://github.com/${REPO_OWNER}"
 else
+    # Add action runner for a repo
     POST_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/registration-token"
     GH_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 fi

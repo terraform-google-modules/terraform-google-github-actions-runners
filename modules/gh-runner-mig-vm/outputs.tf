@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-output "mig-instance-group" {
+output "mig_instance_group" {
   description = "The instance group url of the created MIG"
   value       = module.mig.instance_group
 }
 
-output "mig-name" {
+output "mig_name" {
   description = "The name of the MIG"
   value       = local.instance_name
 }
 
-output "mig-instance-template" {
+output "mig_instance_template" {
   description = "The name of the MIG Instance Template"
   value       = module.mig_template.name
 }
@@ -42,11 +42,6 @@ output "subnet_name" {
 output "service_account" {
   description = "Service account email for GCE"
   value       = local.service_account
-}
-
-output "gh_secret_id" {
-  description = "Secret Manager ID and version of the github secrets (token, repo_name,repo_owner)"
-  value       = google_secret_manager_secret_version.gh-secret-version.name
 }
 
 

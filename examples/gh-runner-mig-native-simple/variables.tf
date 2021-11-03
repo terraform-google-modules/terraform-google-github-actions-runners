@@ -19,10 +19,6 @@ variable "project_id" {
   description = "The project id to deploy Github Runner MIG"
 }
 
-variable "repo_url" {
-  type        = string
-  description = "Repo URL for the Github Action"
-}
 variable "repo_name" {
   type        = string
   description = "Name of the repo for the Github Action"

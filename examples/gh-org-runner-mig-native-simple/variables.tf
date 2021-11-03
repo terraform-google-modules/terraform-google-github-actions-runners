@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-output "mig_instance_group" {
-  description = "The instance group url of the created MIG"
-  value       = module.runner-mig-dind.mig_instance_group
+variable "project_id" {
+  type        = string
+  description = "The project id to deploy Github Runner MIG"
 }
 
-output "mig_name" {
-  description = "The name of the MIG"
-  value       = module.runner-mig-dind.mig_name
+variable "repo_owner" {
+  type        = string
+  description = "Owner of the organisation for the Github Action"
+}
+
+variable "gh_token" {
+  type        = string
+  description = "Github token that is used for generating Self Hosted Runner Token"
 }

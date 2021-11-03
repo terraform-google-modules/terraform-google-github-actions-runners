@@ -60,10 +60,9 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 
 | Name | Description |
 |------|-------------|
-| gh\_secret\_id | Secret Manager ID and version of the github secrets (token, repo\_name,repo\_owner) |
-| mig-instance-group | The instance group url of the created MIG |
-| mig-instance-template | The name of the MIG Instance Template |
-| mig-name | The name of the MIG |
+| mig\_instance\_group | The instance group url of the created MIG |
+| mig\_instance\_template | The name of the MIG Instance Template |
+| mig\_name | The name of the MIG |
 | network\_name | Name of VPC |
 | service\_account | Service account email for GCE |
 | subnet\_name | Name of VPC |
