@@ -29,11 +29,11 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-vm/v1.1.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-vm/v2.0.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-vm/v1.1.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-vm/v2.0.0"
   }
 
 }

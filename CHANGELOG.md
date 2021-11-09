@@ -8,6 +8,22 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.1.0...v2.0.0) (2021-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove the default allowed audience in `gh-oidc` (#42)
+* update issuer_uri for gh provider (#36)
+* Support org runners, update images and autoscaling config (#34)
+
+### Features
+
+* Add example for org runner & update shutdown script ([#37](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/37)) ([76115f9](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/76115f9587a048de26086116d6e3a3eb0ae6aa2c))
+* Remove the default allowed audience in `gh-oidc` ([#42](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/42)) ([1ec0ec2](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/1ec0ec201a6a063d27fea8fd62e6a028fb9fc5e6))
+* Support org runners, update images and autoscaling config ([#34](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/34)) ([280ca8a](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/280ca8a79266d00d6ec8fe84413de0d23cbdc791))
+* update issuer_uri for gh provider ([#36](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/36)) ([2ca3e6c](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/2ca3e6c4ea2a9987f8c5ac6191bbe925df4dd12b))
+
 ## [1.1.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.0.1...v1.1.0) (2021-09-20)
 
 
