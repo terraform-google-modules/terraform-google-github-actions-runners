@@ -68,7 +68,7 @@ jobs:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| allowed\_audiences | Workload Identity Pool Provider allowed audiences. Currently, GitHub only allows sigstore | `list(string)` | <pre>[<br>  "sigstore"<br>]</pre> | no |
+| allowed\_audiences | Workload Identity Pool Provider allowed audiences. | `list(string)` | `[]` | no |
 | attribute\_condition | Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition) | `string` | `null` | no |
 | attribute\_mapping | Workload Identity Pool Provider attribute mapping. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_mapping) | `map(any)` | <pre>{<br>  "attribute.actor": "assertion.actor",<br>  "attribute.aud": "assertion.aud",<br>  "attribute.repository": "assertion.repository",<br>  "google.subject": "assertion.sub"<br>}</pre> | no |
 | pool\_description | Workload Identity Pool description | `string` | `"Workload Identity Pool managed by Terraform"` | no |

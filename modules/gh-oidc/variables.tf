@@ -72,8 +72,8 @@ variable "attribute_mapping" {
 
 variable "allowed_audiences" {
   type        = list(string)
-  description = "Workload Identity Pool Provider allowed audiences. Currently, GitHub only allows sigstore"
-  default     = ["sigstore"]
+  description = "Workload Identity Pool Provider allowed audiences."
+  default     = []
 }
 
 variable "sa_mapping" {

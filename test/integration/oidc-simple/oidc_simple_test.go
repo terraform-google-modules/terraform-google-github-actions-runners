@@ -34,8 +34,7 @@ func TestOIDCSimple(t *testing.T) {
 		provider := gcloud.Run(t, fmt.Sprintf("beta iam workload-identity-pools providers describe %s", oidc.GetStringOutput("provider_name")))
 		assert.Equal("ACTIVE", provider.Get("state").String(), "WI provider is active")
 		assert.Equal("https://token.actions.githubusercontent.com", provider.Get("oidc.issuerUri").String(), "provider has correct issuer ID")
-		assert.Equal(1, len(provider.Get("oidc.allowedAudiences").Array()), "WI provider has correct number of audiences")
-		assert.Equal("sigstore", provider.Get("oidc.allowedAudiences").Array()[0].String(), "WI provider has correct audience")
+		assert.Equal(0, len(provider.Get("oidc.allowedAudiences").Array()), "WI provider has correct number of audiences")
 		expectedAttribMapping := map[string]string{
 			"attribute.actor":      "assertion.actor",
 			"attribute.aud":        "assertion.aud",
