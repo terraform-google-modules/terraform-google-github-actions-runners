@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-/*****************************************
-  Kubernetes provider configuration
- *****************************************/
-
-data "google_client_config" "default" {
-}
-
-provider "kubernetes" {
-  version                = "~> 1.10"
-  load_config_file       = false
-  host                   = module.runner-gke.kubernetes_endpoint
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.runner-gke.ca_certificate)
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 4.0"
+    }
+  }
+  required_version = ">= 0.13"
 }
