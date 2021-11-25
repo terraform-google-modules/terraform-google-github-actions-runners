@@ -113,7 +113,7 @@ resource "google_secret_manager_secret_iam_member" "gh-secret-member" {
   Runner GCE Instance Template
  *****************************************/
 locals {
-  instance_name = "gh-runner-vm"
+  instance_name = var.instance_name
 }
 
 

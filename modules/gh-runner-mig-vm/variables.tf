@@ -109,7 +109,7 @@ variable "gh_token" {
 variable "instance_name" {
   type        = string
   description = "The gce instance name"
-  default     = "gh-runner"
+  default     = "gh-runner-vm"
 }
 
 variable "service_account" {
