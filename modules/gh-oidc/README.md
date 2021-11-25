@@ -18,7 +18,7 @@ module "gh_oidc" {
   provider_id = "example-gh-provider"
   sa_mapping = {
     "foo-service-account" = {
-      sa_name   = "foo-service-account@my-project.iam.gserviceaccount.com"
+      sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
       attribute = "attribute.repository/user/repo"
     }
   }
