@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+### [2.0.1](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v2.0.0...v2.0.1) (2021-11-26)
+
+
+### Bug Fixes
+
+* bump minimum provider version for gh oidc module ([#45](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/45)) ([204a546](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/204a5463a48237fbd2bf118459db7dbb7742bb8a))
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v1.1.0...v2.0.0) (2021-11-09)
 
 
