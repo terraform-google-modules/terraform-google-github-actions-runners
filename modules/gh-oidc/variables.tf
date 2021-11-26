@@ -81,6 +81,6 @@ variable "sa_mapping" {
     sa_name   = string
     attribute = string
   }))
-  description = "Service Account emails and corresponding WIF provider attributes. If attribute is set to `*` all identities in the pool are granted access to SAs."
+  description = "Service Account resource names and corresponding WIF provider attributes. If attribute is set to `*` all identities in the pool are granted access to SAs."
   default     = {}
 }

@@ -18,7 +18,7 @@ module "gh_oidc" {
   provider_id = "example-gh-provider"
   sa_mapping = {
     "foo-service-account" = {
-      sa_name   = "foo-service-account@my-project.iam.gserviceaccount.com"
+      sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
       attribute = "attribute.repository/user/repo"
     }
   }
@@ -78,7 +78,7 @@ jobs:
 | provider\_description | Workload Identity Pool Provider description | `string` | `"Workload Identity Pool Provider managed by Terraform"` | no |
 | provider\_display\_name | Workload Identity Pool Provider display name | `string` | `null` | no |
 | provider\_id | Workload Identity Pool Provider id | `string` | n/a | yes |
-| sa\_mapping | Service Account emails and corresponding WIF provider attributes. If attribute is set to `*` all identities in the pool are granted access to SAs. | <pre>map(object({<br>    sa_name   = string<br>    attribute = string<br>  }))</pre> | `{}` | no |
+| sa\_mapping | Service Account resource names and corresponding WIF provider attributes. If attribute is set to `*` all identities in the pool are granted access to SAs. | <pre>map(object({<br>    sa_name   = string<br>    attribute = string<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
