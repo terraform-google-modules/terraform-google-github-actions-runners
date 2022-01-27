@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-provider "google" {
-  version = "~> 3.16"
-}
-
-provider "google-beta" {
-  version = "~> 3.16"
+ 
+ terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 3.1"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 3.1"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 1.10"
+    }
+  }
+  required_version = ">= 0.13"
 }
