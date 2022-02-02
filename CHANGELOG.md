@@ -8,6 +8,22 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v2.0.1...v3.0.0) (2022-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* update examples, bump gke module version ([#52](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/52)). `gh-runner-gke` now uses [v19](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/releases/tag/v19.0.0) of the GKE module. Please refer to the [GKE module upgrade guide](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/blob/master/docs/upgrading_to_v19.0.md) for more details.
+
+### Features
+
+* Update TPG version constraints to allow 4.0 ([#50](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/50)) ([1aebd31](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/1aebd31f0548374ac061a58cdca7bc98e51eb760))
+
+
+### Bug Fixes
+
+* update examples, bump gke module version ([#52](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/52)) ([882578e](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/882578e59bf2f5a808abd63ed5dcc74524aa30fa))
+
 ### [2.0.1](https://www.github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v2.0.0...v2.0.1) (2021-11-26)
 
 
