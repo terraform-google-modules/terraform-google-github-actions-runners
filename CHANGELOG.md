@@ -13,7 +13,7 @@ This changelog is generated automatically based on [Conventional Commits](https:
 
 ### ⚠ BREAKING CHANGES
 
-* update examples, bump gke module version (#52)
+* update examples, bump gke module version ([#52](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/52)). `gh-runner-gke` now uses [v19](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/releases/tag/v19.0.0) of the GKE module. Please refer to the [GKE module upgrade guide](https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/blob/master/docs/upgrading_to_v19.0.md) for more details.
 
 ### Features
 
