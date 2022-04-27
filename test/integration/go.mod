@@ -3,6 +3,6 @@ module github.com/terraform-google-modules/terraform-google-github-actions-runne
 go 1.16
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.0.0-20210910184533-e8c47de6a66b
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.0.0-20220428174406-416530528bc3
 	github.com/stretchr/testify v1.7.0
 )
