@@ -33,7 +33,7 @@ This example shows how to use this module along with a Service Account to access
 
 ### GitHub Workflow
 
-Once provisioned, you can use the [oidc-auth-google-cloud](https://github.com/sethvargo/oidc-auth-google-cloud) Action in a workflow as shown below
+Once provisioned, you can use the [google-github-actions/auth](https://github.com/google-github-actions/auth) Action in a workflow as shown below
 
 ```yaml
 # Example workflow
@@ -53,7 +53,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - id: 'auth'
-      uses: 'sethvargo/oidc-auth-google-cloud@main'
+      uses: 'google-github-actions/auth@v0'
       with:
         workload_identity_provider: ${{ secrets.PROVIDER_NAME }} # this is the output provider_name from the TF module
         service_account: ${{ secrets.SA_EMAIL }} # this is a SA email configured using the TF module with access to YOUR-GCS-BUCKET
