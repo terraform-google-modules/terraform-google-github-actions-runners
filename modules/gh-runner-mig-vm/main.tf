@@ -171,5 +171,5 @@ module "mig" {
   max_replicas        = var.max_replicas
   cooldown_period     = var.cooldown_period
 
-  update_policy       = var.update_policy
+  update_policy = var.update_policy
 }

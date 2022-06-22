@@ -172,7 +172,7 @@ variable "cooldown_period" {
 
 variable "update_policy" {
   description = "Update policy for the MIG. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_instance_group_manager#nested_update_policy"
-  default = []
+  default     = []
 }
 
 variable "startup_script_pre_github_runner_setup" {

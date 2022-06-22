@@ -46,6 +46,7 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | subnet\_name | Name for the subnet | `string` | `"gh-runner-subnet"` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
 | target\_size | The number of runner instances | `number` | `2` | no |
+| update\_policy | Update policy for the MIG. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_instance_group_manager#nested_update_policy | `list` | `[]` | no |
 | zone | The GCP zone to deploy instances into | `string` | `"us-east4-b"` | no |
 
 ## Outputs
