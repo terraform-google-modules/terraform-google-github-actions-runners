@@ -177,12 +177,12 @@ variable "update_policy" {
 
 variable "startup_script_pre_github_runner_setup" {
   type        = string
-  description = "Additional commands to run before the default startup script"
+  description = "Additional commands to run before the startup script"
   default     = ""
 }
 
 variable "startup_script_post_github_runner_setup" {
   type        = string
-  description = "Additional command to run after the default startup script"
+  description = "Additional commands to run after the startup script"
   default     = ""
 }
