@@ -194,4 +194,5 @@ module "mig" {
   /* autoscaler */
   autoscaling_enabled = true
   cooldown_period     = var.cooldown_period
+  update_policy       = var.update_policy
 }

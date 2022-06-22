@@ -18,6 +18,7 @@ variable "project_id" {
   type        = string
   description = "The project id to deploy Github Runner"
 }
+
 variable "region" {
   type        = string
   description = "The GCP region to deploy instances into"
@@ -128,4 +129,9 @@ variable "dind" {
 variable "cooldown_period" {
   description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
   default     = 60
+}
+
+variable "update_policy" {
+  description = "Update policy for the MIG. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_instance_group_manager#nested_update_policy"
+  default = []
 }

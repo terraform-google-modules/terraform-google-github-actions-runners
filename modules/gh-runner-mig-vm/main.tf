@@ -138,7 +138,11 @@ module "mig_template" {
   name_prefix          = "gh-runner"
   source_image_family  = var.source_image_family
   source_image_project = var.source_image_project
-  startup_script       = local.startup_script
+  startup_script       = <<EOT
+    ${var.startup_script_pre_github_runner_setup}
+    ${local.startup_script}
+    ${var.startup_script_post_github_runner_setup}
+  EOT
   source_image         = var.source_image
   metadata = merge({
     "secret-id" = google_secret_manager_secret_version.gh-secret-version.name
@@ -166,4 +170,6 @@ module "mig" {
   min_replicas        = var.min_replicas
   max_replicas        = var.max_replicas
   cooldown_period     = var.cooldown_period
+
+  update_policy       = var.update_policy
 }
