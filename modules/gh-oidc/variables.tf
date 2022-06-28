@@ -41,6 +41,18 @@ variable "provider_id" {
   description = "Workload Identity Pool Provider id"
 }
 
+variable "issuer_uri" {
+  type        = string
+  description = "Workload Identity Pool Issuer URL"
+  validation {
+    condition = (
+        length(var.issuer_uri) > 8 &&
+        substr(var.issuer_uri, 0, 8) == "https://"
+    )
+    error_message = "The Issuer URL value must start with \"https://\"."
+    }
+}
+
 variable "provider_display_name" {
   type        = string
   description = "Workload Identity Pool Provider display name"
