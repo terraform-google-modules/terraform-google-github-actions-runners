@@ -71,6 +71,7 @@ jobs:
 | allowed\_audiences | Workload Identity Pool Provider allowed audiences. | `list(string)` | `[]` | no |
 | attribute\_condition | Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition) | `string` | `null` | no |
 | attribute\_mapping | Workload Identity Pool Provider attribute mapping. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_mapping) | `map(any)` | <pre>{<br>  "attribute.actor": "assertion.actor",<br>  "attribute.aud": "assertion.aud",<br>  "attribute.repository": "assertion.repository",<br>  "google.subject": "assertion.sub"<br>}</pre> | no |
+| issuer\_uri | Workload Identity Pool Issuer URL | `string` | `"https://token.actions.githubusercontent.com"` | no |
 | pool\_description | Workload Identity Pool description | `string` | `"Workload Identity Pool managed by Terraform"` | no |
 | pool\_display\_name | Workload Identity Pool display name | `string` | `null` | no |
 | pool\_id | Workload Identity Pool ID | `string` | n/a | yes |

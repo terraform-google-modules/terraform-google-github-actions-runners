@@ -44,13 +44,7 @@ variable "provider_id" {
 variable "issuer_uri" {
   type        = string
   description = "Workload Identity Pool Issuer URL"
-  validation {
-    condition = (
-        length(var.issuer_uri) > 8 &&
-        substr(var.issuer_uri, 0, 8) == "https://"
-    )
-    error_message = "The Issuer URL value must start with \"https://\"."
-    }
+  default     = "https://token.actions.githubusercontent.com"
 }
 
 variable "provider_display_name" {
