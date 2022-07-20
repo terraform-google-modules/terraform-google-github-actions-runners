@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.0.0...v3.1.0) (2022-07-20)
+
+
+### Features
+
+* Issuer URI has been passed through variable ([#62](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/62)) ([c9da327](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/c9da3279e9af3e195f3ad089efdfb425b8e9032f))
+
 ## [3.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v2.0.1...v3.0.0) (2022-02-02)
 
 
