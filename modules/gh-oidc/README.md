@@ -19,7 +19,7 @@ module "gh_oidc" {
   sa_mapping = {
     "foo-service-account" = {
       sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
-      attribute = "attribute.repository/<user/org>/<repo>"
+      attribute = "attribute.repository/${USER/ORG}/<repo>"
     }
   }
 }
