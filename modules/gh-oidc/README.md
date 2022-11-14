@@ -59,7 +59,7 @@ jobs:
         service_account: ${{ secrets.SA_EMAIL }} # this is a SA email configured using the TF module with access to YOUR-GCS-BUCKET
     - id: 'list-buckets-contents'
       run: |-
-        curl https://storage.googleapis.com/storage/v1/b/YOUR-GCS-BUCKET/o \
+        curl -sSf https://storage.googleapis.com/storage/v1/b/YOUR-GCS-BUCKET/o \
           --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
 ```
 
