@@ -28,14 +28,12 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_metadata | Additional metadata to attach to the instance | `map(any)` | `{}` | no |
 | cooldown\_period | The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. | `number` | `60` | no |
 | create\_network | When set to true, VPC,router and NAT will be auto created | `bool` | `true` | no |
 | create\_subnetwork | Whether to create subnetwork or use the one provided via subnet\_name | `bool` | `true` | no |
 | custom\_metadata | User provided custom metadata | `map(any)` | `{}` | no |
 | gh\_runner\_labels | GitHub runner labels to attach to the runners. Docs: https://docs.github.com/en/actions/hosting-your-own-runners/using-labels-with-self-hosted-runners | `set(string)` | `[]` | no |
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
-| instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
 | machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-1"` | no |
 | max\_replicas | Maximum number of runner instances | `number` | `10` | no |
 | min\_replicas | Minimum number of runner instances | `number` | `2` | no |
@@ -44,7 +42,6 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
 | repo\_name | Name of the repo for the Github Action | `string` | `""` | no |
 | repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
-| restart\_policy | The desired Docker restart policy for the runner image | `string` | `"Always"` | no |
 | service\_account | Service account email address | `string` | `""` | no |
 | shutdown\_script | User shutdown script to run when instances shutdown | `string` | `""` | no |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `""` | no |
@@ -54,7 +51,6 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | subnet\_ip | IP range for the subnet | `string` | `"10.10.10.0/24"` | no |
 | subnet\_name | Name for the subnet | `string` | `"gh-runner-subnet"` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
-| zone | The GCP zone to deploy instances into | `string` | `"us-east4-b"` | no |
 
 ## Outputs
 

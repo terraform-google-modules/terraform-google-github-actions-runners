@@ -1,0 +1,175 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-github-actions-runners
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: ""
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-github-actions-runners
+    sourceType: git
+  version: 3.1.0
+  actuationTool:
+    type: Terraform
+    version: '>= 0.13'
+  examples:
+  - name: gh-org-runner-mig-native-simple
+    location: examples/gh-org-runner-mig-native-simple
+  - name: gh-runner-gke-dind
+    location: examples/gh-runner-gke-dind
+  - name: gh-runner-gke-simple
+    location: examples/gh-runner-gke-simple
+  - name: gh-runner-mig-container-vm-dind
+    location: examples/gh-runner-mig-container-vm-dind
+  - name: gh-runner-mig-container-vm-simple
+    location: examples/gh-runner-mig-container-vm-simple
+  - name: gh-runner-mig-native-packer
+    location: examples/gh-runner-mig-native-packer
+  - name: gh-runner-mig-native-simple
+    location: examples/gh-runner-mig-native-simple
+  - name: oidc-simple
+    location: examples/oidc-simple
+  variables:
+  - name: create_network
+    description: When set to true, VPC will be auto created
+    type: bool
+    default: true
+    required: false
+  - name: gh_token
+    description: Github token that is used for generating Self Hosted Runner Token
+    type: string
+    required: true
+  - name: ip_range_pods_cidr
+    description: The secondary ip range cidr to use for pods
+    type: string
+    default: 192.168.0.0/18
+    required: false
+  - name: ip_range_pods_name
+    description: The secondary ip range to use for pods
+    type: string
+    default: ip-range-pods
+    required: false
+  - name: ip_range_services_cider
+    description: The secondary ip range cidr to use for services
+    type: string
+    default: 192.168.64.0/18
+    required: false
+  - name: ip_range_services_name
+    description: The secondary ip range to use for services
+    type: string
+    default: ip-range-scv
+    required: false
+  - name: machine_type
+    description: Machine type for runner node pool
+    type: string
+    default: n1-standard-4
+    required: false
+  - name: max_node_count
+    description: Maximum number of nodes in the runner node pool
+    type: number
+    default: 4
+    required: false
+  - name: min_node_count
+    description: Minimum number of nodes in the runner node pool
+    type: number
+    default: 2
+    required: false
+  - name: network_name
+    description: Name for the VPC network
+    type: string
+    default: runner-network
+    required: false
+  - name: project_id
+    description: The project id to deploy Github Runner cluster
+    type: string
+    required: true
+  - name: region
+    description: The GCP region to deploy instances into
+    type: string
+    default: us-east4
+    required: false
+  - name: repo_name
+    description: Name of the repo for the Github Action
+    type: string
+    required: true
+  - name: repo_owner
+    description: Owner of the repo for the Github Action
+    type: string
+    required: true
+  - name: repo_url
+    description: Repo URL for the Github Action
+    type: string
+    required: true
+  - name: runner_k8s_config
+    description: Name for the k8s secret required to configure gh runners on GKE
+    type: string
+    default: runner-k8s-config
+    required: false
+  - name: service_account
+    description: Optional Service Account for the nodes
+    type: string
+    default: ""
+    required: false
+  - name: subnet_ip
+    description: IP range for the subnet
+    type: string
+    default: 10.0.0.0/17
+    required: false
+  - name: subnet_name
+    description: Name for the subnet
+    type: string
+    default: runner-subnet
+    required: false
+  - name: subnetwork_project
+    description: The ID of the project in which the subnetwork belongs. If it is not provided, the project_id is used.
+    type: string
+    default: ""
+    required: false
+  - name: zones
+    description: The GCP zone to deploy gke into
+    type: list(string)
+    default:
+    - us-east4-a
+    required: false
+  outputs:
+  - name: ca_certificate
+    description: The cluster ca certificate (base64 encoded)
+  - name: client_token
+    description: The bearer token for auth
+  - name: cluster_name
+    description: Cluster name
+  - name: kubernetes_endpoint
+    description: The cluster endpoint
+  - name: location
+    description: Cluster location
+  - name: network_name
+    description: Name of VPC
+  - name: service_account
+    description: The default service account used for running nodes.
+  - name: subnet_name
+    description: Name of VPC
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+  services:
+  - cloudresourcemanager.googleapis.com
+  - storage-api.googleapis.com
+  - iam.googleapis.com
+  - container.googleapis.com
+  - serviceusage.googleapis.com

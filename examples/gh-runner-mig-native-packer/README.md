@@ -72,7 +72,6 @@ $ terraform apply
 | project\_id | The project id to deploy Github Runner MIG | `string` | n/a | yes |
 | repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
 | repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
-| repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
 | source\_image | Source disk image | `string` | n/a | yes |
 | source\_image\_project | Project where the source image comes from | `string` | `null` | no |
 

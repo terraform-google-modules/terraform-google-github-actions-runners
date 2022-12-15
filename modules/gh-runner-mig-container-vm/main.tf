@@ -100,7 +100,8 @@ locals {
 }
 
 module "gce-container" {
-  source = "github.com/terraform-google-modules/terraform-google-container-vm"
+  source  = "terraform-google-modules/container-vm/google"
+  version = "~> 3.0"
   container = {
     image = var.image
     env = [

@@ -24,12 +24,6 @@ variable "region" {
   default     = "us-east4"
 }
 
-variable "zone" {
-  type        = string
-  description = "The GCP zone to deploy instances into"
-  default     = "us-east4-b"
-}
-
 variable "network_name" {
   type        = string
   description = "Name for the VPC network"
@@ -113,11 +107,6 @@ variable "additional_metadata" {
   description = "Additional metadata to attach to the instance"
   default     = {}
 }
-variable "machine_type" {
-  type        = string
-  description = "The GCP machine type to deploy"
-  default     = "n1-standard-4"
-}
 
 variable "dind" {
   type        = bool
@@ -127,5 +116,6 @@ variable "dind" {
 
 variable "cooldown_period" {
   description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
+  type        = number
   default     = 60
 }
