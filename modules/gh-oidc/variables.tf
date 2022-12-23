@@ -41,6 +41,12 @@ variable "provider_id" {
   description = "Workload Identity Pool Provider id"
 }
 
+variable "issuer_uri" {
+  type        = string
+  description = "Workload Identity Pool Issuer URL"
+  default     = "https://token.actions.githubusercontent.com"
+}
+
 variable "provider_display_name" {
   type        = string
   description = "Workload Identity Pool Provider display name"
