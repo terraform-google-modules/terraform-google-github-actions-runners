@@ -33,7 +33,6 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | image | The github runner image | `string` | n/a | yes |
 | instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
-| machine\_type | The GCP machine type to deploy | `string` | `"n1-standard-4"` | no |
 | network\_name | Name for the VPC network | `string` | `"gh-runner-network"` | no |
 | project\_id | The project id to deploy Github Runner | `string` | n/a | yes |
 | region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
@@ -46,7 +45,6 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | subnet\_name | Name for the subnet | `string` | `"gh-runner-subnet"` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
 | target\_size | The number of runner instances | `number` | `2` | no |
-| zone | The GCP zone to deploy instances into | `string` | `"us-east4-b"` | no |
 
 ## Outputs
 
