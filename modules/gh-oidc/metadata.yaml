@@ -1,0 +1,124 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-github-actions-runners
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: ""
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-github-actions-runners
+    sourceType: git
+  version: 3.1.0
+  actuationTool:
+    type: Terraform
+    version: '>= 0.13'
+  examples:
+  - name: gh-org-runner-mig-native-simple
+    location: examples/gh-org-runner-mig-native-simple
+  - name: gh-runner-gke-dind
+    location: examples/gh-runner-gke-dind
+  - name: gh-runner-gke-simple
+    location: examples/gh-runner-gke-simple
+  - name: gh-runner-mig-container-vm-dind
+    location: examples/gh-runner-mig-container-vm-dind
+  - name: gh-runner-mig-container-vm-simple
+    location: examples/gh-runner-mig-container-vm-simple
+  - name: gh-runner-mig-native-packer
+    location: examples/gh-runner-mig-native-packer
+  - name: gh-runner-mig-native-simple
+    location: examples/gh-runner-mig-native-simple
+  - name: oidc-simple
+    location: examples/oidc-simple
+  variables:
+  - name: allowed_audiences
+    description: Workload Identity Pool Provider allowed audiences.
+    type: list(string)
+    default: []
+    required: false
+  - name: attribute_condition
+    description: Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition)
+    type: string
+    required: false
+  - name: attribute_mapping
+    description: Workload Identity Pool Provider attribute mapping. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_mapping)
+    type: map(any)
+    default:
+      attribute.actor: assertion.actor
+      attribute.aud: assertion.aud
+      attribute.repository: assertion.repository
+      google.subject: assertion.sub
+    required: false
+  - name: issuer_uri
+    description: Workload Identity Pool Issuer URL
+    type: string
+    default: https://token.actions.githubusercontent.com
+    required: false
+  - name: pool_description
+    description: Workload Identity Pool description
+    type: string
+    default: Workload Identity Pool managed by Terraform
+    required: false
+  - name: pool_display_name
+    description: Workload Identity Pool display name
+    type: string
+    required: false
+  - name: pool_id
+    description: Workload Identity Pool ID
+    type: string
+    required: true
+  - name: project_id
+    description: The project id to create Workload Identity Pool
+    type: string
+    required: true
+  - name: provider_description
+    description: Workload Identity Pool Provider description
+    type: string
+    default: Workload Identity Pool Provider managed by Terraform
+    required: false
+  - name: provider_display_name
+    description: Workload Identity Pool Provider display name
+    type: string
+    required: false
+  - name: provider_id
+    description: Workload Identity Pool Provider id
+    type: string
+    required: true
+  - name: sa_mapping
+    description: Service Account resource names and corresponding WIF provider attributes. If attribute is set to `*` all identities in the pool are granted access to SAs.
+    type: |-
+      map(object({
+          sa_name   = string
+          attribute = string
+        }))
+    default: {}
+    required: false
+  outputs:
+  - name: pool_name
+    description: Pool name
+  - name: provider_name
+    description: Provider name
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+  services:
+  - cloudresourcemanager.googleapis.com
+  - storage-api.googleapis.com
+  - iam.googleapis.com
+  - container.googleapis.com
+  - serviceusage.googleapis.com

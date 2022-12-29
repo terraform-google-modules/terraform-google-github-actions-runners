@@ -1,0 +1,159 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-github-actions-runners
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: ""
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-github-actions-runners
+    sourceType: git
+  version: 3.1.0
+  actuationTool:
+    type: Terraform
+    version: '>= 0.13'
+  examples:
+  - name: gh-org-runner-mig-native-simple
+    location: examples/gh-org-runner-mig-native-simple
+  - name: gh-runner-gke-dind
+    location: examples/gh-runner-gke-dind
+  - name: gh-runner-gke-simple
+    location: examples/gh-runner-gke-simple
+  - name: gh-runner-mig-container-vm-dind
+    location: examples/gh-runner-mig-container-vm-dind
+  - name: gh-runner-mig-container-vm-simple
+    location: examples/gh-runner-mig-container-vm-simple
+  - name: gh-runner-mig-native-packer
+    location: examples/gh-runner-mig-native-packer
+  - name: gh-runner-mig-native-simple
+    location: examples/gh-runner-mig-native-simple
+  - name: oidc-simple
+    location: examples/oidc-simple
+  variables:
+  - name: additional_metadata
+    description: Additional metadata to attach to the instance
+    type: map(any)
+    default: {}
+    required: false
+  - name: cooldown_period
+    description: The number of seconds that the autoscaler should wait before it starts collecting information from a new instance.
+    type: number
+    default: 60
+    required: false
+  - name: create_network
+    description: When set to true, VPC,router and NAT will be auto created
+    type: bool
+    default: true
+    required: false
+  - name: dind
+    description: 'Flag to determine whether to expose dockersock '
+    type: bool
+    default: false
+    required: false
+  - name: gh_token
+    description: Github token that is used for generating Self Hosted Runner Token
+    type: string
+    required: true
+  - name: image
+    description: The github runner image
+    type: string
+    required: true
+  - name: instance_name
+    description: The gce instance name
+    type: string
+    default: gh-runner
+    required: false
+  - name: network_name
+    description: Name for the VPC network
+    type: string
+    default: gh-runner-network
+    required: false
+  - name: project_id
+    description: The project id to deploy Github Runner
+    type: string
+    required: true
+  - name: region
+    description: The GCP region to deploy instances into
+    type: string
+    default: us-east4
+    required: false
+  - name: repo_name
+    description: Name of the repo for the Github Action
+    type: string
+    required: true
+  - name: repo_owner
+    description: Owner of the repo for the Github Action
+    type: string
+    required: true
+  - name: repo_url
+    description: Repo URL for the Github Action
+    type: string
+    required: true
+  - name: restart_policy
+    description: The desired Docker restart policy for the runner image
+    type: string
+    default: Always
+    required: false
+  - name: service_account
+    description: Service account email address
+    type: string
+    default: ""
+    required: false
+  - name: subnet_ip
+    description: IP range for the subnet
+    type: string
+    default: 10.10.10.0/24
+    required: false
+  - name: subnet_name
+    description: Name for the subnet
+    type: string
+    default: gh-runner-subnet
+    required: false
+  - name: subnetwork_project
+    description: The ID of the project in which the subnetwork belongs. If it is not provided, the project_id is used.
+    type: string
+    default: ""
+    required: false
+  - name: target_size
+    description: The number of runner instances
+    type: number
+    default: 2
+    required: false
+  outputs:
+  - name: mig_instance_group
+    description: The instance group url of the created MIG
+  - name: mig_instance_template
+    description: The name of the MIG Instance Template
+  - name: mig_name
+    description: The name of the MIG
+  - name: network_name
+    description: Name of VPC
+  - name: service_account
+    description: Service account email for GCE
+  - name: subnet_name
+    description: Name of VPC
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+  services:
+  - cloudresourcemanager.googleapis.com
+  - storage-api.googleapis.com
+  - iam.googleapis.com
+  - container.googleapis.com
+  - serviceusage.googleapis.com
