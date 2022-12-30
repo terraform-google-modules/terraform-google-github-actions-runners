@@ -8,6 +8,14 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.1](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.0...v3.1.1) (2022-12-29)
+
+
+### Bug Fixes
+
+* **deps:** update terraform terraform-google-modules/kubernetes-engine/google to v24 ([#85](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/85)) ([980e5d5](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/980e5d50cd89ed0e84f120e0e263bd9700ffa3ca))
+* fixes lint issues and generates metadata ([#89](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/89)) ([935368c](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/935368cf54df02eba97596bc21226c63bca2bf4c))
+
 ## [3.1.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.0.0...v3.1.0) (2022-07-20)
 
 
