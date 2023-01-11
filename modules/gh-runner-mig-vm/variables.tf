@@ -60,6 +60,57 @@ variable "subnet_name" {
   default     = "gh-runner-subnet"
 }
 
+variable "subnet_enable_flow_logs" {
+  type        = bool
+  description = "When set to true, flow logs will be enabled for the subnet"
+  default     = false
+}
+
+variable "subnet_flow_logs_aggregation_interval" {
+  type        = string
+  description = "Can only be specified if subnet_enable_flow_logs is true. Toggles the aggregation interval for collecting flow logs."
+  default     = "INTERVAL_5_SEC"
+
+  validation {
+    condition     = contains(["INTERVAL_5_SEC", "INTERVAL_30_SEC", "INTERVAL_1_MIN", "INTERVAL_5_MIN", "INTERVAL_10_MIN", "INTERVAL_15_MIN"], var.subnet_flow_logs_aggregation_interval)
+    error_message = "Must be either \"INTERVAL_5_SEC\", \"INTERVAL_30_SEC\", \"INTERVAL_1_MIN\", \"INTERVAL_5_MIN\", \"INTERVAL_10_MIN\", or \"INTERVAL_15_MIN\"."
+  }
+}
+
+variable "subnet_flow_logs_flow_sampling" {
+  type        = number
+  description = "Can only be specified if subnet_enable_flow_logs is true. Sets the sampling rate of VPC flow logs within the subnetwork."
+  default     = 0.5
+
+  validation {
+    condition     = var.subnet_flow_logs_flow_sampling > 0 && var.subnet_flow_logs_flow_sampling <= 1
+    error_message = "Must be in the range (0, 1]."
+  }
+}
+
+variable "subnet_flow_logs_metadata" {
+  type        = string
+  description = "Can only be specified if subnet_enable_flow_logs is true. Configures whether metadata fields should be added to the reported VPC flow logs."
+  default     = "INCLUDE_ALL_METADATA"
+
+  validation {
+    condition     = contains(["EXCLUDE_ALL_METADATA", "INCLUDE_ALL_METADATA", "CUSTOM_METADATA"], var.subnet_flow_logs_metadata)
+    error_message = "Must be either \"EXCLUDE_ALL_METADATA\", \"INCLUDE_ALL_METADATA\", or \"CUSTOM_METADATA\"."
+  }
+}
+
+variable "subnet_flow_logs_metadata_fields" {
+  type        = list(string)
+  description = "Can only be specified if subnet_enable_flow_logs is true and subnet_flow_logs_metadata is set to CUSTOM_METADATA. List of metadata fields that should be added to reported logs."
+  default     = []
+}
+
+variable "subnet_flow_logs_filter_expr" {
+  type        = string
+  description = "Can only be specified if subnet_enable_flow_logs is true. Export filter used to define which VPC flow logs should be logged, as an CEL expression."
+  default     = "true"
+}
+
 variable "repo_name" {
   type        = string
   description = "Name of the repo for the Github Action"
