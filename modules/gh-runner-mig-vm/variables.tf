@@ -147,3 +147,9 @@ variable "cooldown_period" {
   type        = number
   default     = 60
 }
+
+variable "preemptible" {
+  description = "If set to true, then vms for the MIG will be preemptible"
+  type        = bool
+  default     = false
+}

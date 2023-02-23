@@ -140,6 +140,7 @@ module "mig_template" {
   source_image_project = var.source_image_project
   startup_script       = local.startup_script
   source_image         = var.source_image
+  preemptible          = var.preemptible
   metadata = merge({
     "secret-id" = google_secret_manager_secret_version.gh-secret-version.name
     }, {
