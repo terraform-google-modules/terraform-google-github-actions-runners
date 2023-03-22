@@ -62,10 +62,17 @@ resource "google_compute_router_nat" "nat" {
   IAM Bindings GCE SVC
  *****************************************/
 
+resource "random_string" "service_account" {
+  length  = 6
+  upper   = "false"
+  number  = "false"
+  special = "false"
+}
+
 resource "google_service_account" "runner_service_account" {
   count        = var.service_account == "" ? 1 : 0
   project      = var.project_id
-  account_id   = "runner-service-account"
+  account_id   = "runner-service-account-${random_string.service_account.result}"
   display_name = "Github Runner GCE Service Account"
 }
 
