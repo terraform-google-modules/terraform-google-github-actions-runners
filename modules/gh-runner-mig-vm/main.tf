@@ -72,10 +72,17 @@ resource "google_service_account" "runner_service_account" {
 /*****************************************
   Runner Secrets
  *****************************************/
+resource "random_string" "gh-secret" {
+  length  = 6
+  upper   = false
+  numeric = false
+  special = false
+}
+
 resource "google_secret_manager_secret" "gh-secret" {
   provider  = google-beta
   project   = var.project_id
-  secret_id = "gh-token"
+  secret_id = "gh-token${random_string.gh-secret.result}"
 
   labels = {
     label = "gh-token"
@@ -89,6 +96,7 @@ resource "google_secret_manager_secret" "gh-secret" {
     }
   }
 }
+
 resource "google_secret_manager_secret_version" "gh-secret-version" {
   provider = google-beta
   secret   = google_secret_manager_secret.gh-secret.id
@@ -99,7 +107,6 @@ resource "google_secret_manager_secret_version" "gh-secret-version" {
     "LABELS"       = join(",", var.gh_runner_labels)
   })
 }
-
 
 resource "google_secret_manager_secret_iam_member" "gh-secret-member" {
   provider  = google-beta
