@@ -74,11 +74,11 @@ resource "google_compute_router_nat" "nat" {
 /*****************************************
   IAM Bindings GCE SVC
  *****************************************/
-resource "random_string" "service_account" {
+resource "random_string" "runner_service_account" {
   length  = 6
-  upper   = "false"
-  numeric = "false"
-  special = "false"
+  upper   = false
+  numeric = false
+  special = false
 }
 
 resource "google_service_account" "runner_service_account" {
