@@ -77,7 +77,7 @@ resource "google_compute_router_nat" "nat" {
 resource "random_string" "service_account" {
   length  = 6
   upper   = "false"
-  number  = "false"
+  numeric = "false"
   special = "false"
 }
 
