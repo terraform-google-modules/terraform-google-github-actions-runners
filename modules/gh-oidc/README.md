@@ -53,8 +53,9 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
+      uses: 'google-github-actions/auth@v1'
       with:
+        token_format: 'access_token'
         workload_identity_provider: ${{ secrets.PROVIDER_NAME }} # this is the output provider_name from the TF module
         service_account: ${{ secrets.SA_EMAIL }} # this is a SA email configured using the TF module with access to YOUR-GCS-BUCKET
     - id: 'list-buckets-contents'
