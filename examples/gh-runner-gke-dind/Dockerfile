@@ -32,7 +32,12 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
 
 ARG GH_RUNNER_VERSION="2.169.0"
 WORKDIR /runner
-RUN curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz" && \
+RUN DOCKER_ARCH=$(case ${TARGETARCH:-amd64} in \
+    "amd64")   echo "x64"  ;; \
+    "arm64")   echo "arm64" ;; \
+    *)               echo ""        ;; esac) \
+  && echo "DOCKER_ARCH=$DOCKER_ARCH" \
+  && curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-${DOCKER_ARCH}-${GH_RUNNER_VERSION}.tar.gz" && \
     tar -zxf actions.tar.gz && \
     rm -f actions.tar.gz && \
     ./bin/installdependencies.sh
