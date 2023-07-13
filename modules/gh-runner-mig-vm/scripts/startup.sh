@@ -18,6 +18,7 @@ apt-get update
 apt-get -y install jq
 
 secretUri=$(curl -sS "http://metadata.google.internal/computeMetadata/v1/instance/attributes/secret-id" -H "Metadata-Flavor: Google")
+runnerVersion=$(curl -sS "http://metadata.google.internal/computeMetadata/v1/instance/attributes/runner-version" -H "Metadata-Flavor: Google")
 #secrets URI is of the form projects/$PROJECT_NUMBER/secrets/$SECRET_NAME/versions/$SECRET_VERSION
 #split into array based on `/` delimeter
 IFS="/" read -r -a secretsConfig <<<"$secretUri"
@@ -31,7 +32,7 @@ secrets=$(gcloud secrets versions access "$SECRET_VERSION" --secret="$SECRET_NAM
 # we want to use wordsplitting
 export $(echo "$secrets" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 #github runner version
-GH_RUNNER_VERSION="2.283.2"
+GH_RUNNER_VERSION=${runnerVersion}
 #get actions binary
 curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz"
 mkdir /runner

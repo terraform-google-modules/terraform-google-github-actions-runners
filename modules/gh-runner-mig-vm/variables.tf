@@ -147,3 +147,9 @@ variable "cooldown_period" {
   type        = number
   default     = 60
 }
+
+variable "runner_version" {
+  type = string
+  default = ""
+  description = "Release version of GitHub Actions runner that you would like to use"
+}
