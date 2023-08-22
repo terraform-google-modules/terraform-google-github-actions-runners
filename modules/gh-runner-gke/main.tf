@@ -50,7 +50,7 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 24.0"
+  version                  = "~> 27.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.repo_name}"
   regional                 = false
