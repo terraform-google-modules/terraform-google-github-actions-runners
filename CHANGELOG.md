@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.2](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.1...v3.1.2) (2023-10-10)
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#124](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/124)) ([ede4426](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/ede4426a9268ad50524d3b0d23cb1dbf52ab99d3))
+
 ## [3.1.1](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.0...v3.1.1) (2022-12-29)
 
 
