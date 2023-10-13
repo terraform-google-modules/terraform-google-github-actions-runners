@@ -63,7 +63,7 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | service\_account | Service account email for GCE |
 | subnet\_name | Name of VPC |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 

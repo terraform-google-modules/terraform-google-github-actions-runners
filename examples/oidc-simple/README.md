@@ -19,4 +19,4 @@ This example showcases how to configure [Workload Identity Federation](https://c
 | provider\_name | Provider name |
 | sa\_email | Example SA email |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
