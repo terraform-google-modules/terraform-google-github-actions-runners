@@ -57,7 +57,7 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | service\_account | Service account email for GCE |
 | subnet\_name | Name of VPC |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 

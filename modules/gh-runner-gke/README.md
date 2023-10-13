@@ -59,7 +59,7 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 | service\_account | The default service account used for running nodes. |
 | subnet\_name | Name of VPC |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 

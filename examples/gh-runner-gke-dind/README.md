@@ -75,4 +75,4 @@ $ kustomize build . | kubectl apply -f -
 | location | Cluster location |
 | service\_account | The default service account used for running nodes. |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -84,4 +84,4 @@ $ terraform apply
 | mig\_name | The name of the MIG |
 | service\_account | Service account email for GCE |
 
- <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
