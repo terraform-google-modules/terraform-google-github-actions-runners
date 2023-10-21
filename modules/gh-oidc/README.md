@@ -111,4 +111,4 @@ Before this module can be used on a project, you must ensure that the following 
     roles/iam.serviceAccountAdmin
     ```
 
-1. The [`google-beta` provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_versions#google-beta) is defined    
+1. The [`google-beta` provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_versions#google-beta) is defined
