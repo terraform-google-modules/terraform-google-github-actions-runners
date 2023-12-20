@@ -119,3 +119,9 @@ variable "cooldown_period" {
   type        = number
   default     = 60
 }
+
+variable "startup_script" {
+  description = "The startup script to run on the instance"
+  type        = string
+  default     = ""
+}

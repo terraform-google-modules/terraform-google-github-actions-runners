@@ -169,7 +169,7 @@ module "mig_template" {
   name_prefix          = "gh-runner"
   source_image_family  = "cos-stable"
   source_image_project = "cos-cloud"
-  startup_script       = "export TEST_ENV='hello'"
+  startup_script       = var.startup_script
   source_image         = reverse(split("/", module.gce-container.source_image))[0]
   metadata             = merge(var.additional_metadata, { "gce-container-declaration" = module.gce-container.metadata_value })
   tags = [
