@@ -21,7 +21,7 @@ RUN apt-get update && \
     tar \
     jq
 
-ARG GH_RUNNER_VERSION="2.169.0"
+ARG GH_RUNNER_VERSION="2.294.0"
 WORKDIR /runner
 RUN curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz" && \
     tar -zxf actions.tar.gz && \
