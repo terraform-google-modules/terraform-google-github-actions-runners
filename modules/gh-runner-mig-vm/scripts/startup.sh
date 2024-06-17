@@ -58,7 +58,6 @@ generate_gha_jwt () {
   
   # Create JWT
   JWT="${header_payload}"."${signature}"
-  JWT_ENCODED=$(echo -n "$JWT" | base64)
   
   #printf "%s\n" "$JWT"
 }
@@ -90,7 +89,7 @@ if [[ -n $GHA_CLIENT_ID ]] && [[ -n $GHA_PRIVATE_KEY ]]; then
     GITHUB_TOKEN=$(curl --request POST \
     --url "https://api.github.com/app/installations/${GHA_INSTALLATION_ID}/access_tokens" \
     --header "Accept: application/vnd.github+json" \
-    --header "Authorization: Bearer ${JWT_ENCODED}" \
+    --header "Authorization: Bearer ${JWT}" \
     --header "X-GitHub-Api-Version: 2022-11-28" | jq -r .token)
 fi
 
