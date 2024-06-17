@@ -13,6 +13,52 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+generate_gha_jwt () {
+  ####################
+  # Generate JWT token
+  # Doc: https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app
+  ####################
+  
+  client_id="$GHA_CLIENT_ID" # Client ID as first argument
+  
+  pem=$(echo -n "$GHA_PRIVATE_KEY" | base64 --decode) # file path of the private key as second argument
+  
+  now=$(date +%s)
+  iat=$((now - 60)) # Issues 60 seconds in the past
+  exp=$((now + 600)) # Expires 10 minutes in the future
+  
+  #b64enc() { tr -d '\n' | tr -d '\r' | base64 | tr '+/' '-_' | tr -d '='; }
+  b64enc() { openssl base64 | tr -d '=' | tr '/+' '_-' | tr -d '\n'; }
+  
+  header_json='{
+      "typ":"JWT",
+      "alg":"RS256"
+  }'
+  # Header encode
+  header=$( echo -n "${header_json}" | b64enc )
+  
+  payload_json='{
+      "iat":'"${iat}"',
+      "exp":'"${exp}"',
+      "iss":"'"${client_id}"'"
+  }'
+  # Payload encode
+  payload=$( echo -n "${payload_json}" | b64enc )
+  
+  # Signature
+  header_payload="${header}"."${payload}"
+  signature=$(
+      openssl dgst -sha256 -sign <(echo -n "${pem}") \
+      <(echo -n "${header_payload}") | b64enc
+  )
+  
+  # Create JWT
+  JWT="${header_payload}"."${signature}"
+  
+  #printf "%s\n" "$JWT"
+}
+
+
 secretUri=$(curl -sS "http://metadata.google.internal/computeMetadata/v1/instance/attributes/secret-id" -H "Metadata-Flavor: Google")
 #secrets URI is of the form projects/$PROJECT_NUMBER/secrets/$SECRET_NAME/versions/$SECRET_VERSION
 #split into array based on `/` delimeter
@@ -37,5 +83,21 @@ else
     # Remove action runner from the repo
     POST_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runners/remove-token"
 fi
+
+#only execute when client_id and private_key are not empty
+#use as check to see if we want to use github app for authentication
+#because we are overwriting the GITHUB_TOKEN variable
+if [[ -n $GHA_CLIENT_ID ]] && [[ -n $GHA_PRIVATE_KEY ]]; then
+    generate_gha_jwt
+
+    #Get access token
+    #Docs: https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app
+    GITHUB_TOKEN=$(curl --request POST \
+    --url "https://api.github.com/app/installations/${GHA_INSTALLATION_ID}/access_tokens" \
+    --header "Accept: application/vnd.github+json" \
+    --header "Authorization: Bearer ${JWT}" \
+    --header "X-GitHub-Api-Version: 2022-11-28" | jq -r .token)
+fi
+
 #remove the runner configuration
 RUNNER_ALLOW_RUNASROOT=1 /runner/config.sh remove --unattended --token "$(curl -sS --request POST --url "$POST_URL" --header "authorization: Bearer ${GITHUB_TOKEN}" --header "content-type: application/json" | jq -r .token)"
