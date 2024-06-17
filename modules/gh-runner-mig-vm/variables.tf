@@ -71,6 +71,12 @@ variable "repo_owner" {
   description = "Owner of the repo for the Github Action"
 }
 
+variable "gh_runner_version" {
+  type        = string
+  description = "Version of the runner to deploy"
+  default     = "2.283.2"
+}
+
 variable "gh_runner_labels" {
   type        = set(string)
   description = "GitHub runner labels to attach to the runners. Docs: https://docs.github.com/en/actions/hosting-your-own-runners/using-labels-with-self-hosted-runners"
@@ -92,6 +98,24 @@ variable "max_replicas" {
 variable "gh_token" {
   type        = string
   description = "Github token that is used for generating Self Hosted Runner Token"
+}
+
+variable "gha_client_id" {
+  type        = string
+  description = "Github App ID"
+  default     = ""
+}
+
+variable "gha_installation_id" {
+  type        = string
+  description = "Github Installation ID"
+  default     = ""
+}
+
+variable "gha_private_key" {
+  type        = string
+  description = "Github App private key"
+  default     = "./gha_private-key.pem"
 }
 
 variable "service_account" {

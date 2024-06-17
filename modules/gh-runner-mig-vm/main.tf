@@ -89,17 +89,22 @@ resource "google_secret_manager_secret" "gh-secret" {
     }
   }
 }
+
 resource "google_secret_manager_secret_version" "gh-secret-version" {
   provider = google-beta
   secret   = google_secret_manager_secret.gh-secret.id
   secret_data = jsonencode({
-    "REPO_NAME"    = var.repo_name
-    "REPO_OWNER"   = var.repo_owner
-    "GITHUB_TOKEN" = var.gh_token
-    "LABELS"       = join(",", var.gh_runner_labels)
+    "REPO_NAME"           = var.repo_name
+    "REPO_OWNER"          = var.repo_owner
+    "RUNNER_VERSION"      = var.gh_runner_version
+    "RUNNER_GROUP"        = var.gh_runner_group
+    "GITHUB_TOKEN"        = var.gh_token
+    "GHA_INSTALLATION_ID" = var.gha_installation_id
+    "GHA_CLIENT_ID"       = var.gha_client_id
+    "GHA_PRIVATE_KEY"     = file(var.gha_private_key)
+    "LABELS"              = join(",", var.gh_runner_labels)
   })
 }
-
 
 resource "google_secret_manager_secret_iam_member" "gh-secret-member" {
   provider  = google-beta
