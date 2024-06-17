@@ -101,7 +101,7 @@ resource "google_secret_manager_secret_version" "gh-secret-version" {
     "GITHUB_TOKEN"        = var.gh_token
     "GHA_INSTALLATION_ID" = var.gha_installation_id
     "GHA_CLIENT_ID"       = var.gha_client_id
-    "GHA_PRIVATE_KEY"     = file(var.gha_private_key)
+    "GHA_PRIVATE_KEY"     = base64encode(file(var.gha_private_key))
     "LABELS"              = join(",", var.gh_runner_labels)
   })
 }

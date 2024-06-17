@@ -25,7 +25,7 @@ generate_gha_jwt () {
   
   client_id="$GHA_CLIENT_ID" # Client ID as first argument
   
-  pem=$( cat "$GHA_PRIVATE_KEY" ) # file path of the private key as second argument
+  pem=$(echo -n "$GHA_PRIVATE_KEY" | base64 --decode) # file path of the private key as second argument
   
   now=$(date +%s)
   iat=$((now - 60)) # Issues 60 seconds in the past
