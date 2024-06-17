@@ -58,6 +58,7 @@ generate_gha_jwt () {
   
   # Create JWT
   JWT="${header_payload}"."${signature}"
+  JWT_ENCODED=$(echo -n "$JWT" | base64)
   
   #printf "%s\n" "$JWT"
 }
@@ -81,7 +82,7 @@ GH_RUNNER_VERSION=${RUNNER_VERSION:-2.283.3}
 #only execute when client_id and private_key are not empty
 #use as check to see if we want to use github app for authentication
 #because we are overwriting the GITHUB_TOKEN variable
-if [[ ! -z $GHA_CLIENT_ID ]] && [[ ! -z $GHA_PRIVATE_KEY ]]; then
+if [[ -n $GHA_CLIENT_ID ]] && [[ -n $GHA_PRIVATE_KEY ]]; then
     generate_gha_jwt
 
     #Get access token
