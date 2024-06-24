@@ -1096,6 +1096,7 @@ rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd h1:EDPBXCAspyGV4jQlpZSudPeMmr1bNJefnuqLsRAsHZo=
 sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd/go.mod h1:B8JuhiUyNFVKdsE8h686QcCxMaH6HrOAZj4vswFpcB0=
+<<<<<<< HEAD
 sigs.k8s.io/kustomize/kyaml v0.17.0 h1:G2bWs03V9Ur2PinHLzTUJ8Ded+30SzXZKiO92SRDs3c=
 sigs.k8s.io/kustomize/kyaml v0.17.0/go.mod h1:6lxkYF1Cv9Ic8g/N7I86cvxNc5iinUo/P2vKsHNmpyE=
 <<<<<<< HEAD
@@ -1110,5 +1111,11 @@ sigs.k8s.io/structured-merge-diff/v4 v4.3.0/go.mod h1:N8hJocpFajUSSeSJ9bOZ77Vzej
 sigs.k8s.io/kustomize/kyaml v0.17.1 h1:TnxYQxFXzbmNG6gOINgGWQt09GghzgTP6mIurOgrLCQ=
 sigs.k8s.io/kustomize/kyaml v0.17.1/go.mod h1:9V0mCjIEYjlXuCdYsSXvyoy2BTsLESH7TlGV81S282U=
 >>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
+=======
+sigs.k8s.io/kustomize/kyaml v0.17.1 h1:TnxYQxFXzbmNG6gOINgGWQt09GghzgTP6mIurOgrLCQ=
+sigs.k8s.io/kustomize/kyaml v0.17.1/go.mod h1:9V0mCjIEYjlXuCdYsSXvyoy2BTsLESH7TlGV81S282U=
+sigs.k8s.io/structured-merge-diff/v4 v4.3.0 h1:UZbZAZfX0wV2zr7YZorDz6GXROfDFj6LvqCRm4VUVKk=
+sigs.k8s.io/structured-merge-diff/v4 v4.3.0/go.mod h1:N8hJocpFajUSSeSJ9bOZ77VzejKZaXsTtZo4/u7Io08=
+>>>>>>> 08f24d9 (fix: go test misc)
 sigs.k8s.io/yaml v1.4.0 h1:Mk1wCc2gy/F0THH0TAp1QYyJNzRm2KCLy3o5ASXVI5E=
 sigs.k8s.io/yaml v1.4.0/go.mod h1:Ejl7/uTz7PSA4eKMyQCUTnhZYNmLIl+5c2lQPGR2BPY=

@@ -52,6 +52,7 @@ require (
 	github.com/googleapis/gax-go/v2 v2.12.0 // indirect
 <<<<<<< HEAD
 	github.com/gruntwork-io/terratest v0.46.15 // indirect
+<<<<<<< HEAD
 =======
 	github.com/gruntwork-io/go-commons v0.17.1 // indirect
 <<<<<<< HEAD
@@ -59,6 +60,9 @@ require (
 =======
 	github.com/gruntwork-io/terratest v0.46.15 // indirect
 >>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
+=======
+	github.com/gruntwork-io/go-commons v0.17.1 // indirect
+>>>>>>> 08f24d9 (fix: go test misc)
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-getter v1.7.4 // indirect
@@ -82,7 +86,11 @@ require (
 	github.com/hashicorp/hcl/v2 v2.20.1 // indirect
 	github.com/hashicorp/terraform-config-inspect v0.0.0-20240509232506-4708120f8f30 // indirect
 	github.com/hashicorp/terraform-json v0.22.1 // indirect
+<<<<<<< HEAD
 >>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
+=======
+	github.com/imdario/mergo v0.3.16 // indirect
+>>>>>>> 08f24d9 (fix: go test misc)
 	github.com/jinzhu/copier v0.4.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -108,12 +116,18 @@ require (
 	github.com/tmccombs/hcl2json v0.6.0 // indirect
 	github.com/ulikunitz/xz v0.5.11 // indirect
 <<<<<<< HEAD
+<<<<<<< HEAD
 	github.com/zclconf/go-cty v1.14.4 // indirect
 =======
 	github.com/urfave/cli/v2 v2.25.7 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/zclconf/go-cty v1.14.0 // indirect
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	github.com/zclconf/go-cty v1.14.4 // indirect
+	github.com/urfave/cli/v2 v2.25.7 // indirect
+	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
+>>>>>>> 08f24d9 (fix: go test misc)
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/mod v0.17.0 // indirect
@@ -125,6 +139,7 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 <<<<<<< HEAD
 	golang.org/x/tools v0.13.0 // indirect
+<<<<<<< HEAD
 =======
 	golang.org/x/time v0.3.0 // indirect
 <<<<<<< HEAD
@@ -132,6 +147,9 @@ require (
 =======
 	golang.org/x/tools v0.13.0 // indirect
 >>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
+=======
+	golang.org/x/time v0.3.0 // indirect
+>>>>>>> 08f24d9 (fix: go test misc)
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.138.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
@@ -158,6 +176,12 @@ require (
 >>>>>>> 2bc2c07 (fix: go test misc)
 =======
 	sigs.k8s.io/kustomize/kyaml v0.17.1 // indirect
+<<<<<<< HEAD
 >>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
+=======
+	k8s.io/utils v0.0.0-20230726121419-3b25d923346b // indirect
+	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
+	sigs.k8s.io/structured-merge-diff/v4 v4.3.0 // indirect
+>>>>>>> 08f24d9 (fix: go test misc)
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
