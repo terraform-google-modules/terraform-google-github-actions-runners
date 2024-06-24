@@ -6,11 +6,16 @@ toolchain go1.22.4
 
 require (
 <<<<<<< HEAD
+<<<<<<< HEAD
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.15.1
 =======
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.14.0
 	github.com/gruntwork-io/terratest v0.46.13
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	github.com/gruntwork-io/terratest v0.46.13
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.15.1
+>>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
 	github.com/stretchr/testify v1.9.0
 )
 
@@ -49,7 +54,11 @@ require (
 	github.com/gruntwork-io/terratest v0.46.15 // indirect
 =======
 	github.com/gruntwork-io/go-commons v0.17.1 // indirect
+<<<<<<< HEAD
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	github.com/gruntwork-io/terratest v0.46.15 // indirect
+>>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-getter v1.7.4 // indirect
@@ -57,6 +66,7 @@ require (
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f // indirect
+<<<<<<< HEAD
 <<<<<<< HEAD
 	github.com/hashicorp/hcl/v2 v2.20.1 // indirect
 	github.com/hashicorp/terraform-config-inspect v0.0.0-20240509232506-4708120f8f30 // indirect
@@ -67,6 +77,12 @@ require (
 	github.com/hashicorp/terraform-json v0.17.1 // indirect
 	github.com/imdario/mergo v0.3.16 // indirect
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	github.com/imdario/mergo v0.3.16 // indirect
+	github.com/hashicorp/hcl/v2 v2.20.1 // indirect
+	github.com/hashicorp/terraform-config-inspect v0.0.0-20240509232506-4708120f8f30 // indirect
+	github.com/hashicorp/terraform-json v0.22.1 // indirect
+>>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
 	github.com/jinzhu/copier v0.4.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -111,7 +127,11 @@ require (
 	golang.org/x/tools v0.13.0 // indirect
 =======
 	golang.org/x/time v0.3.0 // indirect
+<<<<<<< HEAD
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	golang.org/x/tools v0.13.0 // indirect
+>>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.138.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
@@ -133,8 +153,11 @@ require (
 =======
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
-	sigs.k8s.io/kustomize/kyaml v0.17.0 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.3.0 // indirect
+<<<<<<< HEAD
 >>>>>>> 2bc2c07 (fix: go test misc)
+=======
+	sigs.k8s.io/kustomize/kyaml v0.17.1 // indirect
+>>>>>>> 3fe1533 (chore(deps): Update go modules and dev-tools (#162))
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
