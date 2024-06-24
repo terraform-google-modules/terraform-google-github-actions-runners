@@ -39,9 +39,10 @@ func TestGHRunnerGKE(t *testing.T) {
 
 		// Get cluster credentials
 		gcloud.Runf(t, "container clusters get-credentials %s --location %s --project %s", clusterName, location, projectId)
+		k8sOpts := k8s.KubectlOptions{}
 
 		// Check the "runner-k8s-config" secret exists
-		secret, err := k8s.GetSecretE(t, options, "runner-k8s-config")
+		secret, err := k8s.GetSecretE(t, &k8sOpts, "runner-k8s-config")
 		if err != nil {
 			t.Fatalf("Error getting secret: %s", err)
 		}
