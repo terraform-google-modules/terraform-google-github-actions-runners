@@ -44,7 +44,7 @@ steps:
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestGHRunnerMIGContainerVM --stage destroy --verbose']
   waitFor:
-    - destroy-gh-runner-mig-container-vm
+    - verify-gh-runner-mig-container-vm
 # test/fixtures/gh-runner-gke
 - id: apply-gh-runner-gke
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
