@@ -14,24 +14,6 @@
  * limitations under the License.
  */
 
-output "kubernetes_endpoint" {
-  description = "The cluster endpoint"
-  sensitive   = true
-  value       = module.example_gke_runner.kubernetes_endpoint
-}
-
-output "client_token" {
-  description = "The bearer token for auth"
-  sensitive   = true
-  value       = module.example_gke_runner.client_token
-}
-
-output "ca_certificate" {
-  description = "The cluster ca certificate (base64 encoded)"
-  sensitive   = true
-  value       = module.example_gke_runner.ca_certificate
-}
-
 output "service_account" {
   description = "The default service account used for running nodes."
   value       = module.example_gke_runner.service_account

@@ -65,6 +65,7 @@ module "runner-cluster" {
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
   remove_default_node_pool = true
   service_account          = local.service_account
+  gce_pd_csi_driver        = true
   node_pools = [
     {
       name         = "runner-pool"
