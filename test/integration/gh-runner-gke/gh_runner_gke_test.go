@@ -42,13 +42,12 @@ func TestGHRunnerGKE(t *testing.T) {
 		k8sOpts := k8s.KubectlOptions{}
 
 		// Check the "runner-k8s-config" secret exists
-		secret, err := k8s.GetSecretE(t, &k8sOpts, "runner-k8s-config")
+		secret, err := k8s.RunKubectlAndGetOutputE(t, &k8sOpts, "get", "secret", "runner-k8s-config", "-o", "json")
 		if err != nil {
 			t.Fatalf("Error getting secret: %s", err)
 		}
 
-		assert.NotNil(t, secret.Data, "The secret 'runner-k8s-config' should exist and have data")
-
+		assert.NotNil(t, secret, "The secret 'runner-k8s-config' should exist and have data")
 	})
 
 	bpt.Test()
