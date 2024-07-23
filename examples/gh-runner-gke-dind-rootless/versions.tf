@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-/*****************************************
-  Kubernetes provider configuration
- *****************************************/
-data "google_client_config" "default" {
-}
-
-provider "kubernetes" {
-  host                   = "https://${module.runner-gke.kubernetes_endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.runner-gke.ca_certificate)
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
+  required_version = ">= 0.13"
 }

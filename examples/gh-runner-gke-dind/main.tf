@@ -18,10 +18,28 @@ module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
   version = "~> 3.0"
 
-  create_network = true
-  project_id     = var.project_id
-  repo_name      = var.repo_name
-  repo_owner     = var.repo_owner
-  repo_url       = var.repo_url
-  gh_token       = var.gh_token
+  create_network         = true
+  project_id             = var.project_id
+  org_name               = "dind"
+  gh_app_id              = "123456"
+  gh_app_installation_id = "12345678"
+  gh_app_private_key     = "sample"
+}
+
+
+resource "helm_release" "arc_runners_set" {
+  name        = "arc-runners"
+  namespace   = module.runner-gke.arc_runners_namespace
+  chart       = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
+  version     = "0.9.3"
+
+  set {
+    name = "containerMode.type"
+    value = "dind"
+  }
+
+  set {
+    name = "githubConfigSecret"
+    value = module.runner-gke.gha_secret_name
+  }
 }

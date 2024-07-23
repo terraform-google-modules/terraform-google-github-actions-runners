@@ -1,6 +1,6 @@
-## Self Hosted Runners on GKE
+# Self Hosted Runners on GKE
 
-This module handles the opinionated creation of infrastructure necessary to deploy Github Self Hosted Runners on GKE.
+This module handles the opinionated creation of infrastructure necessary to deploy GitHub Actions Runners on GKE. This module follows the guide provided by GitHub for [Quickstart for Actions Runner Controller](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller). 
 
 This includes:
 
@@ -8,6 +8,19 @@ This includes:
 - VPC
 - GKE Cluster
 - Kubernetes Secret
+- Installation via Helm Chart
+
+## Authenticating to GitHub
+
+It's recommended to authenticate to GitHub via a GitHub App. Follow the instructions at [Authenticating ARC with a GitHub App](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/authenticating-to-the-github-api#authenticating-arc-with-a-github-app) to retrieve the necessary prerequisites:
+
+- GitHub App ID
+- GitHub App Installation ID
+- GitHub App Private Key
+
+Install the app in the organization for which the runners should be available.
+
+## Examples
 
 Below are some examples:
 

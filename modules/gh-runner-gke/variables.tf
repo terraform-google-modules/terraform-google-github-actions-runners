@@ -103,34 +103,48 @@ variable "min_node_count" {
   default     = 2
 }
 
-variable "runner_k8s_config" {
+variable "gh_app_pre_defined_secret_name" {
   type        = string
-  description = "Name for the k8s secret required to configure gh runners on GKE"
-  default     = "runner-k8s-config"
+  description = "Name for the k8s secret required to configure gh runners on GKE via GitHub App authentication"
+  default     = "gh-app-pre-defined-secret"
 }
 
-variable "repo_url" {
+variable "gh_app_id" {
   type        = string
-  description = "Repo URL for the Github Action"
+  description = "After creating the GitHub App, on the GitHub App's page, note the value for \"App ID\"."
 }
 
-variable "repo_name" {
+variable "gh_app_installation_id" {
   type        = string
-  description = "Name of the repo for the Github Action"
+  description = "You can find the app installation ID on the app installation page, which has the following URL format: `https://github.com/organizations/ORGANIZATION/settings/installations/INSTALLATION_ID`"
 }
 
-variable "repo_owner" {
+variable "gh_app_private_key" {
   type        = string
-  description = "Owner of the repo for the Github Action"
-}
-
-variable "gh_token" {
-  type        = string
-  description = "Github token that is used for generating Self Hosted Runner Token"
+  description = "Under \"Private keys\", click Generate a private key, and save the .pem file. Use the contents of this file for this variable."
+  sensitive   = true
 }
 
 variable "service_account" {
   type        = string
   description = "Optional Service Account for the nodes"
   default     = ""
+}
+
+variable "arc_systems_namespace" {
+  type        = string
+  description = "Namespace created for the ARC operator pods."
+  default     = "arc-systems"
+}
+
+variable "arc_runners_namespace" {
+  type        = string
+  description = "Namespace created for the ARC runner pods."
+  default     = "arc-runners"
+}
+
+variable "gh_org_name" {
+  type        = string
+  description = "Name of the GitHub organization associated with this runner cluster."
+  default     = "corp"
 }

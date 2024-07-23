@@ -52,7 +52,7 @@ module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
   version                  = "~> 24.0"
   project_id               = var.project_id
-  name                     = "gh-runner-${var.repo_name}"
+  name                     = "gh-runner-${var.gh_org_name}"
   regional                 = false
   region                   = var.region
   zones                    = var.zones
@@ -77,31 +77,39 @@ module "runner-cluster" {
   ]
 }
 
-/*****************************************
-  IAM Bindings GKE SVC
- *****************************************/
-# allow GKE to pull images from GCR
-resource "google_project_iam_member" "gke" {
-  count   = var.service_account == "" ? 1 : 0
-  project = var.project_id
-  role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${module.runner-cluster.service_account}"
+data "google_client_config" "default" {
 }
 
-data "google_client_config" "default" {
+resource "kubernetes_namespace" "arc_systems" {
+  metadata {
+    name = var.arc_systems_namespace
+  }
+}
+
+resource "kubernetes_namespace" "arc_runners" {
+  metadata {
+    name = var.arc_runners_namespace
+  }
 }
 
 /*****************************************
   K8S secrets for configuring k8s runners
  *****************************************/
-resource "kubernetes_secret" "runner-secrets" {
+resource "kubernetes_secret" "gh_app_pre_defined_secret" {
   metadata {
-    name = var.runner_k8s_config
+    name      = var.gh_app_pre_defined_secret_name
+    namespace = kubernetes_namespace.arc_runners.metadata.name
   }
   data = {
-    repo_url   = var.repo_url
-    gh_token   = var.gh_token
-    repo_owner = var.repo_owner
-    repo_name  = var.repo_name
+    github_app_id              = var.gh_app_id
+    github_app_installation_id = var.gh_app_installation_id
+    github_app_private_key     = var.gh_app_private_key
   }
+}
+
+resource "helm_release" "arc" {
+  name        = "arc"
+  namespace   = kubernetes_namespace.arc_systems.metadata.name
+  chart       = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller"
+  version     = "0.9.3"
 }

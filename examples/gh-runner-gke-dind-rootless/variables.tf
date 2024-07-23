@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/*****************************************
-  Kubernetes provider configuration
- *****************************************/
-data "google_client_config" "default" {
+variable "project_id" {
+  type        = string
+  description = "The project id to deploy Github Runner MIG"
 }
 
-provider "kubernetes" {
-  host                   = "https://${module.runner-gke.kubernetes_endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.runner-gke.ca_certificate)
+variable "repo_url" {
+  type        = string
+  description = "Repo URL for the Github Action"
+}
+variable "repo_name" {
+  type        = string
+  description = "Name of the repo for the Github Action"
+}
+
+variable "repo_owner" {
+  type        = string
+  description = "Owner of the repo for the Github Action"
+}
+
+variable "gh_token" {
+  type        = string
+  description = "Github token that is used for generating Self Hosted Runner Token"
 }

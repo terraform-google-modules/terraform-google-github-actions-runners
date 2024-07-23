@@ -17,49 +17,32 @@
 output "kubernetes_endpoint" {
   description = "The cluster endpoint"
   sensitive   = true
-  value       = module.runner-cluster.endpoint
+  value       = module.runner-gke.kubernetes_endpoint
 }
 
 output "client_token" {
   description = "The bearer token for auth"
   sensitive   = true
-  value       = base64encode(data.google_client_config.default.access_token)
+  value       = module.runner-gke.client_token
 }
 
 output "ca_certificate" {
   description = "The cluster ca certificate (base64 encoded)"
-  value       = module.runner-cluster.ca_certificate
+  value       = module.runner-gke.ca_certificate
 }
 
 output "service_account" {
   description = "The default service account used for running nodes."
-  value       = module.runner-cluster.service_account
+  value       = module.runner-gke.service_account
 }
 
 output "cluster_name" {
   description = "Cluster name"
-  value       = module.runner-cluster.name
-}
-
-output "network_name" {
-  description = "Name of VPC"
-  value       = local.network_name
-}
-
-output "subnet_name" {
-  description = "Name of VPC"
-  value       = local.subnet_name
+  value       = module.runner-gke.cluster_name
 }
 
 output "location" {
   description = "Cluster location"
-  value       = module.runner-cluster.location
+  value       = module.runner-gke.location
 }
 
-output "arc_runners_namespace" {
-  value = kubernetes_namespace.arc_runners.metadata.name
-}
-
-output "gha_secret_name" {
-  value = kubernetes_secret.gh_app_pre_defined_secret.metadata.name
-}
