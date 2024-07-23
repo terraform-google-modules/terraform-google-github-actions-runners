@@ -18,8 +18,10 @@ module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
   version = "~> 3.0"
 
-  create_network         = true
   project_id             = var.project_id
+  create_network         = true
+  network_name           = "runner-network-dind-rootless"
+  subnet_name            = "runner-subnet-dind-rootless"
   cluster_suffix         = "dind-rootless"
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
