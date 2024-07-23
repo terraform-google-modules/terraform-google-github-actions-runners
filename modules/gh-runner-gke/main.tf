@@ -52,7 +52,7 @@ module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
   version                  = "~> 24.0"
   project_id               = var.project_id
-  name                     = "gh-runner-${var.gh_org_name}"
+  name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
   region                   = var.region
   zones                    = var.zones
@@ -98,7 +98,7 @@ resource "kubernetes_namespace" "arc_runners" {
 resource "kubernetes_secret" "gh_app_pre_defined_secret" {
   metadata {
     name      = var.gh_app_pre_defined_secret_name
-    namespace = kubernetes_namespace.arc_runners.metadata.name
+    namespace = kubernetes_namespace.arc_runners.metadata[0].name
   }
   data = {
     github_app_id              = var.gh_app_id
@@ -108,8 +108,8 @@ resource "kubernetes_secret" "gh_app_pre_defined_secret" {
 }
 
 resource "helm_release" "arc" {
-  name        = "arc"
-  namespace   = kubernetes_namespace.arc_systems.metadata.name
-  chart       = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller"
-  version     = "0.9.3"
+  name      = "arc"
+  namespace = kubernetes_namespace.arc_systems.metadata[0].name
+  chart     = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller"
+  version   = "0.9.3"
 }

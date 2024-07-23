@@ -1,6 +1,6 @@
 # Self Hosted Runners on GKE
 
-This module handles the opinionated creation of infrastructure necessary to deploy GitHub Actions Runners on GKE. This module follows the guide provided by GitHub for [Quickstart for Actions Runner Controller](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller). 
+This module handles the opinionated creation of infrastructure necessary to deploy GitHub Actions Runners on GKE. This module follows the guide provided by GitHub for [Quickstart for Actions Runner Controller](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller).
 
 This includes:
 
@@ -37,8 +37,14 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| arc\_runners\_namespace | Namespace created for the ARC runner pods. | `string` | `"arc-runners"` | no |
+| arc\_systems\_namespace | Namespace created for the ARC operator pods. | `string` | `"arc-systems"` | no |
+| cluster\_suffix | Name of the GitHub organization associated with this runner cluster. | `string` | `"corp"` | no |
 | create\_network | When set to true, VPC will be auto created | `bool` | `true` | no |
-| gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
+| gh\_app\_id | After creating the GitHub App, on the GitHub App's page, note the value for "App ID". | `string` | n/a | yes |
+| gh\_app\_installation\_id | You can find the app installation ID on the app installation page, which has the following URL format: `https://github.com/organizations/ORGANIZATION/settings/installations/INSTALLATION_ID` | `string` | n/a | yes |
+| gh\_app\_pre\_defined\_secret\_name | Name for the k8s secret required to configure gh runners on GKE via GitHub App authentication | `string` | `"gh-app-pre-defined-secret"` | no |
+| gh\_app\_private\_key | Under "Private keys", click Generate a private key, and save the .pem file. Use the contents of this file for this variable. | `string` | n/a | yes |
 | ip\_range\_pods\_cidr | The secondary ip range cidr to use for pods | `string` | `"192.168.0.0/18"` | no |
 | ip\_range\_pods\_name | The secondary ip range to use for pods | `string` | `"ip-range-pods"` | no |
 | ip\_range\_services\_cider | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
@@ -49,10 +55,6 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 | network\_name | Name for the VPC network | `string` | `"runner-network"` | no |
 | project\_id | The project id to deploy Github Runner cluster | `string` | n/a | yes |
 | region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
-| repo\_name | Name of the repo for the Github Action | `string` | n/a | yes |
-| repo\_owner | Owner of the repo for the Github Action | `string` | n/a | yes |
-| repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
-| runner\_k8s\_config | Name for the k8s secret required to configure gh runners on GKE | `string` | `"runner-k8s-config"` | no |
 | service\_account | Optional Service Account for the nodes | `string` | `""` | no |
 | subnet\_ip | IP range for the subnet | `string` | `"10.0.0.0/17"` | no |
 | subnet\_name | Name for the subnet | `string` | `"runner-subnet"` | no |
@@ -63,9 +65,11 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 
 | Name | Description |
 |------|-------------|
+| arc\_runners\_namespace | Namespace for ARC runners |
 | ca\_certificate | The cluster ca certificate (base64 encoded) |
 | client\_token | The bearer token for auth |
 | cluster\_name | Cluster name |
+| gha\_secret\_name | Name of kubernetes secret for GitHub App authentication |
 | kubernetes\_endpoint | The cluster endpoint |
 | location | Cluster location |
 | network\_name | Name of VPC |

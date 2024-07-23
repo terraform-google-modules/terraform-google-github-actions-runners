@@ -20,25 +20,25 @@ module "runner-gke" {
 
   create_network         = true
   project_id             = var.project_id
-  org_name               = "k8s"
+  cluster_suffix         = "k8s"
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
   gh_app_private_key     = "sample"
 }
 
 resource "helm_release" "arc_runners_set" {
-  name        = "arc-runners"
-  namespace   = module.runner-gke.arc_runners_namespace
-  chart       = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
-  version     = "0.9.3"
+  name      = "arc-runners"
+  namespace = module.runner-gke.arc_runners_namespace
+  chart     = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
+  version   = "0.9.3"
 
   set {
-    name = "containerMode.type"
+    name  = "containerMode.type"
     value = "kubernetes"
   }
 
   set {
-    name = "githubConfigSecret"
+    name  = "githubConfigSecret"
     value = module.runner-gke.gha_secret_name
   }
 }

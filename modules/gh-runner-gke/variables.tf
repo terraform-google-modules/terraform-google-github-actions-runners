@@ -143,7 +143,7 @@ variable "arc_runners_namespace" {
   default     = "arc-runners"
 }
 
-variable "gh_org_name" {
+variable "cluster_suffix" {
   type        = string
   description = "Name of the GitHub organization associated with this runner cluster."
   default     = "corp"

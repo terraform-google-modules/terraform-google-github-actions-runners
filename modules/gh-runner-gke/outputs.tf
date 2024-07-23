@@ -57,9 +57,11 @@ output "location" {
 }
 
 output "arc_runners_namespace" {
-  value = kubernetes_namespace.arc_runners.metadata.name
+  value       = kubernetes_namespace.arc_runners.metadata[0].name
+  description = "Namespace for ARC runners"
 }
 
 output "gha_secret_name" {
-  value = kubernetes_secret.gh_app_pre_defined_secret.metadata.name
+  value       = kubernetes_secret.gh_app_pre_defined_secret.metadata[0].name
+  description = "Name of kubernetes secret for GitHub App authentication"
 }
