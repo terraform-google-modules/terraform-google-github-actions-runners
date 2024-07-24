@@ -64,10 +64,7 @@ $ kustomize build . | kubectl apply -f -
 
 | Name | Description |
 |------|-------------|
-| ca\_certificate | The cluster ca certificate (base64 encoded) |
-| client\_token | The bearer token for auth |
 | cluster\_name | Cluster name |
-| kubernetes\_endpoint | The cluster endpoint |
 | location | Cluster location |
 | service\_account | The default service account used for running nodes. |
 
