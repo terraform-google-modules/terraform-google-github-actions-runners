@@ -43,7 +43,7 @@ resource "helm_release" "arc_runners_set" {
   }
 
   set {
-    name = "githubConfigUrl"
+    name  = "githubConfigUrl"
     value = "https://github.com/ORGANIZATION"
   }
 }

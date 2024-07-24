@@ -112,4 +112,5 @@ resource "helm_release" "arc" {
   namespace = kubernetes_namespace.arc_systems.metadata[0].name
   chart     = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller"
   version   = "0.9.3"
+  wait      = true
 }
