@@ -91,7 +91,7 @@ resource "kubernetes_namespace" "arc_runners" {
     name = var.arc_runners_namespace
   }
 
-  depends_on = [ helm_release.arc ]
+  depends_on = [helm_release.arc]
 }
 
 /*****************************************
