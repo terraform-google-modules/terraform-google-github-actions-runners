@@ -28,7 +28,7 @@ func TestGHRunnerMIGContainerVM(t *testing.T) {
 		bpt.DefaultVerify(assert)
 
 		// get outputs
-		projectId := bpt.GetStringOutput("project_id")
+		projectId := bpt.GetStringOutput("project_id_mig_container")
 		migName := bpt.GetStringOutput("mig_name")
 		migInstanceTemplateName := bpt.GetStringOutput("mig_instance_template")
 
