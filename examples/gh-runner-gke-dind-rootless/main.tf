@@ -42,4 +42,9 @@ resource "helm_release" "arc_runners_set" {
     name  = "githubConfigSecret"
     value = module.runner-gke.gha_secret_name
   }
+
+  set {
+    name = "githubConfigUrl"
+    value = "https://github.com/ORGANIZATION"
+  }
 }
