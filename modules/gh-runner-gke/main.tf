@@ -90,6 +90,8 @@ resource "kubernetes_namespace" "arc_runners" {
   metadata {
     name = var.arc_runners_namespace
   }
+
+  depends_on = [ helm_release.arc ]
 }
 
 /*****************************************
