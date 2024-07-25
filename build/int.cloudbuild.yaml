@@ -46,21 +46,21 @@ steps:
   waitFor:
     - verify-gh-runner-mig-container-vm
 # TestAll/examples/gh-runner-gke-simple
-- id: apply-gh-runner-gke-k8s
+- id: apply-gh-runner-gke-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestAll/examples/gh-runner-gke-simple --stage apply --verbose']
   waitFor:
       - init-all
-- id: verify-gh-runner-gke-k8s
+- id: verify-gh-runner-gke-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestAll/examples/gh-runner-gke-simple --stage verify --verbose']
   waitFor:
-      - apply-gh-runner-gke-k8s
-- id: destroy-gh-runner-gke-k8s
+      - apply-gh-runner-gke-simple
+- id: destroy-gh-runner-gke-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestAll/examples/gh-runner-gke-simple --stage destroy --verbose']
   waitFor:
-      - verify-gh-runner-gke-k8s
+      - verify-gh-runner-gke-simple
 # TestAll/examples/gh-runner-gke-dind
 - id: apply-gh-runner-gke-dind
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'

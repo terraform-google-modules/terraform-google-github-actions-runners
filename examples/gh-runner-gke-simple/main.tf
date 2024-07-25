@@ -33,11 +33,6 @@ resource "helm_release" "arc_runners_set" {
   version   = "0.9.3"
 
   set {
-    name  = "containerMode.type"
-    value = "kubernetes"
-  }
-
-  set {
     name  = "githubConfigSecret"
     value = module.runner-gke.gha_secret_name
   }
