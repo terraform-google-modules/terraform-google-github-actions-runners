@@ -146,5 +146,38 @@ variable "arc_runners_namespace" {
 variable "cluster_suffix" {
   type        = string
   description = "Name of the GitHub organization associated with this runner cluster."
-  default     = "corp"
+  default     = "arc"
+}
+
+variable "gh_config_url" {
+  type = string
+  description = "URL of GitHub App config. If installed in an organization, this is in the format \"https://github.com/ORGANIZATION\""
+}
+
+variable "arc_runners_version" {
+  type = string
+  description = "Version tag for the ARC image. See [https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set](https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set) for releases."
+  default = "0.9.3"
+}
+
+variable "arc_controller_version" {
+  type = string
+  description = "Version tag for the ARC image. See [https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set-controller](https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set-controller) for releases."
+  default = "0.9.3"
+}
+
+variable "arc_container_mode" {
+  type = string
+  description = "value of containerMode.type in ARC runner scale set helm chart. If set, value can be `dind` or `kubernetes`"
+  default = ""
+}
+
+variable "arc_controller_values" {
+  type = list(string)
+  description = "List of values in raw yaml format to pass to helm for ARC runners scale set controller chart"
+}
+
+variable "arc_runners_values" {
+  type = list(string)
+  description = "List of values in raw yaml format to pass to helm for ARC runners scale set chart"
 }

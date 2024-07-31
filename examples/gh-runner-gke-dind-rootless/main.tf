@@ -26,25 +26,9 @@ module "runner-gke" {
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
   gh_app_private_key     = "sample"
-}
 
-
-resource "helm_release" "arc_runners_set" {
-  name      = "arc-runners"
-  namespace = module.runner-gke.arc_runners_namespace
-  chart     = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
-
-  values = [
+  # pass values.yaml for dind-rootless runners configuratin
+  arc_runners_values     = [
     file("${path.module}/values.yaml")
   ]
-
-  set {
-    name  = "githubConfigSecret"
-    value = module.runner-gke.gha_secret_name
-  }
-
-  set {
-    name  = "githubConfigUrl"
-    value = "https://github.com/ORGANIZATION"
-  }
 }
