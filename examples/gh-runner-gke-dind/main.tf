@@ -26,5 +26,6 @@ module "runner-gke" {
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
   gh_app_private_key     = "sample"
+  gh_config_url          = "https://github.com/ORGANIZATION"
   arc_container_mode     = "dind"
 }

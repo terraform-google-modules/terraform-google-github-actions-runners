@@ -26,9 +26,10 @@ module "runner-gke" {
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
   gh_app_private_key     = "sample"
+  gh_config_url          = "https://github.com/ORGANIZATION"
 
   # pass values.yaml for dind-rootless runners configuratin
-  arc_runners_values     = [
+  arc_runners_values = [
     file("${path.module}/values.yaml")
   ]
 }

@@ -37,14 +37,20 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| arc\_container\_mode | value of containerMode.type in ARC runner scale set helm chart. If set, value can be `dind` or `kubernetes` | `string` | `""` | no |
+| arc\_controller\_values | List of values in raw yaml format to pass to helm for ARC runners scale set controller chart | `list(string)` | `[]` | no |
+| arc\_controller\_version | Version tag for the ARC image. See [https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set-controller](https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set-controller) for releases. | `string` | `"0.9.3"` | no |
 | arc\_runners\_namespace | Namespace created for the ARC runner pods. | `string` | `"arc-runners"` | no |
+| arc\_runners\_values | List of values in raw yaml format to pass to helm for ARC runners scale set chart | `list(string)` | `[]` | no |
+| arc\_runners\_version | Version tag for the ARC image. See [https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set](https://github.com/actions/actions-runner-controller/pkgs/container/actions-runner-controller-charts%2Fgha-runner-scale-set) for releases. | `string` | `"0.9.3"` | no |
 | arc\_systems\_namespace | Namespace created for the ARC operator pods. | `string` | `"arc-systems"` | no |
-| cluster\_suffix | Name of the GitHub organization associated with this runner cluster. | `string` | `"corp"` | no |
+| cluster\_suffix | Name of the GitHub organization associated with this runner cluster. | `string` | `"arc"` | no |
 | create\_network | When set to true, VPC will be auto created | `bool` | `true` | no |
 | gh\_app\_id | After creating the GitHub App, on the GitHub App's page, note the value for "App ID". | `string` | n/a | yes |
 | gh\_app\_installation\_id | You can find the app installation ID on the app installation page, which has the following URL format: `https://github.com/organizations/ORGANIZATION/settings/installations/INSTALLATION_ID` | `string` | n/a | yes |
 | gh\_app\_pre\_defined\_secret\_name | Name for the k8s secret required to configure gh runners on GKE via GitHub App authentication | `string` | `"gh-app-pre-defined-secret"` | no |
 | gh\_app\_private\_key | Under "Private keys", click Generate a private key, and save the .pem file. Use the contents of this file for this variable. | `string` | n/a | yes |
+| gh\_config\_url | URL of GitHub App config. If installed in an organization, this is in the format "https://github.com/ORGANIZATION" | `string` | n/a | yes |
 | ip\_range\_pods\_cidr | The secondary ip range cidr to use for pods | `string` | `"192.168.0.0/18"` | no |
 | ip\_range\_pods\_name | The secondary ip range to use for pods | `string` | `"ip-range-pods"` | no |
 | ip\_range\_services\_cider | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
@@ -65,11 +71,9 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 
 | Name | Description |
 |------|-------------|
-| arc\_runners\_namespace | Namespace for ARC runners |
 | ca\_certificate | The cluster ca certificate (base64 encoded) |
 | client\_token | The bearer token for auth |
 | cluster\_name | Cluster name |
-| gha\_secret\_name | Name of kubernetes secret for GitHub App authentication |
 | kubernetes\_endpoint | The cluster endpoint |
 | location | Cluster location |
 | network\_name | Name of VPC |
