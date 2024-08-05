@@ -83,6 +83,12 @@ variable "gh_runner_labels" {
   default     = []
 }
 
+variable "gh_runner_group" {
+  type        = string
+  description = "GitHub runner group to attach to the runners. Docs: https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners#adding-more-self-hosted-runners"
+  default     = ""
+}
+
 variable "min_replicas" {
   type        = number
   description = "Minimum number of runner instances"
