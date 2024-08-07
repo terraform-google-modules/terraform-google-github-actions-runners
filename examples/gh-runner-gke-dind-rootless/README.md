@@ -1,8 +1,8 @@
-# Self Hosted runners on GKE that support Docker Workflows
+# Self Hosted runners on GKE that support dind-rootless
 
 ## Overview
 
-This example shows how to deploy runners that support Docker Workflows on GKE.
+This example shows how to deploy runners that support Docker Workflows on GKE in a rootless configuration. This example is based on the instructions published in [Deploying GitHub Action Runners on GKE with dind-rootless](https://medium.com/google-cloud/github-action-runners-on-gke-with-dind-rootless-bd54e23516c9).
 
 More examples of [Self Hosted Runners on GKE/Anthos](https://github.com/github-developer/self-hosted-runners-anthos).
 

@@ -14,7 +14,18 @@
  * limitations under the License.
  */
 
-variable "project_id_gke" {
-  type        = string
-  description = "The GCP project to use for integration tests"
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
+  required_version = ">= 0.13"
 }

@@ -13,13 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-module "example_gke_runner" {
-  source = "../../../examples/gh-runner-gke-simple"
-
-  project_id = var.project_id_gke
-  repo_url   = "example"
-  repo_name  = "example"
-  repo_owner = "example"
-  gh_token   = "example"
+variable "project_id" {
+  type        = string
+  description = "The project id to deploy Github Runner MIG"
 }

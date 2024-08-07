@@ -16,28 +16,20 @@
 
 output "service_account" {
   description = "The default service account used for running nodes."
-  value       = module.example_gke_runner.service_account
+  value       = module.runner-gke.service_account
 }
 
 output "cluster_name" {
   description = "Cluster name"
-  value       = module.example_gke_runner.cluster_name
-}
-output "network_name" {
-  description = "Name of VPC"
-  value       = module.example_gke_runner.network_name
-}
-
-output "subnet_name" {
-  description = "Name of VPC"
-  value       = module.example_gke_runner.subnet_name
+  value       = module.runner-gke.cluster_name
 }
 
 output "location" {
   description = "Cluster location"
-  value       = module.example_gke_runner.location
+  value       = module.runner-gke.location
 }
 
 output "project_id" {
-  value = var.project_id_gke
+  value       = var.project_id
+  description = "The project in which resources are created"
 }

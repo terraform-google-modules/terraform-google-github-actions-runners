@@ -20,12 +20,16 @@ module "runner-gke" {
 
   project_id             = var.project_id
   create_network         = true
-  network_name           = "runner-network-dind"
-  subnet_name            = "runner-subnet-dind"
-  cluster_suffix         = "dind"
+  network_name           = "runner-network-dind-r"
+  subnet_name            = "runner-subnet-dind-r"
+  cluster_suffix         = "dind-rootless"
   gh_app_id              = "123456"
   gh_app_installation_id = "12345678"
   gh_app_private_key     = "sample"
   gh_config_url          = "https://github.com/ORGANIZATION"
-  arc_container_mode     = "dind"
+
+  # pass values.yaml for dind-rootless runners configuratin
+  arc_runners_values = [
+    file("${path.module}/values.yaml")
+  ]
 }

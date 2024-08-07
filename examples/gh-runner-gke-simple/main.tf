@@ -18,10 +18,11 @@ module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
   version = "~> 3.0"
 
-  create_network = true
-  project_id     = var.project_id
-  repo_name      = var.repo_name
-  repo_owner     = var.repo_owner
-  repo_url       = var.repo_url
-  gh_token       = var.gh_token
+  project_id             = var.project_id
+  create_network         = true
+  cluster_suffix         = "k8s"
+  gh_app_id              = "123456"
+  gh_app_installation_id = "12345678"
+  gh_app_private_key     = "sample"
+  gh_config_url          = "https://github.com/ORGANIZATION"
 }
