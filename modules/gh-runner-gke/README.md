@@ -10,7 +10,24 @@ This includes:
 - Kubernetes Secret
 - Installation via Helm Chart
 
-## Authenticating to GitHub
+## Usage
+See below for example usage of this module:
+```tf
+module "runner-gke" {
+  source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
+  version = "~> 4.0"
+
+  project_id             = "PROJECT_ID"
+  create_network         = true
+  cluster_suffix         = "k8s"
+  gh_app_id              = "123456"
+  gh_app_installation_id = "12345678"
+  gh_app_private_key     = "sample"
+  gh_config_url          = "https://github.com/ORGANIZATION"
+}
+```
+
+### Authenticating to GitHub
 
 It's recommended to authenticate to GitHub via a GitHub App. Follow the instructions at [Authenticating ARC with a GitHub App](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/authenticating-to-the-github-api#authenticating-arc-with-a-github-app) to retrieve the necessary prerequisites:
 
@@ -18,9 +35,29 @@ It's recommended to authenticate to GitHub via a GitHub App. Follow the instruct
 - GitHub App Installation ID
 - GitHub App Private Key
 
-Install the app in the organization for which the runners should be available.
+Install the app in the organization or account for which the runners should be available.
+
+Substitute these values gathered from creating the GitHub App installation into the variables in the module.
+
+## Requirements
+
+Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
+
+1. Required APIs are activated
+
+    ```
+    "cloudresourcemanager.googleapis.com",
+    "storage-api.googleapis.com",
+    "iam.googleapis.com",
+    "container.googleapis.com",
+    "serviceusage.googleapis.com"
+    ```
 
 ## Examples
+
+### [Simple Self Hosted Runners on GKE](../../examples/gh-runner-gke-simple/README.md)
+
+This example shows how to deploy a simple GKE Self Hosted Runner.
 
 Below are some examples:
 
@@ -28,9 +65,9 @@ Below are some examples:
 
 This example shows how to deploy Self Hosted Runners on GKE that supports Docker Workflows.
 
-### [Simple Self Hosted Runners on GKE](../../examples/gh-runner-gke-simple/README.md)
+### [Self Hosted runners on GKE that support Docker Workflows in rootless configuration](examples/gh-runner-gke-dind-rootless/)
 
-This example shows how to deploy a simple GKE Self Hosted Runner.
+This example shows how to deploy Self Hosted Runners on GKE that supports Docker Workflows in a rootless configuration.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -81,19 +118,3 @@ This example shows how to deploy a simple GKE Self Hosted Runner.
 | subnet\_name | Name of VPC |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Requirements
-
-Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
-
-1. Required APIs are activated
-
-    ```
-    "iam.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "containerregistry.googleapis.com",
-    "container.googleapis.com",
-    "storage-component.googleapis.com",
-    "logging.googleapis.com",
-    "monitoring.googleapis.com"
-    ```

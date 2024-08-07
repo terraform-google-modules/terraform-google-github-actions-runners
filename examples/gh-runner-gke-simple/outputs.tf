@@ -38,3 +38,8 @@ output "location" {
   description = "Cluster location"
   value       = module.runner-gke.location
 }
+
+output "project_id" {
+  value       = var.project_id
+  description = "The project in which resources are created"
+}
