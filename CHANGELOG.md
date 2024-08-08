@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.2...v4.0.0) (2024-08-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to ARC ([#173](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/173))
+
+### Features
+
+* migrate to ARC ([#173](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/173)) ([0b1299b](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/0b1299b802cafa1e331bb54b7c7dc6e7a23a1a0c))
+
 ## [3.1.2](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.1...v3.1.2) (2023-10-10)
 
 

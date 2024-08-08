@@ -29,11 +29,11 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v3.1.2"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v4.0.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v3.1.2"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v4.0.0"
   }
 
 }
