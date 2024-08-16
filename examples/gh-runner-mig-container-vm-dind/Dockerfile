@@ -13,7 +13,7 @@
 # limitations under the License.
 # Download and verify the integrity of the download first
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
     ca-certificates \
