@@ -147,3 +147,9 @@ variable "cooldown_period" {
   type        = number
   default     = 60
 }
+
+variable "instance_tags" {
+  type        = list(string)
+  description = "Additional tags to add to the instances"
+  default     = []
+}
