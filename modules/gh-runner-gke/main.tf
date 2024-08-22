@@ -50,7 +50,7 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 24.0"
+  version                  = "~> 32.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
@@ -66,6 +66,7 @@ module "runner-cluster" {
   remove_default_node_pool = true
   service_account          = local.service_account
   gce_pd_csi_driver        = true
+  deletion_protection      = false
   node_pools = [
     {
       name         = "runner-pool"
