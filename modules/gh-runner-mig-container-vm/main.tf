@@ -183,13 +183,13 @@ module "mig_template" {
   Runner MIG
  *****************************************/
 module "mig" {
-  source             = "terraform-google-modules/vm/google//modules/mig"
-  version            = "~> 11.0"
-  project_id         = var.project_id
-  hostname           = local.instance_name
-  region             = var.region
-  instance_template  = module.mig_template.self_link
-  target_size        = var.target_size
+  source            = "terraform-google-modules/vm/google//modules/mig"
+  version           = "~> 11.0"
+  project_id        = var.project_id
+  hostname          = local.instance_name
+  region            = var.region
+  instance_template = module.mig_template.self_link
+  target_size       = var.target_size
 
   /* autoscaler */
   autoscaling_enabled = true
