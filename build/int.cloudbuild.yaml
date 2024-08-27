@@ -96,17 +96,17 @@ steps:
 # examples/oidc-simple
 - id: apply-oidc
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=apply go test -v -run TestOIDCSimple ./... -p 1']
+  args: ['/bin/bash', '-c', 'cft test run TestOIDCSimple --stage apply --verbose']
   waitFor:
       - init-all
 - id: verify-oidc
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=verify go test -v -run TestOIDCSimple ./... -p 1']
+  args: ['/bin/bash', '-c', 'cft test run TestOIDCSimple --stage verify --verbose']
   waitFor:
       - apply-oidc
 - id: destroy-oidc
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=teardown go test -v -run TestOIDCSimple ./... -p 1']
+  args: ['/bin/bash', '-c', 'cft test run TestOIDCSimple --stage destroy --verbose']
   waitFor:
       - verify-oidc
 tags:
