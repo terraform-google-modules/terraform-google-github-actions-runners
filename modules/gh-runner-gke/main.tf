@@ -49,13 +49,15 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
   Runner GKE
  *****************************************/
 module "runner-cluster" {
-  source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
+  source                   = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster/"
   version                  = "~> 32.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
   region                   = var.region
   zones                    = var.zones
+  enable_private_endpoint  = var.enable_private_endpoint
+  enable_private_nodes     = var.enable_private_nodes
   network                  = local.network_name
   network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   subnetwork               = local.subnet_name
@@ -69,11 +71,12 @@ module "runner-cluster" {
   deletion_protection      = false
   node_pools = [
     {
-      name         = "runner-pool"
-      min_count    = var.min_node_count
-      max_count    = var.max_node_count
-      auto_upgrade = true
-      machine_type = var.machine_type
+      name          = "runner-pool"
+      min_count     = var.min_node_count
+      max_count     = var.max_node_count
+      auto_upgrade  = true
+      machine_type  = var.machine_type
+      cpu_cfs_quota = false
     }
   ]
 }

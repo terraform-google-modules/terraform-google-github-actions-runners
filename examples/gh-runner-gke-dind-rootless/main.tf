@@ -16,17 +16,19 @@
 
 module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
-  project_id             = var.project_id
-  create_network         = true
-  network_name           = "runner-network-dind-r"
-  subnet_name            = "runner-subnet-dind-r"
-  cluster_suffix         = "dind-rootless"
-  gh_app_id              = "123456"
-  gh_app_installation_id = "12345678"
-  gh_app_private_key     = "sample"
-  gh_config_url          = "https://github.com/ORGANIZATION"
+  project_id              = var.project_id
+  create_network          = true
+  network_name            = "runner-network-dind-r"
+  subnet_name             = "runner-subnet-dind-r"
+  cluster_suffix          = "dind-rootless"
+  gh_app_id               = "123456"
+  gh_app_installation_id  = "12345678"
+  gh_app_private_key      = "sample"
+  gh_config_url           = "https://github.com/ORGANIZATION"
+  enable_private_endpoint = true
+  enable_private_nodes    = true
 
   # pass values.yaml for dind-rootless runners configuratin
   arc_runners_values = [
