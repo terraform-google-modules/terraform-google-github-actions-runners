@@ -8,6 +8,27 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.2...v4.0.0) (2024-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v11 ([#152](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/152))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v32 ([#178](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/178))
+* migrate to ARC ([#173](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/173))
+
+### Features
+
+* Add custom tags option to mig-vm-module ([#177](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/177)) ([5e1a3c6](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/5e1a3c6f44acd68d9ad160621dbd6cd8a5fe8f79))
+* **deps:** Update Terraform Google Provider to v6 (major) ([#181](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/181)) ([3c94fa5](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/3c94fa50403bcf567113547ddea3d00818a350f0))
+* migrate to ARC ([#173](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/173)) ([0b1299b](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/0b1299b802cafa1e331bb54b7c7dc6e7a23a1a0c))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v32 ([#178](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/178)) ([999330d](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/999330dd53362a1e9f92821d858a0f13cf067594))
+* **deps:** Update Terraform terraform-google-modules/vm/google to v11 ([#152](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/152)) ([42e5161](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/42e516109356cf66803d42bfea2a6df46fe8e7b4))
+
 ## [3.1.2](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.1...v3.1.2) (2023-10-10)
 
 
