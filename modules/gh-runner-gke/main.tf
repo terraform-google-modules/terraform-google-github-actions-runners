@@ -46,13 +46,12 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
     ip_cidr_range = var.ip_range_services_cider
   }
 }
-
 /*****************************************
   Runner GKE
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 33.0"
+  version                  = "~> 32.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
