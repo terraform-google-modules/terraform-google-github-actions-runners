@@ -23,6 +23,11 @@ terraform {
       version = ">= 4.3.0, < 5.44"
     }
 
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 4.3.0, < 5.44"
+    }
+
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.0"
