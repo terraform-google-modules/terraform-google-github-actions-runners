@@ -16,11 +16,15 @@
 
 terraform {
   required_providers {
+    # TODO: undo version constraint pending provider bug
+    # https://github.com/GoogleCloudPlatform/magic-modules/pull/11688
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
+      version = ">= 4.3.0, < 6.2"
     }
     google-beta = {
-      source = "hashicorp/google-beta"
+      source  = "hashicorp/google-beta"
+      version = ">= 4.3.0, < 6.2"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
