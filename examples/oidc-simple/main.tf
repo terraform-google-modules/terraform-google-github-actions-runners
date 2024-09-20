@@ -30,9 +30,10 @@ module "oidc" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   version = "~> 3.0"
 
-  project_id  = var.project_id
-  pool_id     = "example-pool"
-  provider_id = "example-gh-provider"
+  project_id          = var.project_id
+  pool_id             = "example-pool"
+  provider_id         = "example-gh-provider"
+  attribute_condition = "assertion.repository_owner_id=='1342004'"
   sa_mapping = {
     (google_service_account.sa.account_id) = {
       sa_name   = google_service_account.sa.name
