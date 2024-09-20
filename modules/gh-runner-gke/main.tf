@@ -35,15 +35,16 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
   ip_cidr_range = var.subnet_ip
   region        = var.region
   network       = google_compute_network.gh-network[0].name
-  secondary_ip_range = [
-    {
-      range_name    = var.ip_range_pods_name
-      ip_cidr_range = var.ip_range_pods_cidr
-    },
-    { range_name    = var.ip_range_services_name
-      ip_cidr_range = var.ip_range_services_cider
-    }
-  ]
+
+  secondary_ip_range {
+    range_name    = var.ip_range_pods_name
+    ip_cidr_range = var.ip_range_pods_cidr
+  }
+
+  secondary_ip_range {
+    range_name    = var.ip_range_services_name
+    ip_cidr_range = var.ip_range_services_cider
+  }
 }
 /*****************************************
   Runner GKE
