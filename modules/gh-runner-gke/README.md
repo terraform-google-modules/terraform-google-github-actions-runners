@@ -95,6 +95,7 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | ip\_range\_services\_cider | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
 | ip\_range\_services\_name | The secondary ip range to use for services | `string` | `"ip-range-scv"` | no |
 | machine\_type | Machine type for runner node pool | `string` | `"n1-standard-4"` | no |
+| master\_ipv4\_cidr\_block | The IP range in CIDR notation to use for the hosted master network of the GKE cluster. | `string` | `"10.1.0.0/28"` | no |
 | max\_node\_count | Maximum number of nodes in the runner node pool | `number` | `4` | no |
 | min\_node\_count | Minimum number of nodes in the runner node pool | `number` | `2` | no |
 | network\_name | Name for the VPC network | `string` | `"runner-network"` | no |

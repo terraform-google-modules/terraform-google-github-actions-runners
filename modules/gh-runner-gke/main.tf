@@ -59,6 +59,7 @@ module "runner-cluster" {
   zones                    = var.zones
   enable_private_endpoint  = var.enable_private_endpoint
   enable_private_nodes     = var.enable_private_nodes
+  master_ipv4_cidr_block   = var.master_ipv4_cidr_block
   network                  = local.network_name
   network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   subnetwork               = local.subnet_name

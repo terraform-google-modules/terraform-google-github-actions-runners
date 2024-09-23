@@ -195,3 +195,9 @@ variable "enable_private_nodes" {
   type        = bool
   default     = false
 }
+
+variable "master_ipv4_cidr_block" {
+  description = "The IP range in CIDR notation to use for the hosted master network of the GKE cluster."
+  type        = string
+  default     = "10.1.0.0/28"
+}
