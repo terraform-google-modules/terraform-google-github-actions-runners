@@ -28,4 +28,5 @@ module "runner-gke" {
   gh_app_private_key     = "sample"
   gh_config_url          = "https://github.com/ORGANIZATION"
   arc_container_mode     = "dind"
+  enable_private_nodes   = true
 }
