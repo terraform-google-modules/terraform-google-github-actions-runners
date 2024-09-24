@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 16.0"
+  version = "~> 17.0"
 
   name              = "ci-terraform-gh-runners"
   random_project_id = "true"
@@ -36,7 +36,7 @@ module "project" {
 
 module "project-gke" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 16.0"
+  version = "~> 17.0"
 
   name              = "ci-runners-gke"
   random_project_id = "true"
@@ -58,7 +58,7 @@ module "project-gke" {
 
 module "project-mig-container-vm" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 16.0"
+  version = "~> 17.0"
 
   name              = "ci-runners-c-mig"
   random_project_id = "true"
