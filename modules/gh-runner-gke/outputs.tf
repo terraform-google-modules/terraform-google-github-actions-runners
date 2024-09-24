@@ -20,6 +20,11 @@ output "kubernetes_endpoint" {
   value       = module.runner-cluster.endpoint
 }
 
+output "connect_gateway_endpoint" {
+  description = "Cluster endpoint for connecting via Connect Gateway, required for private clusters"
+  value       = local.connect_gateway
+}
+
 output "client_token" {
   description = "The bearer token for auth"
   sensitive   = true

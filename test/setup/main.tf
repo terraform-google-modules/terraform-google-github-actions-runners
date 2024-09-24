@@ -29,7 +29,8 @@ module "project" {
     "storage-api.googleapis.com",
     "iam.googleapis.com",
     "container.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "gkehub.googleapis.com",
   ]
 }
 
@@ -51,6 +52,7 @@ module "project-gke" {
     "storage-component.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com",
+    "gkehub.googleapis.com",
   ]
 }
 
