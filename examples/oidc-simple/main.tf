@@ -28,7 +28,7 @@ resource "google_project_iam_member" "project" {
 
 module "oidc" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   project_id          = var.project_id
   pool_id             = "example-pool"

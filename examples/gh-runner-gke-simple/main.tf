@@ -16,7 +16,7 @@
 
 module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   project_id             = var.project_id
   create_network         = true

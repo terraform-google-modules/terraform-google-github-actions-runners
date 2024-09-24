@@ -16,7 +16,7 @@
 
 module "runner-mig" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-mig-vm"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   create_network       = true
   project_id           = var.project_id
