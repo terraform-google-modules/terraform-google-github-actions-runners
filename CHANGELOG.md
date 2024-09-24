@@ -8,6 +8,20 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.1.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v4.0.0...v4.1.0) (2024-09-24)
+
+
+### Features
+
+* support private GKE nodes ([#192](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/192)) ([730f92b](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/730f92b8e207cb35acbdc4c134c954f011f877d3))
+
+
+### Bug Fixes
+
+* add real attribute condition for OIDC example ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+* constrain provider version for GKE examples to &lt;5.44 ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+* reformat subnetwork secondary range block ([#187](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/187)) ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.2...v4.0.0) (2024-08-27)
 
 
