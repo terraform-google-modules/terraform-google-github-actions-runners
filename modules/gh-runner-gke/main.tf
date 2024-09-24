@@ -70,11 +70,12 @@ module "runner-cluster" {
   deletion_protection      = false
   node_pools = [
     {
-      name         = "runner-pool"
-      min_count    = var.min_node_count
-      max_count    = var.max_node_count
-      auto_upgrade = true
-      machine_type = var.machine_type
+      name                 = "runner-pool"
+      min_count            = var.min_node_count
+      max_count            = var.max_node_count
+      auto_upgrade         = true
+      machine_type         = var.machine_type
+      enable_private_nodes = var.enable_private_nodes
     }
   ]
 }

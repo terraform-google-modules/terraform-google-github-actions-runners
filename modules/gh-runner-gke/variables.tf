@@ -183,3 +183,9 @@ variable "arc_runners_values" {
   description = "List of values in raw yaml format to pass to helm for ARC runners scale set chart"
   default     = []
 }
+
+variable "enable_private_nodes" {
+  type        = bool
+  description = "Whether nodes have internal IP addresses only."
+  default     = false
+}
