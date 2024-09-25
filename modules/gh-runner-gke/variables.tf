@@ -49,7 +49,7 @@ variable "ip_range_pods_cidr" {
   default     = "192.168.0.0/18"
 }
 
-variable "ip_range_services_cider" {
+variable "ip_range_services_cidr" {
   type        = string
   description = "The secondary ip range cidr to use for services"
   default     = "192.168.64.0/18"
@@ -184,8 +184,20 @@ variable "arc_runners_values" {
   default     = []
 }
 
-variable "enable_private_nodes" {
+variable "enable_private_endpoint" {
+  description = "Whether the master's internal IP address is used as the cluster endpoint"
   type        = bool
-  description = "Whether nodes have internal IP addresses only."
   default     = false
+}
+
+variable "enable_private_nodes" {
+  description = "Whether nodes have internal IP addresses only"
+  type        = bool
+  default     = false
+}
+
+variable "master_ipv4_cidr_block" {
+  description = "The IP range in CIDR notation to use for the hosted master network of the GKE cluster."
+  type        = string
+  default     = "172.16.0.0/28"
 }

@@ -83,7 +83,8 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | arc\_systems\_namespace | Namespace created for the ARC operator pods. | `string` | `"arc-systems"` | no |
 | cluster\_suffix | Name of the GitHub organization associated with this runner cluster. | `string` | `"arc"` | no |
 | create\_network | When set to true, VPC will be auto created | `bool` | `true` | no |
-| enable\_private\_nodes | Whether nodes have internal IP addresses only. | `bool` | `false` | no |
+| enable\_private\_endpoint | Whether the master's internal IP address is used as the cluster endpoint | `bool` | `false` | no |
+| enable\_private\_nodes | Whether nodes have internal IP addresses only | `bool` | `false` | no |
 | gh\_app\_id | After creating the GitHub App, on the GitHub App's page, note the value for "App ID". | `string` | n/a | yes |
 | gh\_app\_installation\_id | You can find the app installation ID on the app installation page, which has the following URL format: `https://github.com/organizations/ORGANIZATION/settings/installations/INSTALLATION_ID` | `string` | n/a | yes |
 | gh\_app\_pre\_defined\_secret\_name | Name for the k8s secret required to configure gh runners on GKE via GitHub App authentication | `string` | `"gh-app-pre-defined-secret"` | no |
@@ -91,9 +92,10 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | gh\_config\_url | URL of GitHub App config. If installed in an organization, this is in the format "https://github.com/ORGANIZATION" | `string` | n/a | yes |
 | ip\_range\_pods\_cidr | The secondary ip range cidr to use for pods | `string` | `"192.168.0.0/18"` | no |
 | ip\_range\_pods\_name | The secondary ip range to use for pods | `string` | `"ip-range-pods"` | no |
-| ip\_range\_services\_cider | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
+| ip\_range\_services\_cidr | The secondary ip range cidr to use for services | `string` | `"192.168.64.0/18"` | no |
 | ip\_range\_services\_name | The secondary ip range to use for services | `string` | `"ip-range-scv"` | no |
 | machine\_type | Machine type for runner node pool | `string` | `"n1-standard-4"` | no |
+| master\_ipv4\_cidr\_block | The IP range in CIDR notation to use for the hosted master network of the GKE cluster. | `string` | `"172.16.0.0/28"` | no |
 | max\_node\_count | Maximum number of nodes in the runner node pool | `number` | `4` | no |
 | min\_node\_count | Minimum number of nodes in the runner node pool | `number` | `2` | no |
 | network\_name | Name for the VPC network | `string` | `"runner-network"` | no |
@@ -112,6 +114,7 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | ca\_certificate | The cluster ca certificate (base64 encoded) |
 | client\_token | The bearer token for auth |
 | cluster\_name | Cluster name |
+| connect\_gateway\_endpoint | Cluster endpoint for connecting via Connect Gateway, required for private clusters |
 | kubernetes\_endpoint | The cluster endpoint |
 | location | Cluster location |
 | network\_name | Name of VPC |

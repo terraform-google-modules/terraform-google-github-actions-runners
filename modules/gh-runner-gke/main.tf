@@ -17,6 +17,11 @@ locals {
   network_name    = var.create_network ? google_compute_network.gh-network[0].name : var.network_name
   subnet_name     = var.create_network ? google_compute_subnetwork.gh-subnetwork[0].name : var.subnet_name
   service_account = var.service_account == "" ? "create" : var.service_account
+  connect_gateway = "https://connectgateway.googleapis.com/v1/projects/${data.google_project.project.number}/locations/${module.hub.location}/gkeMemberships/${module.hub.cluster_membership_id}"
+}
+
+data "google_project" "project" {
+  project_id = var.project_id
 }
 
 /*****************************************
@@ -43,20 +48,23 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
 
   secondary_ip_range {
     range_name    = var.ip_range_services_name
-    ip_cidr_range = var.ip_range_services_cider
+    ip_cidr_range = var.ip_range_services_cidr
   }
 }
 /*****************************************
   Runner GKE
  *****************************************/
 module "runner-cluster" {
-  source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
+  source                   = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster/"
   version                  = "~> 32.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
   region                   = var.region
   zones                    = var.zones
+  enable_private_endpoint  = var.enable_private_endpoint
+  enable_private_nodes     = var.enable_private_nodes
+  master_ipv4_cidr_block   = var.master_ipv4_cidr_block
   network                  = local.network_name
   network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
   subnetwork               = local.subnet_name
@@ -68,16 +76,31 @@ module "runner-cluster" {
   service_account          = local.service_account
   gce_pd_csi_driver        = true
   deletion_protection      = false
-  node_pools = [
+  master_authorized_networks = [
     {
-      name                 = "runner-pool"
-      min_count            = var.min_node_count
-      max_count            = var.max_node_count
-      auto_upgrade         = true
-      machine_type         = var.machine_type
-      enable_private_nodes = var.enable_private_nodes
+      cidr_block   = google_compute_subnetwork.gh-subnetwork[0].ip_cidr_range
+      display_name = "VPC"
     }
   ]
+  node_pools = [
+    {
+      name          = "runner-pool"
+      min_count     = var.min_node_count
+      max_count     = var.max_node_count
+      auto_upgrade  = true
+      machine_type  = var.machine_type
+      cpu_cfs_quota = false
+    }
+  ]
+}
+
+module "hub" {
+  source              = "terraform-google-modules/kubernetes-engine/google//modules/fleet-membership"
+  version             = "~> 32.0"
+  project_id          = var.project_id
+  cluster_name        = module.runner-cluster.name
+  location            = module.runner-cluster.location
+  membership_location = var.region
 }
 
 data "google_client_config" "default" {
