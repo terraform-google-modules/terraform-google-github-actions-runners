@@ -20,11 +20,11 @@ terraform {
     # https://github.com/GoogleCloudPlatform/magic-modules/pull/11688
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.3.0, < 5.44"
+      version = ">= 4.3.0, < 6.6"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 4.3.0, < 5.44"
+      version = ">= 4.3.0, < 6.6"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
