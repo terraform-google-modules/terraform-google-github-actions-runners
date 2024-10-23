@@ -2,6 +2,8 @@
 
 This module handles the opinionated creation of infrastructure necessary to deploy GitHub Actions Runners on GKE. This module follows the guide provided by GitHub for [Quickstart for Actions Runner Controller](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller).
 
+![ARC on GKE architecture diagram](../../assets/gh-runners-gke.png)
+
 This includes:
 
 - Enabling necessary APIs
