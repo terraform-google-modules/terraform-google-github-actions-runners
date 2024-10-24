@@ -119,7 +119,7 @@ locals {
 
 module "mig_template" {
   source             = "terraform-google-modules/vm/google//modules/instance_template"
-  version            = "~> 11.0"
+  version            = "~> 12.0"
   project_id         = var.project_id
   machine_type       = var.machine_type
   network            = local.network_name
@@ -152,7 +152,7 @@ module "mig_template" {
  *****************************************/
 module "mig" {
   source            = "terraform-google-modules/vm/google//modules/mig"
-  version           = "~> 11.0"
+  version           = "~> 12.0"
   project_id        = var.project_id
   hostname          = local.instance_name
   region            = var.region
