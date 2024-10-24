@@ -15,7 +15,7 @@ See below for example usage of this module:
 ```tf
 module "runner-gke" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-gke"
-  version = "~> 4.0"
+  version = "~> 4.1"
 
   project_id             = "PROJECT_ID"
   create_network         = true
