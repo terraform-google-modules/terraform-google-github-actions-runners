@@ -28,6 +28,7 @@ output "client_token" {
 
 output "ca_certificate" {
   description = "The cluster ca certificate (base64 encoded)"
+  sensitive   = true
   value       = module.runner-cluster.ca_certificate
 }
 
