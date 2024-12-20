@@ -8,6 +8,31 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v4.0.0...v5.0.0) (2024-12-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v35 ([#205](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/205))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v33 ([#183](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/183))
+* **deps:** Update Terraform terraform-google-modules/vm/google to v12 ([#184](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/184))
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v6 (major) ([#191](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/191)) ([0364375](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/0364375e2b90f407ea526df3c0bddedee1fc1bc3))
+* support private GKE nodes ([#192](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/192)) ([730f92b](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/730f92b8e207cb35acbdc4c134c954f011f877d3))
+
+
+### Bug Fixes
+
+* add real attribute condition for OIDC example ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+* constrain provider version for GKE examples to &lt;5.44 ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v33 ([#183](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/183)) ([a47589e](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/a47589e5b10eab4d3f639fb42ccc4f0f07f8fc6f))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v35 ([#205](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/205)) ([35a6060](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/35a606014656d3bb7b34c4f52818084f90021d7a))
+* **deps:** Update Terraform terraform-google-modules/vm/google to v12 ([#184](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/184)) ([0929277](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/09292776abe17a7f878b6d271e4b0b22b1138dca))
+* reformat subnetwork secondary range block ([#187](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/187)) ([658acb0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/658acb014d06e54757e60302aa9da91c37669c13))
+* set sensitive for gh-runner-gke ca_certificate output ([#196](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/196)) ([5367df3](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/5367df3f0fed5acd6dad9002a641409acd243317))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v3.1.2...v4.0.0) (2024-08-27)
 
 
