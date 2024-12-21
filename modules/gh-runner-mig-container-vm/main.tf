@@ -163,15 +163,17 @@ module "mig_template" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
   }
-  disk_size_gb         = 100
-  disk_type            = "pd-ssd"
-  auto_delete          = true
-  name_prefix          = "gh-runner"
-  source_image_family  = "cos-stable"
-  source_image_project = "cos-cloud"
-  startup_script       = "export TEST_ENV='hello'"
-  source_image         = reverse(split("/", module.gce-container.source_image))[0]
-  metadata             = merge(var.additional_metadata, { "gce-container-declaration" = module.gce-container.metadata_value })
+  disk_size_gb                     = 100
+  disk_type                        = "pd-ssd"
+  auto_delete                      = true
+  name_prefix                      = "gh-runner"
+  source_image_family              = "cos-stable"
+  source_image_project             = "cos-cloud"
+  startup_script                   = "export TEST_ENV='hello'"
+  source_image                     = reverse(split("/", module.gce-container.source_image))[0]
+  spot                             = var.spot
+  spot_instance_termination_action = var.spot_instance_termination_action
+  metadata                         = merge(var.additional_metadata, { "gce-container-declaration" = module.gce-container.metadata_value })
   tags = [
     "gh-runner-vm"
   ]

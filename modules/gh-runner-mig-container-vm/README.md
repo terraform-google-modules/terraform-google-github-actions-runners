@@ -41,6 +41,8 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | repo\_url | Repo URL for the Github Action | `string` | n/a | yes |
 | restart\_policy | The desired Docker restart policy for the runner image | `string` | `"Always"` | no |
 | service\_account | Service account email address | `string` | `""` | no |
+| spot | Provision a SPOT instance | `bool` | `false` | no |
+| spot\_instance\_termination\_action | Action to take when Compute Engine preempts a Spot VM. | `string` | `"STOP"` | no |
 | subnet\_ip | IP range for the subnet | `string` | `"10.10.10.0/24"` | no |
 | subnet\_name | Name for the subnet | `string` | `"gh-runner-subnet"` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
