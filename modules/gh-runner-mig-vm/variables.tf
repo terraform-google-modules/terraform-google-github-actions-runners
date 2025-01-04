@@ -153,3 +153,15 @@ variable "instance_tags" {
   description = "Additional tags to add to the instances"
   default     = []
 }
+
+variable "spot" {
+  type        = bool
+  description = "Provision a SPOT instance"
+  default     = false
+}
+
+variable "spot_instance_termination_action" {
+  description = "Action to take when Compute Engine preempts a Spot VM."
+  type        = string
+  default     = "STOP"
+}
