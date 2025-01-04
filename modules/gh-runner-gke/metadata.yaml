@@ -23,7 +23,7 @@ spec:
   source:
     repo: https://github.com/terraform-google-modules/terraform-google-github-actions-runners
     sourceType: git
-  version: 4.0.0
+  version: 5.0.0
   actuationTool:
     type: Terraform
     version: '>= 0.13'
