@@ -13,7 +13,7 @@
 # limitations under the License.
 
 steps:
-  - name: "hashicorp/packer:1.11.2"
+  - name: "hashicorp/packer:1.14.1"
     args:
       - build
       - -var
