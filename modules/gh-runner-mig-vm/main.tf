@@ -132,14 +132,16 @@ module "mig_template" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
   }
-  disk_size_gb         = 100
-  disk_type            = "pd-ssd"
-  auto_delete          = true
-  name_prefix          = "gh-runner"
-  source_image_family  = var.source_image_family
-  source_image_project = var.source_image_project
-  startup_script       = local.startup_script
-  source_image         = var.source_image
+  disk_size_gb                     = 100
+  disk_type                        = "pd-ssd"
+  auto_delete                      = true
+  name_prefix                      = "gh-runner"
+  source_image_family              = var.source_image_family
+  source_image_project             = var.source_image_project
+  startup_script                   = local.startup_script
+  source_image                     = var.source_image
+  spot                             = var.spot
+  spot_instance_termination_action = var.spot_instance_termination_action
   metadata = merge({
     "secret-id" = google_secret_manager_secret_version.gh-secret-version.name
     }, {
