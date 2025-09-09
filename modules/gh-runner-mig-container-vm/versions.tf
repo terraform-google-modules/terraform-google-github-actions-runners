@@ -15,17 +15,17 @@
  */
 
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 1.3"
   required_providers {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.53, < 7"
+      version = ">= 3.53, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v4.0.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v5.0.0"
   }
 
 }

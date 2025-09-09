@@ -15,25 +15,25 @@
  */
 
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 1.3"
   required_providers {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.64, < 7"
+      version = ">= 3.64, < 8"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 3.64, < 7"
+      version = ">= 3.64, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v4.0.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v5.0.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v4.0.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-oidc/v5.0.0"
   }
 
 }
