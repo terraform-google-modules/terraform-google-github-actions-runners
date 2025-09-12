@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v5.1.0...v6.0.0) (2025-09-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **helm>=3:** Update 'set' syntax in helm_resource to support v3 ([#220](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/220))
+
+### Features
+
+* **helm>=3:** Update 'set' syntax in helm_resource to support v3 ([#220](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/220)) ([247f735](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/247f735a2e55b8b57d412b0f825f9b21655d1bf5))
+
 ## [5.1.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v5.0.0...v5.1.0) (2025-09-09)
 
 
