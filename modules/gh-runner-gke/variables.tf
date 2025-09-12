@@ -189,3 +189,9 @@ variable "enable_private_nodes" {
   description = "Whether nodes have internal IP addresses only."
   default     = false
 }
+
+variable "spot" {
+  type        = bool
+  description = "A boolean that represents whether the underlying node VMs are spot"
+  default     = false
+}
