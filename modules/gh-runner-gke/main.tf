@@ -128,23 +128,24 @@ resource "helm_release" "arc_runners_set" {
   chart     = "oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
   version   = var.arc_runners_version
 
-  set {
-    name  = "githubConfigSecret"
-    value = kubernetes_secret.gh_app_pre_defined_secret.metadata[0].name
-  }
-
-  set {
-    name  = "githubConfigUrl"
-    value = var.gh_config_url
-  }
-
-  dynamic "set" {
-    for_each = var.arc_container_mode == "" ? [] : [1]
-    content {
-      name  = "containerMode.type"
-      value = var.arc_container_mode
-    }
-  }
+  set = concat(
+    [
+      {
+        name  = "githubConfigSecret"
+        value = kubernetes_secret.gh_app_pre_defined_secret.metadata[0].name
+      },
+      {
+        name  = "githubConfigUrl"
+        value = var.gh_config_url
+      }
+    ],
+    var.arc_container_mode == "" ? [] : [
+      {
+        name  = "containerMode.type"
+        value = var.arc_container_mode
+      }
+    ]
+  )
 
   values = var.arc_runners_values
 }

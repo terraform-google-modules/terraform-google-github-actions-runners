@@ -35,12 +35,12 @@ terraform {
 
     helm = {
       source  = "hashicorp/helm"
-      version = "~> 2.0"
+      version = "~> 3.0"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-gke/v5.0.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-gke/v5.1.0"
   }
 
 }
