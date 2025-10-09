@@ -76,6 +76,7 @@ module "runner-cluster" {
       auto_upgrade         = true
       machine_type         = var.machine_type
       enable_private_nodes = var.enable_private_nodes
+      spot                 = var.spot
     }
   ]
 }

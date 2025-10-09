@@ -48,6 +48,8 @@ This example shows how to deploy a MIG Self Hosted Runner with an image pre-bake
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `""` | no |
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public Ubuntu image. | `string` | `"ubuntu-1804-lts"` | no |
 | source\_image\_project | Project where the source image comes from | `string` | `"ubuntu-os-cloud"` | no |
+| spot | Provision a SPOT instance | `bool` | `false` | no |
+| spot\_instance\_termination\_action | Action to take when Compute Engine preempts a Spot VM. | `string` | `"STOP"` | no |
 | startup\_script | User startup script to run when instances spin up | `string` | `""` | no |
 | subnet\_ip | IP range for the subnet | `string` | `"10.10.10.0/24"` | no |
 | subnet\_name | Name for the subnet | `string` | `"gh-runner-subnet"` | no |

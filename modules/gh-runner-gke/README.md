@@ -102,6 +102,7 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | project\_id | The project id to deploy Github Runner cluster | `string` | n/a | yes |
 | region | The GCP region to deploy instances into | `string` | `"us-east4"` | no |
 | service\_account | Optional Service Account for the nodes | `string` | `""` | no |
+| spot | A boolean that represents whether the underlying node VMs are spot | `bool` | `false` | no |
 | subnet\_ip | IP range for the subnet | `string` | `"10.0.0.0/17"` | no |
 | subnet\_name | Name for the subnet | `string` | `"runner-subnet"` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the project\_id is used. | `string` | `""` | no |
