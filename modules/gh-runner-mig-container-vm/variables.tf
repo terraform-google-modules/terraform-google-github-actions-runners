@@ -131,3 +131,15 @@ variable "spot_instance_termination_action" {
   type        = string
   default     = "STOP"
 }
+
+variable "disk_size_gb" {
+  type        = number
+  description = "Instance disk size in GB"
+  default     = 100
+}
+
+variable "disk_type" {
+  type        = string
+  description = "Instance disk type, can be either pd-ssd, local-ssd, or pd-standard"
+  default     = "pd-ssd"
+}
