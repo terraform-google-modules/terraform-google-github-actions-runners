@@ -85,6 +85,8 @@ This example shows how to deploy Self Hosted Runners on GKE that supports Docker
 | arc\_systems\_namespace | Namespace created for the ARC operator pods. | `string` | `"arc-systems"` | no |
 | cluster\_suffix | Name of the GitHub organization associated with this runner cluster. | `string` | `"arc"` | no |
 | create\_network | When set to true, VPC will be auto created | `bool` | `true` | no |
+| disk\_size\_gb | Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB | `number` | `100` | no |
+| disk\_type | Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') | `string` | `"pd-standard"` | no |
 | enable\_private\_nodes | Whether nodes have internal IP addresses only. | `bool` | `false` | no |
 | gh\_app\_id | After creating the GitHub App, on the GitHub App's page, note the value for "App ID". | `string` | n/a | yes |
 | gh\_app\_installation\_id | You can find the app installation ID on the app installation page, which has the following URL format: `https://github.com/organizations/ORGANIZATION/settings/installations/INSTALLATION_ID` | `string` | n/a | yes |
