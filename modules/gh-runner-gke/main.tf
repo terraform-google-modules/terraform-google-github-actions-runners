@@ -77,6 +77,8 @@ module "runner-cluster" {
       machine_type         = var.machine_type
       enable_private_nodes = var.enable_private_nodes
       spot                 = var.spot
+      disk_size_gb         = var.disk_size_gb
+      disk_type            = var.disk_type
     }
   ]
 }
