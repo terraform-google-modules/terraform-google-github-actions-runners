@@ -30,6 +30,8 @@ This example shows how to deploy a Self Hosted Runner on MIG Container VMs.
 | cooldown\_period | The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. | `number` | `60` | no |
 | create\_network | When set to true, VPC,router and NAT will be auto created | `bool` | `true` | no |
 | dind | Flag to determine whether to expose dockersock | `bool` | `false` | no |
+| disk\_size\_gb | Instance disk size in GB | `number` | `100` | no |
+| disk\_type | Instance disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-ssd"` | no |
 | gh\_token | Github token that is used for generating Self Hosted Runner Token | `string` | n/a | yes |
 | image | The github runner image | `string` | n/a | yes |
 | instance\_name | The gce instance name | `string` | `"gh-runner"` | no |
