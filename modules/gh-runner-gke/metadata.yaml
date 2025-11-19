@@ -50,6 +50,16 @@ spec:
     type: bool
     default: true
     required: false
+  - name: disk_size_gb
+    description: Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB
+    type: number
+    default: 100
+    required: false
+  - name: disk_type
+    description: Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
+    type: string
+    default: pd-standard
+    required: false
   - name: gh_token
     description: Github token that is used for generating Self Hosted Runner Token
     type: string

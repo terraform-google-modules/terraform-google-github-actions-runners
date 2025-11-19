@@ -195,3 +195,15 @@ variable "spot" {
   description = "A boolean that represents whether the underlying node VMs are spot"
   default     = false
 }
+
+variable "disk_size_gb" {
+  type        = number
+  description = "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB"
+  default     = 100
+}
+
+variable "disk_type" {
+  type        = string
+  description = "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')"
+  default     = "pd-standard"
+}
