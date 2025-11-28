@@ -91,15 +91,33 @@ variable "machine_type" {
   default     = "n1-standard-4"
 }
 
-variable "max_node_count" {
+variable "system_machine_type" {
+  description = "Machine type for system pool nodes"
+  type        = string
+  default     = "e2-standard-2"
+}
+
+variable "runner_max_node_count" {
   type        = number
   description = "Maximum number of nodes in the runner node pool"
   default     = 4
 }
 
-variable "min_node_count" {
+variable "runner_min_node_count" {
   type        = number
   description = "Minimum number of nodes in the runner node pool"
+  default     = 2
+}
+
+variable "system_min_node_count" {
+  description = "Minimum number of nodes in the system pool"
+  type        = number
+  default     = 1
+}
+
+variable "system_max_node_count" {
+  description = "Maximum number of nodes in the system pool"
+  type        = number
   default     = 2
 }
 

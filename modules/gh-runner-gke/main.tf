@@ -68,17 +68,48 @@ module "runner-cluster" {
   service_account          = local.service_account
   gce_pd_csi_driver        = true
   deletion_protection      = false
-  node_pools = [
-    {
-      name                 = "runner-pool"
-      min_count            = var.min_node_count
-      max_count            = var.max_node_count
-      auto_upgrade         = true
-      machine_type         = var.machine_type
-      enable_private_nodes = var.enable_private_nodes
-      spot                 = var.spot
+
+  # Node Pools dynamisch
+  node_pools = concat(
+    [
+      {
+        name          = "runner-pool"
+        min_count     = var.runner_min_node_count
+        max_count     = var.runner_max_node_count
+        auto_upgrade  = true
+        machine_type  = var.machine_type
+        spot          = var.spot
+      }
+    ],
+      var.spot ? [
+      {
+        name          = "system-pool"
+        min_count     = var.system_min_node_count
+        max_count     = var.system_max_node_count
+        auto_upgrade  = true
+        machine_type  = var.system_machine_type
+        spot          = false
+      }
+    ] : []
+  )
+
+  # Labels nur wenn spot=true
+  node_pools_labels = var.spot ? {
+    all = {
+      "nodepool-role" = "generic"
     }
-  ]
+    runner-pool = {
+      "nodepool"                  = "runner"
+      "cloud.google.com/gke-spot" = "true"
+      "workload"                  = "ci-runner"
+    }
+    system-pool = {
+      "nodepool" = "system"
+      "workload" = "arc-system"
+    }
+  } : null
+
+
 }
 
 data "google_client_config" "default" {
