@@ -62,7 +62,6 @@ variable "provider_description" {
 variable "attribute_condition" {
   type        = string
   description = "Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition)"
-  default     = null
 }
 
 variable "attribute_mapping" {

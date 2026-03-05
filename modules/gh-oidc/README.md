@@ -16,6 +16,7 @@ module "gh_oidc" {
   project_id  = var.project_id
   pool_id     = "example-pool"
   provider_id = "example-gh-provider"
+  attribute_condition = "assertion.repository_owner == 'my-org'"
   sa_mapping = {
     "foo-service-account" = {
       sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
@@ -70,7 +71,7 @@ jobs:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | allowed\_audiences | Workload Identity Pool Provider allowed audiences. | `list(string)` | `[]` | no |
-| attribute\_condition | Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition) | `string` | `null` | no |
+| attribute\_condition | Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition) | `string` | n/a | yes |
 | attribute\_mapping | Workload Identity Pool Provider attribute mapping. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_mapping) | `map(any)` | <pre>{<br>  "attribute.actor": "assertion.actor",<br>  "attribute.aud": "assertion.aud",<br>  "attribute.repository": "assertion.repository",<br>  "google.subject": "assertion.sub"<br>}</pre> | no |
 | issuer\_uri | Workload Identity Pool Issuer URL | `string` | `"https://token.actions.githubusercontent.com"` | no |
 | pool\_description | Workload Identity Pool description | `string` | `"Workload Identity Pool managed by Terraform"` | no |
