@@ -18,9 +18,13 @@ module "runner-mig" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-runner-mig-vm"
   version = "~> 5.0"
 
-  create_network = true
   project_id     = var.project_id
   repo_name      = var.repo_name
   repo_owner     = var.repo_owner
   gh_token       = var.gh_token
+
+  create_network = false
+  gh_runner_labels = ["self-hosted"]
+  machine_type = "e2-micro"
+  service_account = "terraform-deployer@${var.project_id}.iam.gserviceaccount.com"
 }
