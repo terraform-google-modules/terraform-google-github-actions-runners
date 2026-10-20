@@ -1,5 +1,5 @@
-filippo.io/edwards25519 v1.1.0 h1:FNf4tywRC1HmFuKW5xopWpigGjJKiJSV0Cqo0cJWDaA=
-filippo.io/edwards25519 v1.1.0/go.mod h1:BxyFTGdWcka3PhytdK4V28tE5sGfRvvvRV7EaN4VDT4=
+filippo.io/edwards25519 v1.1.1 h1:YpjwWWlNmGIDyXOn8zLzqiD+9TyIlPhGFG96P39uBpw=
+filippo.io/edwards25519 v1.1.1/go.mod h1:BxyFTGdWcka3PhytdK4V28tE5sGfRvvvRV7EaN4VDT4=
 github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.9 h1:R7TF5kSOr+6fu9CFCdza5DIFLCQYGrQP923G7SaHd2Y=
 github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.9/go.mod h1:KfuvXj6g70rv3AI3D0+4aq9Icf/Axu156s6h1JeDJt4=
 github.com/agext/levenshtein v1.2.3 h1:YB2fHEn0UJagG8T1rrWknE3ZQzWM06O8AMAatNn7lmo=
