@@ -20,11 +20,11 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.64, < 8"
+      version = ">= 3.64, < 9"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 3.64, < 8"
+      version = ">= 3.64, < 9"
     }
   }
 
