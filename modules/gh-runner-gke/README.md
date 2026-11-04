@@ -7,7 +7,7 @@ This module handles the opinionated creation of infrastructure necessary to depl
 This includes:
 
 - Enabling necessary APIs
-- VPC
+- VPC (plus a Cloud Router and Cloud NAT when private nodes are enabled)
 - GKE Cluster
 - Kubernetes Secret
 - Installation via Helm Chart
@@ -40,6 +40,13 @@ It's recommended to authenticate to GitHub via a GitHub App. Follow the instruct
 Install the app in the organization or account for which the runners should be available.
 
 Substitute these values gathered from creating the GitHub App installation into the variables in the module.
+
+### Private nodes
+
+Set `enable_private_nodes = true` to give the runner nodes internal IP addresses only. When the module creates the VPC (`create_network = true`), it also creates a Cloud Router and Cloud NAT, so the nodes can pull images (such as the ARC controller from ghcr.io) and the runners can reach GitHub. If you bring your own network (`create_network = false`), make sure it has Cloud NAT or another egress path.
+
+> [!NOTE]
+> In earlier releases of this module, `enable_private_nodes` wasn't applied to the node pool, so the nodes kept public IP addresses. After you upgrade, a node pool with `enable_private_nodes = true` has internal IP addresses only.
 
 ## Requirements
 
