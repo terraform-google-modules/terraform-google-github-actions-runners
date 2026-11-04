@@ -46,12 +46,34 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
     ip_cidr_range = var.ip_range_services_cider
   }
 }
+
+/*****************************************
+  Cloud NAT for private nodes
+ *****************************************/
+resource "google_compute_router" "default" {
+  count   = var.create_network && var.enable_private_nodes ? 1 : 0
+  name    = "${var.network_name}-router"
+  network = google_compute_network.gh-network[0].self_link
+  region  = var.region
+  project = var.project_id
+}
+
+resource "google_compute_router_nat" "nat" {
+  count                              = var.create_network && var.enable_private_nodes ? 1 : 0
+  project                            = var.project_id
+  name                               = "${var.network_name}-nat"
+  router                             = google_compute_router.default[0].name
+  region                             = google_compute_router.default[0].region
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+}
+
 /*****************************************
   Runner GKE
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 35.0"
+  version                  = "~> 46.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
@@ -120,6 +142,9 @@ resource "helm_release" "arc" {
   version   = var.arc_controller_version
   wait      = true
   values    = var.arc_controller_values
+
+  # Private nodes need Cloud NAT to pull the controller image from ghcr.io.
+  depends_on = [google_compute_router_nat.nat]
 }
 
 resource "helm_release" "arc_runners_set" {
