@@ -53,7 +53,7 @@ spec:
   - name: attribute_condition
     description: Workload Identity Pool Provider attribute condition expression. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_condition)
     type: string
-    required: false
+    required: true
   - name: attribute_mapping
     description: Workload Identity Pool Provider attribute mapping. [More info](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider#attribute_mapping)
     type: map(any)

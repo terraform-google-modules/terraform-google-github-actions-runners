@@ -12,11 +12,11 @@ This includes:
 
 ```terraform
 module "gh_oidc" {
-  source      = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
-  project_id  = var.project_id
-  pool_id     = "example-pool"
-  provider_id = "example-gh-provider"
-  attribute_condition = "assertion.repository_owner == 'my-org'"
+  source              = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
+  project_id          = var.project_id
+  pool_id             = "example-pool"
+  provider_id         = "example-gh-provider"
+  attribute_condition = "assertion.repository_owner_id == '123456789'"
   sa_mapping = {
     "foo-service-account" = {
       sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
