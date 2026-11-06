@@ -13,7 +13,7 @@
 # limitations under the License.
 # Download and verify the integrity of the download first
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 RUN apt-get update && \
     apt-get -y install curl \
@@ -21,7 +21,7 @@ RUN apt-get update && \
     tar \
     jq
 
-ARG GH_RUNNER_VERSION="2.169.0"
+ARG GH_RUNNER_VERSION="2.338.2"
 WORKDIR /runner
 RUN curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz" && \
     tar -zxf actions.tar.gz && \

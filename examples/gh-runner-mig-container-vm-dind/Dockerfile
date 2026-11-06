@@ -13,7 +13,7 @@
 # limitations under the License.
 # Download and verify the integrity of the download first
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
     ca-certificates \
@@ -25,12 +25,14 @@ RUN apt-get update && \
     iputils-ping \
     software-properties-common
 
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" && \
+RUN install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get -y install docker-ce
 
-ARG GH_RUNNER_VERSION="2.169.0"
+ARG GH_RUNNER_VERSION="2.338.2"
 WORKDIR /runner
 RUN curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz" && \
     tar -zxf actions.tar.gz && \
