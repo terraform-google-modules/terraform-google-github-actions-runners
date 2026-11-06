@@ -15,6 +15,7 @@
 package gh_runner_gke_dind
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
@@ -39,9 +40,13 @@ func TestGhRunnerGkeDind(t *testing.T) {
 		cluster := gcloud.Runf(t, "container clusters describe %s --location %s --project %s", clusterName, location, projectId)
 		assert.Contains([]string{"RUNNING"}, cluster.Get("status").String())
 
-		// Get cluster credentials
+		// Get cluster credentials in a kubeconfig used only by this test. The
+		// GKE tests run in parallel with a shared $HOME, where concurrent
+		// get-credentials calls can corrupt ~/.kube/config or switch contexts.
+		kubeconfig := filepath.Join(t.TempDir(), "kubeconfig")
+		t.Setenv("KUBECONFIG", kubeconfig)
 		gcloud.Runf(t, "container clusters get-credentials %s --location %s --project %s", clusterName, location, projectId)
-		k8sOpts := k8s.KubectlOptions{}
+		k8sOpts := k8s.KubectlOptions{ConfigPath: kubeconfig}
 
 		CheckPodsRunningInNamespace("arc-systems", t, k8sOpts, assert)
 		CheckPodsRunningInNamespace("arc-runners", t, k8sOpts, assert)
