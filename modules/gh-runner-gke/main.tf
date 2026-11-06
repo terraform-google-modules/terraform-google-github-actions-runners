@@ -73,7 +73,7 @@ resource "google_compute_router_nat" "nat" {
  *****************************************/
 module "runner-cluster" {
   source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 46.0"
+  version                  = "~> 47.0"
   project_id               = var.project_id
   name                     = "gh-runner-${var.cluster_suffix}"
   regional                 = false
