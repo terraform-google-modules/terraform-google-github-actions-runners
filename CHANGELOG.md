@@ -8,6 +8,34 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v5.1.0...v6.0.0) (2026-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v47 ([#276](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/276))
+* **gh-oidc:** make attribute_condition required ([#245](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/245))
+* **deps:** Update Terraform kubernetes to v3 ([#241](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/241))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v46 ([#274](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/274))
+* **deps:** Update Terraform terraform-google-modules/vm/google to v15 ([#246](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/246))
+* **helm>=3:** Update 'set' syntax in helm_resource to support v3 ([#220](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/220))
+
+### Features
+
+* allow set disk size & type on vm runners ([#235](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/235)) ([4433035](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/44330358faf4757725a27ab97c18a26cf7bd0089))
+* **deps:** Update Terraform Google Provider to v8 ([#259](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/259)) ([9c4dcd8](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/9c4dcd85a046dd0ad689886193975bb4a38aacdd))
+* **helm>=3:** Update 'set' syntax in helm_resource to support v3 ([#220](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/220)) ([247f735](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/247f735a2e55b8b57d412b0f825f9b21655d1bf5))
+* Support spot VM instance ([#203](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/203)) ([5e1fdc0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/5e1fdc0efd71d88d87ec98a8b874376b783c740c))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform kubernetes to v3 ([#241](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/241)) ([c0dfc5d](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/c0dfc5dca9f502e6b4d05a4e0fc17881b9565b6b))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v46 ([#274](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/274)) ([ba04d62](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/ba04d62ef5a7f6502640fa4f8ae1ef6e3e3b5682))
+* **deps:** Update Terraform terraform-google-modules/kubernetes-engine/google to v47 ([#276](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/276)) ([1d8d85a](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/1d8d85afea2f671b5398837a5e1e005d9da5a394))
+* **deps:** Update Terraform terraform-google-modules/vm/google to v15 ([#246](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/246)) ([27e6eaa](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/27e6eaa9b84c08efe0b5cf6585c941a9672d2441))
+* **gh-oidc:** make attribute_condition required ([#245](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/issues/245)) ([41ada5d](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/commit/41ada5d34df0d0e9dde43ff07ecbfc4f775da5b0))
+
 ## [5.1.0](https://github.com/terraform-google-modules/terraform-google-github-actions-runners/compare/v5.0.0...v5.1.0) (2025-09-09)
 
 

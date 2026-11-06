@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v6.0.0"
   }
 
 }
